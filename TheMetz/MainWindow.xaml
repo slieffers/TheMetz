@@ -1,0 +1,42 @@
+﻿<Window x:Class="TheMetz.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TheMetz"
+        mc:Ignorable="d"
+        Title="The Metz" Height="450" Width="800">
+    <Grid>
+        <TabControl VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10" TabStripPlacement="Bottom">
+            <TabItem Header="PR Reviews">
+                <Grid>
+                    <ListBox Name="ResultsList" 
+                             HorizontalAlignment="Left" 
+                             Margin="33,32,0,0" 
+                             VerticalAlignment="Top" 
+                             Width="229" 
+                             Height="206" 
+                             SelectionChanged="ResultsList_SelectionChanged" />
+                    <Button Name ="FetchData"  Content="Fetch Data" HorizontalAlignment="Left" Margin="289,32,0,0" VerticalAlignment="Top" Width="75" Click="FetchButtonClicked"/>
+                    <RichTextBox Name="PRResults" Margin="387,0,0,0">
+                        <FlowDocument>
+                            <Paragraph>
+                                <Run Text="PRs with selected dev comments"/>
+                            </Paragraph>
+                        </FlowDocument>
+                    </RichTextBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Tab 2">
+                <Grid>
+                    <TextBlock Text="Content for Tab 2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Tab 3">
+                <Grid>
+                    <TextBlock Text="Content for Tab 3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
