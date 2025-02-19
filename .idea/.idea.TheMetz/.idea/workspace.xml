@@ -8,29 +8,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/themetz.metadata.v9.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/themetz.projects.v9.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/themetz.strings.v9.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/TheMetz/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/TheMetz/v17/.futdcache.v2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/TheMetz/v17/.suo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/TheMetz/v17/DocumentLayout.backup.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/TheMetz/v17/DocumentLayout.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TheMetz.sln" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TheMetz/App.xaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TheMetz/App.xaml.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TheMetz/AssemblyInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TheMetz/MainWindow.xaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TheMetz/MainWindow.xaml.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TheMetz/Services/AdoDataService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TheMetz/TheMetz.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/global.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheMetz/DaysControl.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheMetz/DaysControl.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheMetz/Models/AppSettings.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheMetz/PullRequestResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestCommentService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestStatsService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheMetz/Services/TeamMemberService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheMetz/Startup.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheMetz/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/themetz.metadata.v9.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/themetz.metadata.v9.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/themetz.projects.v9.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/themetz.projects.v9.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/themetz.strings.v9.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/themetz.strings.v9.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/TheMetz/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/TheMetz/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/TheMetz/v17/.futdcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/TheMetz/v17/.futdcache.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/TheMetz/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/TheMetz/v17/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/TheMetz/v17/DocumentLayout.backup.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/TheMetz/v17/DocumentLayout.backup.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/TheMetz/v17/DocumentLayout.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/TheMetz/v17/DocumentLayout.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/App.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/App.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/App.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/App.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/MainWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/MainWindow.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/MainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/MainWindow.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Services/AdoDataService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/TheMetz.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/TheMetz.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/global.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,29 +59,6 @@
     <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -96,6 +75,8 @@
     &quot;.NET Project.TheMetz.executor&quot;: &quot;Debug&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.6193182&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -107,9 +88,9 @@
 }</component>
   <component name="RunManager">
     <configuration name="TheMetz" type="DotNetProject" factoryName=".NET Project">
-      <option name="EXE_PATH" value="" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/TheMetz/bin/Debug/net8.0-windows/TheMetz.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TheMetz/bin/Debug/net8.0-windows" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="USE_MONO" value="0" />
@@ -119,8 +100,9 @@
       <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
       <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
       <option name="PROJECT_KIND" value="DotNetCore" />
-      <option name="PROJECT_TFM" value="" />
+      <option name="PROJECT_TFM" value="net8.0-windows" />
       <method v="2">
+        <option name="CleanProject" default="false" projectName="TheMetz" projectPath="$PROJECT_DIR$/TheMetz/TheMetz.csproj" />
         <option name="Build" />
       </method>
     </configuration>
@@ -136,8 +118,29 @@
       <workItem from="1738867075870" duration="163000" />
       <workItem from="1739192960357" duration="6876000" />
       <workItem from="1739280931328" duration="456000" />
-      <workItem from="1739281417817" duration="15740000" />
+      <workItem from="1739281417817" duration="22593000" />
+      <workItem from="1739377558684" duration="631000" />
+      <workItem from="1739378221590" duration="106000" />
+      <workItem from="1739378636088" duration="1854000" />
+      <workItem from="1739386681891" duration="7274000" />
+      <workItem from="1739450801362" duration="7770000" />
+      <workItem from="1739540273399" duration="7965000" />
+      <workItem from="1739549016938" duration="58000" />
+      <workItem from="1739550333673" duration="3855000" />
+      <workItem from="1739882233556" duration="20398000" />
+      <workItem from="1739973712394" duration="11025000" />
+      <workItem from="1739993751677" duration="1449000" />
+      <workItem from="1739995230491" duration="688000" />
     </task>
+    <task id="LOCAL-00001" summary="Add initial solution and application for TheMetz project&#10;&#10;Includes .gitignore, a WPF application using .NET 8.0, and ADO pull request data processing services. Also adds project configuration files for Visual Studio and JetBrains Rider IDEs.">
+      <option name="closed" value="true" />
+      <created>1739299309579</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1739299309579</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,5 +150,7 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Add initial solution and application for TheMetz project&#10;&#10;Includes .gitignore, a WPF application using .NET 8.0, and ADO pull request data processing services. Also adds project configuration files for Visual Studio and JetBrains Rider IDEs." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add initial solution and application for TheMetz project&#10;&#10;Includes .gitignore, a WPF application using .NET 8.0, and ADO pull request data processing services. Also adds project configuration files for Visual Studio and JetBrains Rider IDEs." />
   </component>
 </project>

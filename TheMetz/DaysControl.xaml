@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="TheMetz.DaysControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignWidth="200" d:DesignHeight="100"
+             Loaded="DaysControl_OnLoaded">
+    <Grid>
+        <Slider Name="DaysSliderControl"
+                HorizontalAlignment="Left" 
+                Margin="10,48,0,0" 
+                VerticalAlignment="Top" 
+                Width="120" 
+                ValueChanged="SliderControl_ValueChanged"
+                Minimum="1"
+                Maximum="90"
+                Value="{Binding NumberOfDaysToFetch, Mode=TwoWay}"/>
+        <Label Name="SliderLabel" 
+               Content="Number of Days to Fetch" 
+               HorizontalAlignment="Left" 
+               Margin="10,0,0,0" 
+               VerticalAlignment="Top"/>
+        <TextBox Name="DaysTextBox" 
+                 HorizontalAlignment="Left" 
+                 Margin="50,30,0,0" 
+                 TextWrapping="Wrap" 
+                 Text="{Binding NumberOfDaysToFetch, Mode=TwoWay}"
+                 VerticalAlignment="Top" 
+                 Width="48"/>
+    </Grid>
+</UserControl>

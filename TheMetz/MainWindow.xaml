@@ -5,36 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TheMetz"
         mc:Ignorable="d"
-        Title="The Metz" Height="450" Width="800">
+        Title="The Metz" Height="800" Width="1200">
     <Grid>
         <TabControl VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10" TabStripPlacement="Bottom">
             <TabItem Header="PR Reviews">
                 <Grid>
-                    <ListBox Name="ResultsList" 
+                    <Label HorizontalAlignment="Left" 
+                           Margin="33,5,0,0" 
+                           VerticalAlignment="Top">PRs Reviewed</Label>
+                    <ListBox Name="PrReviewResultsList" 
                              HorizontalAlignment="Left" 
                              Margin="33,32,0,0" 
                              VerticalAlignment="Top" 
                              Width="229" 
                              Height="206" 
-                             SelectionChanged="ResultsList_SelectionChanged" />
-                    <Button Name ="FetchData"  Content="Fetch Data" HorizontalAlignment="Left" Margin="289,32,0,0" VerticalAlignment="Top" Width="75" Click="FetchButtonClicked"/>
-                    <RichTextBox Name="PRResults" Margin="387,0,0,0">
+                             SelectionChanged="PrCommentResultsList_SelectionChanged" />
+                    <Button Name ="FetchPrReviewData"  Content="Fetch Data" HorizontalAlignment="Left" Margin="289,32,0,0" VerticalAlignment="Top" Width="75" Click="FetchPrCommentButtonClicked"/>
+                    <Label Margin="387,5,0,0">PRs with Comments for Selected Dev</Label>
+                    <RichTextBox Name="PrReviewResults" Margin="444,32,0,0">
                         <FlowDocument>
                             <Paragraph>
-                                <Run Text="PRs with selected dev comments"/>
                             </Paragraph>
                         </FlowDocument>
                     </RichTextBox>
+                    <local:DaysControl Margin="282,69,0,0" />
                 </Grid>
             </TabItem>
-            <TabItem Header="Tab 2">
+            <TabItem Header="PR Stats" Height="22" Margin="-2,0,-2,-2" VerticalAlignment="Bottom">
                 <Grid>
-                    <TextBlock Text="Content for Tab 2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>
+                    <Label HorizontalAlignment="Left" 
+                           Margin="33,5,0,0" 
+                           VerticalAlignment="Top">PRs Opened</Label>
+                    <ListBox Name="PrOpenedResultsList" 
+                             HorizontalAlignment="Left" 
+                             Margin="33,32,0,0" 
+                             VerticalAlignment="Top" 
+                             Width="229" 
+                             Height="206" 
+                             SelectionChanged="PrOpenedResultsList_SelectionChanged" />
+                    <Button Name ="FetchPrStatsData"  Content="Fetch Data" HorizontalAlignment="Left" Margin="289,32,0,0" VerticalAlignment="Top" Width="75" Click="FetchOpenedPrsButtonClicked"/>
+                    <Label Margin="387,5,0,0">PRs Opened for Selected Dev</Label>
+                    <RichTextBox Name="PrStatsResults" Margin="387,32,0,0">
+                        <FlowDocument>
+                            <Paragraph>
+                            </Paragraph>
+                        </FlowDocument>
+                    </RichTextBox>
+                    <local:DaysControl Margin="282,69,0,0" />
                 </Grid>
             </TabItem>
             <TabItem Header="Tab 3">
                 <Grid>
-                    <TextBlock Text="Content for Tab 3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>
+                    <local:DaysControl Margin="282,69,0,0" />
                 </Grid>
             </TabItem>
         </TabControl>

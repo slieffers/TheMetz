@@ -1,9 +1,10 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
-using Microsoft.VisualStudio.Services.Common;
 using Microsoft.VisualStudio.Services.WebApi;
 using TheMetz.Services;
 
@@ -14,56 +15,86 @@ namespace TheMetz;
 /// </summary>
 public partial class MainWindow : Window
 {
-    private AdoDataService _dataService;
+    private readonly IPullRequestCommentService _pullRequestCommentService;
+    private readonly IPullRequestStatsService _pullRequestStatsService;
 
-    public MainWindow()
+    private int _numberOfDaysToFetch = 0;
+    
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    public int NumberOfDaysToFetch
+    {
+        get => _numberOfDaysToFetch;
+        set
+        {
+            if (_numberOfDaysToFetch != value)
+            {
+                _numberOfDaysToFetch = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+
+    public MainWindow(IPullRequestCommentService pullRequestCommentService, IPullRequestStatsService pullRequestStatsService)
     {
         InitializeComponent();
         
-        const string orgUrl = "https://tfs.clarkinc.biz/DefaultCollection";
+        _pullRequestCommentService = pullRequestCommentService;
+        _pullRequestStatsService = pullRequestStatsService;
 
-        const string personalAccessToken = "j3dcue4ijcpz6qxmdzb6uvdm6t6bgxaw2d3tcn6ymswbvuv7y7ra";
-            
-        var connection =
-            new VssConnection(new Uri(orgUrl), new VssBasicCredential(string.Empty, personalAccessToken));
-        _dataService = new AdoDataService(connection);
-        
-        ResultsList.Items.Add("Devs with PR comments in last 2 weeks");
+        DataContext = this;
     }
 
-    private async Task LoadData()
+    private async Task LoadPrCommentData()
     {
-        ResultsList.Items.Clear();
+        PrReviewResultsList.Items.Clear();
 
-        ResultsList.Items.Add("Loading...");
+        PrReviewResultsList.Items.Add("Loading...");
 
-        IEnumerable<KeyValuePair<string, int>> test = await _dataService.ShowCommentCounts();
+        IEnumerable<KeyValuePair<string, int>> test = await _pullRequestCommentService.ShowCommentCounts(_numberOfDaysToFetch);
 
-        ResultsList.Items.Clear();
+        PrReviewResultsList.Items.Clear();
 
         foreach (KeyValuePair<string, int> keyValuePair in test)
         {
-            ResultsList.Items.Add($"{keyValuePair.Key}: {keyValuePair.Value}");
+            PrReviewResultsList.Items.Add($"{keyValuePair.Key}: {keyValuePair.Value}");
         }
-
     }
 
-    private void ResultsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private async Task LoadPrOpenedData()
     {
-        if (ResultsList.SelectedItem == null)
+        PrOpenedResultsList.Items.Clear();
+
+        PrOpenedResultsList.Items.Add("Loading...");
+
+        IEnumerable<KeyValuePair<string, int>> test = await _pullRequestStatsService.ShowOpenedPrCounts(_numberOfDaysToFetch);
+
+        PrOpenedResultsList.Items.Clear();
+
+        foreach (KeyValuePair<string, int> keyValuePair in test)
+        {
+            PrOpenedResultsList.Items.Add($"{keyValuePair.Key}: {keyValuePair.Value}");
+        }
+    }
+
+    private void PrCommentResultsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (PrReviewResultsList.SelectedItem == null)
         {
             return;
         }
         
-        PRResults.Document.Blocks.Clear();
+        PrReviewResults.Document.Blocks.Clear();
             
-        var selectedAuthor = ResultsList.SelectedItem.ToString();
+        var selectedAuthor = PrReviewResultsList.SelectedItem!.ToString();
             
         var authorParagraph = new Paragraph(new Run(selectedAuthor));
-        PRResults.Document.Blocks.Add(authorParagraph);
+        PrReviewResults.Document.Blocks.Add(authorParagraph);
 
-        string authorName = selectedAuthor![..selectedAuthor.IndexOf(':')];
-        List<(string Title, string Url)> commentLinks = _dataService.GetDeveloperCommentLinks(authorName);
+        int truncateIndex = selectedAuthor!.IndexOf(':');
+        string authorName = selectedAuthor[..(truncateIndex == -1 ? selectedAuthor.Length : truncateIndex)];
+        List<(string Title, string Url)> commentLinks = _pullRequestCommentService.GetDeveloperCommentLinks(authorName);
 
         foreach ((string Title, string Url) linkInfo in commentLinks)
         {
@@ -84,13 +115,64 @@ public partial class MainWindow : Window
             };
 
             paragraph.Inlines.Add(hyperlink);
-            PRResults.Document.Blocks.Add(paragraph);
+            PrReviewResults.Document.Blocks.Add(paragraph);
         }
-        ResultsList.SelectedItem = null;
+        PrReviewResultsList.SelectedItem = null;
     }
     
-    private async void FetchButtonClicked(object sender, RoutedEventArgs e)
+    private void PrOpenedResultsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        await LoadData();
+        if (PrOpenedResultsList.SelectedItem == null)
+        {
+            return;
+        }
+        
+        PrStatsResults.Document.Blocks.Clear();
+            
+        var selectedAuthor = PrOpenedResultsList.SelectedItem!.ToString();
+            
+        var authorParagraph = new Paragraph(new Run(selectedAuthor));
+        PrStatsResults.Document.Blocks.Add(authorParagraph);
+
+        int truncateIndex = selectedAuthor!.IndexOf(':');
+        string authorName = selectedAuthor[..(truncateIndex == -1 ? selectedAuthor.Length : truncateIndex)];
+        List<(string Title, string Url)> commentLinks = _pullRequestStatsService.GetDeveloperOpenedPrLinks(authorName);
+
+        foreach ((string Title, string Url) linkInfo in commentLinks)
+        {
+            var paragraph = new Paragraph();
+            var hyperlink = new Hyperlink(new Run(linkInfo.Title))
+            {
+                NavigateUri = new Uri(linkInfo.Url),
+                Cursor = Cursors.Hand
+            };
+
+            hyperlink.PreviewMouseLeftButtonDown += (s, args) =>
+            {
+                System.Diagnostics.Process.Start(new ProcessStartInfo
+                {
+                    FileName = linkInfo.Url,
+                    UseShellExecute = true
+                });
+            };
+
+            paragraph.Inlines.Add(hyperlink);
+            PrStatsResults.Document.Blocks.Add(paragraph);
+        }
+        PrOpenedResultsList.SelectedItem = null;
+    }
+    
+    private async void FetchPrCommentButtonClicked(object sender, RoutedEventArgs e)
+    {
+        await LoadPrCommentData();
+    }
+    private async void FetchOpenedPrsButtonClicked(object sender, RoutedEventArgs e)
+    {
+        await LoadPrOpenedData();
+    }
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
