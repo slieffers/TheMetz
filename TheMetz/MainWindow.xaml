@@ -10,18 +10,21 @@
         <TabControl VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10" TabStripPlacement="Bottom">
             <TabItem Header="PR Reviews">
                 <Grid>
-                    <Label HorizontalAlignment="Left" 
-                           Margin="33,5,0,0" 
-                           VerticalAlignment="Top">PRs Reviewed</Label>
-                    <ListBox Name="PrReviewResultsList" 
-                             HorizontalAlignment="Left" 
-                             Margin="33,32,0,0" 
-                             VerticalAlignment="Top" 
-                             Width="229" 
-                             Height="206" 
+                    <Label HorizontalAlignment="Left"
+                           Margin="33,5,0,0"
+                           VerticalAlignment="Top">
+                        PRs Reviewed
+                    </Label>
+                    <ListBox Name="PrReviewResultsList"
+                             HorizontalAlignment="Left"
+                             Margin="33,32,0,0"
+                             VerticalAlignment="Top"
+                             Width="229"
+                             Height="206"
                              SelectionChanged="PrCommentResultsList_SelectionChanged" />
-                    <Button Name ="FetchPrReviewData"  Content="Fetch Data" HorizontalAlignment="Left" Margin="289,32,0,0" VerticalAlignment="Top" Width="75" Click="FetchPrCommentButtonClicked"/>
-                    <Label Margin="387,5,0,0">PRs with Comments for Selected Dev</Label>
+                    <Button Name="FetchPrReviewData" Content="Fetch Data" HorizontalAlignment="Left"
+                            Margin="289,32,0,0" VerticalAlignment="Top" Width="75" Click="FetchPrCommentButtonClicked" />
+                    <Label Margin="444,5,0,0">PRs with Comments for Selected Dev</Label>
                     <RichTextBox Name="PrReviewResults" Margin="444,32,0,0">
                         <FlowDocument>
                             <Paragraph>
@@ -33,26 +36,60 @@
             </TabItem>
             <TabItem Header="PR Stats" Height="22" Margin="-2,0,-2,-2" VerticalAlignment="Bottom">
                 <Grid>
-                    <Label HorizontalAlignment="Left" 
-                           Margin="33,5,0,0" 
-                           VerticalAlignment="Top">PRs Opened</Label>
-                    <ListBox Name="PrOpenedResultsList" 
-                             HorizontalAlignment="Left" 
-                             Margin="33,32,0,0" 
-                             VerticalAlignment="Top" 
-                             Width="229" 
-                             Height="206" 
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" HorizontalAlignment="Left"
+                           Margin="33,5,0,0"
+                           VerticalAlignment="Top">
+                        PRs Opened
+                    </Label>
+                    <ListBox Grid.Row="0" Name="PrOpenedResultsList"
+                             HorizontalAlignment="Left"
+                             Margin="33,32,0,0"
+                             VerticalAlignment="Top"
+                             Width="229"
+                             Height="206"
                              SelectionChanged="PrOpenedResultsList_SelectionChanged" />
-                    <Button Name ="FetchPrStatsData"  Content="Fetch Data" HorizontalAlignment="Left" Margin="289,32,0,0" VerticalAlignment="Top" Width="75" Click="FetchOpenedPrsButtonClicked"/>
-                    <Label Margin="387,5,0,0">PRs Opened for Selected Dev</Label>
-                    <RichTextBox Name="PrStatsResults" Margin="387,32,0,0">
+                    <Button Grid.Row="0" Name="FetchPrOpenedData" Content="Fetch Data" HorizontalAlignment="Left"
+                            Margin="289,32,10,0" VerticalAlignment="Top" Width="75" Click="FetchOpenedPrsButtonClicked" />
+                    <Label Grid.Row="0" Margin="444,5,0,0">PRs Opened for Selected Dev</Label>
+                    <RichTextBox Grid.Row="0" Name="PrOpenedResults" Margin="444,32,0,0" Height="206" Width="500"
+                                 VerticalAlignment="Top" HorizontalAlignment="Left">
                         <FlowDocument>
                             <Paragraph>
                             </Paragraph>
                         </FlowDocument>
                     </RichTextBox>
-                    <local:DaysControl Margin="282,69,0,0" />
+                    <local:DaysControl Grid.Row="0" Margin="282,69,0,0" />
+                    <Label Grid.Row="1" HorizontalAlignment="Left"
+                           Margin="33,5,0,0"
+                           VerticalAlignment="Top">
+                        PRs Closed
+                    </Label>
+                    <ListBox Grid.Row="1" Name="PrClosedResultsList"
+                             HorizontalAlignment="Left"
+                             Margin="33,32,0,0"
+                             VerticalAlignment="Top"
+                             Width="229"
+                             Height="206"
+                             SelectionChanged="PrClosedResultsList_SelectionChanged" />
+                    <Button Grid.Row="1" Name="FetchPrClosedData" Content="Fetch Data" HorizontalAlignment="Left"
+                            Margin="289,32,10,0" VerticalAlignment="Top" Width="75" Click="FetchClosedPrsButtonClicked" />
+                    <Label Grid.Row="1" Margin="444,5,0,0">PRs Closed for Selected Dev</Label>
+                    <RichTextBox Grid.Row="1" Name="PrClosedResults" Margin="444,32,0,0" Height="206" Width="500"
+                                 VerticalAlignment="Top" HorizontalAlignment="Left">
+                        <FlowDocument>
+                            <Paragraph>
+                            </Paragraph>
+                        </FlowDocument>
+                    </RichTextBox>
+                    <local:DaysControl Grid.Row="1" Margin="282,69,0,0" />
                 </Grid>
+
             </TabItem>
             <TabItem Header="Tab 3">
                 <Grid>

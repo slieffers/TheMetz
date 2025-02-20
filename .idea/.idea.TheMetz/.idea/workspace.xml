@@ -8,31 +8,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/TheMetz/DaysControl.xaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TheMetz/DaysControl.xaml.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TheMetz/Models/AppSettings.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TheMetz/PullRequestResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestCommentService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestStatsService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TheMetz/Services/TeamMemberService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TheMetz/Startup.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TheMetz/appsettings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/themetz.metadata.v9.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/themetz.metadata.v9.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/themetz.projects.v9.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/themetz.projects.v9.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/themetz.strings.v9.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/themetz.strings.v9.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/TheMetz/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/TheMetz/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/TheMetz/v17/.futdcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/TheMetz/v17/.futdcache.v2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/TheMetz/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/TheMetz/v17/.suo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/TheMetz/v17/DocumentLayout.backup.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/TheMetz/v17/DocumentLayout.backup.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/TheMetz/v17/DocumentLayout.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/TheMetz/v17/DocumentLayout.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/App.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/App.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/App.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/App.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/DaysControl.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/DaysControl.xaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TheMetz/MainWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/MainWindow.xaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TheMetz/MainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/MainWindow.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Services/AdoDataService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/TheMetz.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/TheMetz.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/global.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Services/PullRequestStatsService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestStatsService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,16 +26,6 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
@@ -130,7 +100,8 @@
       <workItem from="1739882233556" duration="20398000" />
       <workItem from="1739973712394" duration="11025000" />
       <workItem from="1739993751677" duration="1449000" />
-      <workItem from="1739995230491" duration="688000" />
+      <workItem from="1739995230491" duration="1122000" />
+      <workItem from="1740053767958" duration="2771000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial solution and application for TheMetz project&#10;&#10;Includes .gitignore, a WPF application using .NET 8.0, and ADO pull request data processing services. Also adds project configuration files for Visual Studio and JetBrains Rider IDEs.">
       <option name="closed" value="true" />
@@ -140,7 +111,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739299309579</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Refactor pull request handling and add modular services.&#10;&#10;Replaces AdoDataService with modular services for better code structure. Adds PullRequestService, PullRequestCommentService, and TeamMemberService for handling specific functionalities. Introduces new Startup configuration, AppSettings model, and updates workspace settings to support refactored logic and .NET 8.0 WPF application setup.">
+      <option name="closed" value="true" />
+      <created>1739996097553</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1739996097553</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -151,6 +130,7 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Add initial solution and application for TheMetz project&#10;&#10;Includes .gitignore, a WPF application using .NET 8.0, and ADO pull request data processing services. Also adds project configuration files for Visual Studio and JetBrains Rider IDEs." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add initial solution and application for TheMetz project&#10;&#10;Includes .gitignore, a WPF application using .NET 8.0, and ADO pull request data processing services. Also adds project configuration files for Visual Studio and JetBrains Rider IDEs." />
+    <MESSAGE value="Refactor pull request handling and add modular services.&#10;&#10;Replaces AdoDataService with modular services for better code structure. Adds PullRequestService, PullRequestCommentService, and TeamMemberService for handling specific functionalities. Introduces new Startup configuration, AppSettings model, and updates workspace settings to support refactored logic and .NET 8.0 WPF application setup." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor pull request handling and add modular services.&#10;&#10;Replaces AdoDataService with modular services for better code structure. Adds PullRequestService, PullRequestCommentService, and TeamMemberService for handling specific functionalities. Introduces new Startup configuration, AppSettings model, and updates workspace settings to support refactored logic and .NET 8.0 WPF application setup." />
   </component>
 </project>

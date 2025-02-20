@@ -78,6 +78,22 @@ public partial class MainWindow : Window
         }
     }
 
+    private async Task LoadPrClosedData()
+    {
+        PrClosedResultsList.Items.Clear();
+
+        PrClosedResultsList.Items.Add("Loading...");
+
+        IEnumerable<KeyValuePair<string, int>> test = await _pullRequestStatsService.ShowClosedPrCounts(_numberOfDaysToFetch);
+
+        PrClosedResultsList.Items.Clear();
+
+        foreach (KeyValuePair<string, int> keyValuePair in test)
+        {
+            PrClosedResultsList.Items.Add($"{keyValuePair.Key}: {keyValuePair.Value}");
+        }
+    }
+
     private void PrCommentResultsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (PrReviewResultsList.SelectedItem == null)
@@ -127,12 +143,12 @@ public partial class MainWindow : Window
             return;
         }
         
-        PrStatsResults.Document.Blocks.Clear();
+        PrOpenedResults.Document.Blocks.Clear();
             
         var selectedAuthor = PrOpenedResultsList.SelectedItem!.ToString();
             
         var authorParagraph = new Paragraph(new Run(selectedAuthor));
-        PrStatsResults.Document.Blocks.Add(authorParagraph);
+        PrOpenedResults.Document.Blocks.Add(authorParagraph);
 
         int truncateIndex = selectedAuthor!.IndexOf(':');
         string authorName = selectedAuthor[..(truncateIndex == -1 ? selectedAuthor.Length : truncateIndex)];
@@ -157,9 +173,51 @@ public partial class MainWindow : Window
             };
 
             paragraph.Inlines.Add(hyperlink);
-            PrStatsResults.Document.Blocks.Add(paragraph);
+            PrOpenedResults.Document.Blocks.Add(paragraph);
         }
         PrOpenedResultsList.SelectedItem = null;
+    }
+    
+    private void PrClosedResultsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (PrClosedResultsList.SelectedItem == null)
+        {
+            return;
+        }
+        
+        PrClosedResults.Document.Blocks.Clear();
+            
+        var selectedAuthor = PrClosedResultsList.SelectedItem!.ToString();
+            
+        var authorParagraph = new Paragraph(new Run(selectedAuthor));
+        PrClosedResults.Document.Blocks.Add(authorParagraph);
+
+        int truncateIndex = selectedAuthor!.IndexOf(':');
+        string authorName = selectedAuthor[..(truncateIndex == -1 ? selectedAuthor.Length : truncateIndex)];
+        List<(string Title, string Url)> commentLinks = _pullRequestStatsService.GetDeveloperOpenedPrLinks(authorName);
+
+        foreach ((string Title, string Url) linkInfo in commentLinks)
+        {
+            var paragraph = new Paragraph();
+            var hyperlink = new Hyperlink(new Run(linkInfo.Title))
+            {
+                NavigateUri = new Uri(linkInfo.Url),
+                Cursor = Cursors.Hand
+            };
+
+            hyperlink.PreviewMouseLeftButtonDown += (s, args) =>
+            {
+                System.Diagnostics.Process.Start(new ProcessStartInfo
+                {
+                    FileName = linkInfo.Url,
+                    UseShellExecute = true
+                });
+            };
+
+            paragraph.Inlines.Add(hyperlink);
+            PrClosedResults.Document.Blocks.Add(paragraph);
+        }
+        PrClosedResultsList.SelectedItem = null;
     }
     
     private async void FetchPrCommentButtonClicked(object sender, RoutedEventArgs e)
@@ -169,6 +227,11 @@ public partial class MainWindow : Window
     private async void FetchOpenedPrsButtonClicked(object sender, RoutedEventArgs e)
     {
         await LoadPrOpenedData();
+    }
+
+    private async void FetchClosedPrsButtonClicked(object sender, RoutedEventArgs e)
+    {
+        await LoadPrClosedData();
     }
 
     protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

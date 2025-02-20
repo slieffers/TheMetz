@@ -7,6 +7,7 @@ namespace TheMetz.Services
     public interface IPullRequestStatsService
     {
         public Task<Dictionary<string, int>> ShowOpenedPrCounts(int numberOfDays);
+        public Task<Dictionary<string, int>> ShowClosedPrCounts(int numberOfDays);
         List<(string Title, string Url)> GetDeveloperOpenedPrLinks(string developerName);
     }
 
@@ -14,7 +15,7 @@ namespace TheMetz.Services
     {
         private readonly VssConnection _connection;
 
-        private Dictionary<string, List<(string Title, string Url)>> DeveloperCompletedPrLinks = new();
+        private Dictionary<string, List<(string Title, string Url)>> DeveloperClosedPrLinks = new();
         private Dictionary<string, List<(string Title, string Url)>> DeveloperOpenedPrLinks = new();
         private Dictionary<string, List<(string Title, string Url)>> DeveloperReviewedPrLinks = new();
 
@@ -35,9 +36,7 @@ namespace TheMetz.Services
 
             using var gitClient = await _connection.GetClientAsync<GitHttpClient>();
 
-            DeveloperCompletedPrLinks.Clear();
-            DeveloperOpenedPrLinks = new Dictionary<string, List<(string Title, string Url)>>();
-            DeveloperReviewedPrLinks.Clear();
+            DeveloperOpenedPrLinks.Clear();
 
             List<TeamMember>? teamMembers = await _teamMemberService.GetCustomerOptimizationTeamMembers();
             if (teamMembers == null)
@@ -52,16 +51,75 @@ namespace TheMetz.Services
                 .Where(pr => teamMembers.Select(t => t.Identity.Id).Contains(pr.CreatedBy.Id))
                 .ToList();
 
-            Dictionary<string, int> teamMembersWithOpenPrs = customerOptimizationPullRequests.GroupBy(pr => pr.CreatedBy.DisplayName).ToDictionary(t => t.Key, t => t.Count());
+            Dictionary<string, int> teamMembersOpenPrStats = customerOptimizationPullRequests.GroupBy(pr => pr.CreatedBy.DisplayName).ToDictionary(t => t.Key, t => t.Count());
 
             DeveloperOpenedPrLinks = openPrs.GroupBy(pr => pr.CreatedBy.DisplayName).ToDictionary(t => t.Key, t => t.Select(pr => (pr.Title, GetFormattedPrUrl(pr))).DistinctBy(p => p.Title).ToList());
             
-            return teamMembersWithOpenPrs;
+            return teamMembersOpenPrStats;
+        }
+        
+        public async Task<Dictionary<string, int>> ShowClosedPrCounts(int numberOfDays)
+        {
+            List<GitPullRequest> pullRequests = await _pullRequestService.GetPullRequests(numberOfDays);
+
+            using var gitClient = await _connection.GetClientAsync<GitHttpClient>();
+
+            DeveloperClosedPrLinks.Clear();
+
+            List<TeamMember>? teamMembers = await _teamMemberService.GetCustomerOptimizationTeamMembers();
+            if (teamMembers == null)
+            {
+                return new Dictionary<string, int>();
+            }
+            
+            IEnumerable<GitPullRequest> closedPrs = pullRequests
+                .Where(pr => pr.ClosedDate >= DateTime.Today.AddDays(-numberOfDays))
+                .ToList();
+            IEnumerable<GitPullRequest> customerOptimizationPullRequests = closedPrs
+                .Where(pr => teamMembers.Select(t => t.Identity.Id).Contains(pr.CreatedBy.Id))
+                .ToList();
+
+            Dictionary<string, int> teamMembersClosedPrStats = customerOptimizationPullRequests.GroupBy(pr => pr.CreatedBy.DisplayName).ToDictionary(t => t.Key, t => t.Count());
+
+            DeveloperClosedPrLinks = closedPrs.GroupBy(pr => pr.CreatedBy.DisplayName).ToDictionary(t => t.Key, t => t.Select(pr => (pr.Title, GetFormattedPrUrl(pr))).DistinctBy(p => p.Title).ToList());
+            
+            return teamMembersClosedPrStats;
+        }
+        
+        public async Task<Dictionary<string, int>> ShowReviewedPrCounts(int numberOfDays)
+        {
+            List<GitPullRequest> pullRequests = await _pullRequestService.GetPullRequests(numberOfDays);
+
+            using var gitClient = await _connection.GetClientAsync<GitHttpClient>();
+
+            DeveloperReviewedPrLinks.Clear();
+
+            List<TeamMember>? teamMembers = await _teamMemberService.GetCustomerOptimizationTeamMembers();
+            if (teamMembers == null)
+            {
+                return new Dictionary<string, int>();
+            }
+            List<string> teamMemberNames = teamMembers.Select(t => t.Identity.DisplayName).ToList();
+            IEnumerable<GitPullRequest> reviewedPrs = pullRequests
+                .Where(pr => 
+                    (pr.Status == PullRequestStatus.Active || pr.ClosedDate >= DateTime.Today.AddDays(-numberOfDays))
+                     && pr.Reviewers.ToList().Exists(r => teamMemberNames.Contains(r.DisplayName))).ToList(); 
+
+            Dictionary<string, int> teamMemberReviewerStats = reviewedPrs.GroupBy(pr => pr.CreatedBy.DisplayName).ToDictionary(t => t.Key, t => t.Count());
+
+            DeveloperReviewedPrLinks = reviewedPrs.GroupBy(pr => pr.CreatedBy.DisplayName).ToDictionary(t => t.Key, t => t.Select(pr => (pr.Title, GetFormattedPrUrl(pr))).DistinctBy(p => p.Title).ToList());
+            
+            return teamMemberReviewerStats;
         }
         
         public List<(string Title, string Url)> GetDeveloperOpenedPrLinks(string developerName)
         {
             return DeveloperOpenedPrLinks[developerName].ToList();
+        }
+        
+        public List<(string Title, string Url)> GetDeveloperClosedPrLinks(string developerName)
+        {
+            return DeveloperClosedPrLinks[developerName].ToList();
         }
 
         private static string GetFormattedPrUrl(GitPullRequest pr)
