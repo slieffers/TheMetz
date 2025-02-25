@@ -65,6 +65,7 @@
                         </FlowDocument>
                     </RichTextBox>
                     <local:DaysControl Grid.Row="0" Margin="282,69,0,0" />
+                    
                     <Label Grid.Row="1" HorizontalAlignment="Left"
                            Margin="33,5,0,0"
                            VerticalAlignment="Top">
@@ -88,6 +89,30 @@
                         </FlowDocument>
                     </RichTextBox>
                     <local:DaysControl Grid.Row="1" Margin="282,69,0,0" />
+                    
+                    <Label Grid.Row="2" HorizontalAlignment="Left"
+                           Margin="33,5,0,0"
+                           VerticalAlignment="Top">
+                        PRs Reviewed
+                    </Label>
+                    <ListBox Grid.Row="2" Name="PrReviewedResultsList"
+                             HorizontalAlignment="Left"
+                             Margin="33,32,0,0"
+                             VerticalAlignment="Top"
+                             Width="229"
+                             Height="206"
+                             SelectionChanged="PrReviewedResultsList_SelectionChanged" />
+                    <Button Grid.Row="2" Name="FetchPrReviewedData" Content="Fetch Data" HorizontalAlignment="Left"
+                            Margin="289,32,10,0" VerticalAlignment="Top" Width="75" Click="FetchReviewedPrsButtonClicked" />
+                    <Label Grid.Row="2" Margin="444,5,0,0">PRs Reviewed for Selected Dev</Label>
+                    <RichTextBox Grid.Row="2" Name="PrReviewedResults" Margin="444,32,0,0" Height="206" Width="500"
+                                 VerticalAlignment="Top" HorizontalAlignment="Left">
+                        <FlowDocument>
+                            <Paragraph>
+                            </Paragraph>
+                        </FlowDocument>
+                    </RichTextBox>
+                    <local:DaysControl Grid.Row="2" Margin="282,69,0,0" />
                 </Grid>
 
             </TabItem>

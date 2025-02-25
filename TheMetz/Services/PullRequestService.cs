@@ -1,14 +1,5 @@
-﻿using System.Collections.Concurrent;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text.Encodings.Web;
-using System.Text.Json;
-using System.Windows.Controls.Primitives;
-using Microsoft.TeamFoundation.Core.WebApi;
-using Microsoft.TeamFoundation.SourceControl.WebApi;
-using Microsoft.VisualStudio.Services.Common;
+﻿using Microsoft.TeamFoundation.SourceControl.WebApi;
 using Microsoft.VisualStudio.Services.WebApi;
-using PullRequestModels;
 
 namespace TheMetz.Services
 {

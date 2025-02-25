@@ -1,6 +1,7 @@
 ﻿using Microsoft.TeamFoundation.SourceControl.WebApi;
 using Microsoft.VisualStudio.Services.WebApi;
 using System.Collections.Concurrent;
+using Microsoft.VisualStudio.Services.Common;
 
 namespace TheMetz.Services
 {
@@ -8,16 +9,19 @@ namespace TheMetz.Services
     {
         public Task<Dictionary<string, int>> ShowOpenedPrCounts(int numberOfDays);
         public Task<Dictionary<string, int>> ShowClosedPrCounts(int numberOfDays);
+        public Task<Dictionary<string, int>> ShowReviewedPrCounts(int numberOfDays);
         List<(string Title, string Url)> GetDeveloperOpenedPrLinks(string developerName);
+        List<(string Title, string Url)> GetDeveloperClosedPrLinks(string developerName);
+        List<(string Title, string Url)> GetDeveloperReviewedPrLinks(string developerName);
     }
 
     internal class PullRequestStatsService : IPullRequestStatsService
     {
         private readonly VssConnection _connection;
 
-        private Dictionary<string, List<(string Title, string Url)>> DeveloperClosedPrLinks = new();
-        private Dictionary<string, List<(string Title, string Url)>> DeveloperOpenedPrLinks = new();
-        private Dictionary<string, List<(string Title, string Url)>> DeveloperReviewedPrLinks = new();
+        private Dictionary<string, List<(string Title, string Url)>> _developerClosedPrLinks = new();
+        private Dictionary<string, List<(string Title, string Url)>> _developerOpenedPrLinks = new();
+        private Dictionary<string, List<(string Title, string Url)>> _developerReviewedPrLinks = new();
 
         private readonly IPullRequestService _pullRequestService;
         private readonly ITeamMemberService _teamMemberService;
@@ -36,7 +40,7 @@ namespace TheMetz.Services
 
             using var gitClient = await _connection.GetClientAsync<GitHttpClient>();
 
-            DeveloperOpenedPrLinks.Clear();
+            _developerOpenedPrLinks.Clear();
 
             List<TeamMember>? teamMembers = await _teamMemberService.GetCustomerOptimizationTeamMembers();
             if (teamMembers == null)
@@ -53,7 +57,7 @@ namespace TheMetz.Services
 
             Dictionary<string, int> teamMembersOpenPrStats = customerOptimizationPullRequests.GroupBy(pr => pr.CreatedBy.DisplayName).ToDictionary(t => t.Key, t => t.Count());
 
-            DeveloperOpenedPrLinks = openPrs.GroupBy(pr => pr.CreatedBy.DisplayName).ToDictionary(t => t.Key, t => t.Select(pr => (pr.Title, GetFormattedPrUrl(pr))).DistinctBy(p => p.Title).ToList());
+            _developerOpenedPrLinks = openPrs.GroupBy(pr => pr.CreatedBy.DisplayName).ToDictionary(t => t.Key, t => t.Select(pr => (pr.Title, GetFormattedPrUrl(pr))).DistinctBy(p => p.Title).ToList());
             
             return teamMembersOpenPrStats;
         }
@@ -64,7 +68,7 @@ namespace TheMetz.Services
 
             using var gitClient = await _connection.GetClientAsync<GitHttpClient>();
 
-            DeveloperClosedPrLinks.Clear();
+            _developerClosedPrLinks.Clear();
 
             List<TeamMember>? teamMembers = await _teamMemberService.GetCustomerOptimizationTeamMembers();
             if (teamMembers == null)
@@ -81,7 +85,7 @@ namespace TheMetz.Services
 
             Dictionary<string, int> teamMembersClosedPrStats = customerOptimizationPullRequests.GroupBy(pr => pr.CreatedBy.DisplayName).ToDictionary(t => t.Key, t => t.Count());
 
-            DeveloperClosedPrLinks = closedPrs.GroupBy(pr => pr.CreatedBy.DisplayName).ToDictionary(t => t.Key, t => t.Select(pr => (pr.Title, GetFormattedPrUrl(pr))).DistinctBy(p => p.Title).ToList());
+            _developerClosedPrLinks = closedPrs.GroupBy(pr => pr.CreatedBy.DisplayName).ToDictionary(t => t.Key, t => t.Select(pr => (pr.Title, GetFormattedPrUrl(pr))).DistinctBy(p => p.Title).ToList());
             
             return teamMembersClosedPrStats;
         }
@@ -92,7 +96,7 @@ namespace TheMetz.Services
 
             using var gitClient = await _connection.GetClientAsync<GitHttpClient>();
 
-            DeveloperReviewedPrLinks.Clear();
+            _developerReviewedPrLinks.Clear();
 
             List<TeamMember>? teamMembers = await _teamMemberService.GetCustomerOptimizationTeamMembers();
             if (teamMembers == null)
@@ -103,23 +107,57 @@ namespace TheMetz.Services
             IEnumerable<GitPullRequest> reviewedPrs = pullRequests
                 .Where(pr => 
                     (pr.Status == PullRequestStatus.Active || pr.ClosedDate >= DateTime.Today.AddDays(-numberOfDays))
-                     && pr.Reviewers.ToList().Exists(r => teamMemberNames.Contains(r.DisplayName))).ToList(); 
+                     && pr.Reviewers.ToList().Exists(r => teamMemberNames.Contains(r.DisplayName))).ToList();
 
-            Dictionary<string, int> teamMemberReviewerStats = reviewedPrs.GroupBy(pr => pr.CreatedBy.DisplayName).ToDictionary(t => t.Key, t => t.Count());
+            Dictionary<string, int> teamMemberReviewerStats = new Dictionary<string, int>();
+            foreach (GitPullRequest reviewedPr in reviewedPrs)
+            {
+                foreach (IdentityRefWithVote reviewer in reviewedPr.Reviewers)
+                {
+                    if (!teamMemberNames.Contains(reviewer.DisplayName) || reviewer.Vote == 0)
+                    {
+                        continue;
+                    }
+                    
+                    if(!teamMemberReviewerStats.ContainsKey(reviewer.DisplayName))
+                    {
+                        teamMemberReviewerStats.Add(reviewer.DisplayName, 1);
+                    }
+                    else
+                    {
+                        teamMemberReviewerStats[reviewer.DisplayName] += 1;
+                    }
 
-            DeveloperReviewedPrLinks = reviewedPrs.GroupBy(pr => pr.CreatedBy.DisplayName).ToDictionary(t => t.Key, t => t.Select(pr => (pr.Title, GetFormattedPrUrl(pr))).DistinctBy(p => p.Title).ToList());
+                    if (!_developerReviewedPrLinks.ContainsKey(reviewer.DisplayName))
+                    {
+                        _developerReviewedPrLinks.Add(reviewer.DisplayName, new List<(string, string)> { (reviewedPr.Title, GetFormattedPrUrl(reviewedPr)) });
+                    }
+                    else
+                    {
+                        _developerReviewedPrLinks[reviewer.DisplayName].Add((reviewedPr.Title, GetFormattedPrUrl(reviewedPr)));
+                    }
+                }
+            }
+            //Dictionary<string, int> teamMemberReviewerStats = reviewedPrs.SelectMany(pr => pr.Reviewers).GroupBy(reviewer => reviewer.DisplayName).ToDictionary(t => t.Key, t => t.Count());
+
+            //_developerReviewedPrLinks = reviewedPrs.GroupBy(pr => pr.CreatedBy.DisplayName).ToDictionary(t => t.Key, t => t.Select(pr => (pr.Title, GetFormattedPrUrl(pr))).DistinctBy(p => p.Title).ToList());
             
             return teamMemberReviewerStats;
         }
         
         public List<(string Title, string Url)> GetDeveloperOpenedPrLinks(string developerName)
         {
-            return DeveloperOpenedPrLinks[developerName].ToList();
+            return _developerOpenedPrLinks[developerName].ToList();
         }
         
         public List<(string Title, string Url)> GetDeveloperClosedPrLinks(string developerName)
         {
-            return DeveloperClosedPrLinks[developerName].ToList();
+            return _developerClosedPrLinks[developerName].ToList();
+        }
+
+        public List<(string Title, string Url)> GetDeveloperReviewedPrLinks(string developerName)
+        {
+            return _developerReviewedPrLinks[developerName].ToList();
         }
 
         private static string GetFormattedPrUrl(GitPullRequest pr)

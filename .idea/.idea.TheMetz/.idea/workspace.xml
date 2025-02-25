@@ -9,9 +9,10 @@
   <component name="ChangeListManager">
     <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/DaysControl.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/DaysControl.xaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TheMetz/MainWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/MainWindow.xaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TheMetz/MainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/MainWindow.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/PullRequestResponse.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Services/PullRequestService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TheMetz/Services/PullRequestStatsService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestStatsService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,7 +27,6 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -101,7 +101,9 @@
       <workItem from="1739973712394" duration="11025000" />
       <workItem from="1739993751677" duration="1449000" />
       <workItem from="1739995230491" duration="1122000" />
-      <workItem from="1740053767958" duration="2771000" />
+      <workItem from="1740053767958" duration="11577000" />
+      <workItem from="1740492148075" duration="3102000" />
+      <workItem from="1740496441768" duration="3668000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial solution and application for TheMetz project&#10;&#10;Includes .gitignore, a WPF application using .NET 8.0, and ADO pull request data processing services. Also adds project configuration files for Visual Studio and JetBrains Rider IDEs.">
       <option name="closed" value="true" />
@@ -119,7 +121,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739996097553</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Add support for closed PR statistics in UI and services&#10;&#10;Introduced functionality to fetch and display closed pull request statistics. Added methods to `PullRequestStatsService` for closed PR data processing, UI controls in `MainWindow.xaml/xaml.cs` for displaying closed PR data, and updated data models to handle closed PR links. Refinements were also made to optimize code structure and functionality.">
+      <option name="closed" value="true" />
+      <created>1740057492969</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1740057492969</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,6 +141,7 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Add initial solution and application for TheMetz project&#10;&#10;Includes .gitignore, a WPF application using .NET 8.0, and ADO pull request data processing services. Also adds project configuration files for Visual Studio and JetBrains Rider IDEs." />
     <MESSAGE value="Refactor pull request handling and add modular services.&#10;&#10;Replaces AdoDataService with modular services for better code structure. Adds PullRequestService, PullRequestCommentService, and TeamMemberService for handling specific functionalities. Introduces new Startup configuration, AppSettings model, and updates workspace settings to support refactored logic and .NET 8.0 WPF application setup." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor pull request handling and add modular services.&#10;&#10;Replaces AdoDataService with modular services for better code structure. Adds PullRequestService, PullRequestCommentService, and TeamMemberService for handling specific functionalities. Introduces new Startup configuration, AppSettings model, and updates workspace settings to support refactored logic and .NET 8.0 WPF application setup." />
+    <MESSAGE value="Add support for closed PR statistics in UI and services&#10;&#10;Introduced functionality to fetch and display closed pull request statistics. Added methods to `PullRequestStatsService` for closed PR data processing, UI controls in `MainWindow.xaml/xaml.cs` for displaying closed PR data, and updated data models to handle closed PR links. Refinements were also made to optimize code structure and functionality." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add support for closed PR statistics in UI and services&#10;&#10;Introduced functionality to fetch and display closed pull request statistics. Added methods to `PullRequestStatsService` for closed PR data processing, UI controls in `MainWindow.xaml/xaml.cs` for displaying closed PR data, and updated data models to handle closed PR links. Refinements were also made to optimize code structure and functionality." />
   </component>
 </project>
