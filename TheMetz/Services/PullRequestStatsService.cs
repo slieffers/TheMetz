@@ -109,7 +109,7 @@ namespace TheMetz.Services
                     (pr.Status == PullRequestStatus.Active || pr.ClosedDate >= DateTime.Today.AddDays(-numberOfDays))
                      && pr.Reviewers.ToList().Exists(r => teamMemberNames.Contains(r.DisplayName))).ToList();
 
-            Dictionary<string, int> teamMemberReviewerStats = new Dictionary<string, int>();
+            var teamMemberReviewerStats = new Dictionary<string, int>();
             foreach (GitPullRequest reviewedPr in reviewedPrs)
             {
                 foreach (IdentityRefWithVote reviewer in reviewedPr.Reviewers)
@@ -119,28 +119,21 @@ namespace TheMetz.Services
                         continue;
                     }
                     
-                    if(!teamMemberReviewerStats.ContainsKey(reviewer.DisplayName))
-                    {
-                        teamMemberReviewerStats.Add(reviewer.DisplayName, 1);
-                    }
-                    else
+                    if(!teamMemberReviewerStats.TryAdd(reviewer.DisplayName, 1))
                     {
                         teamMemberReviewerStats[reviewer.DisplayName] += 1;
                     }
 
-                    if (!_developerReviewedPrLinks.ContainsKey(reviewer.DisplayName))
+                    if (!_developerReviewedPrLinks.TryGetValue(reviewer.DisplayName, out List<(string Title, string Url)>? value))
                     {
                         _developerReviewedPrLinks.Add(reviewer.DisplayName, new List<(string, string)> { (reviewedPr.Title, GetFormattedPrUrl(reviewedPr)) });
                     }
                     else
                     {
-                        _developerReviewedPrLinks[reviewer.DisplayName].Add((reviewedPr.Title, GetFormattedPrUrl(reviewedPr)));
+                        value.Add((reviewedPr.Title, GetFormattedPrUrl(reviewedPr)));
                     }
                 }
             }
-            //Dictionary<string, int> teamMemberReviewerStats = reviewedPrs.SelectMany(pr => pr.Reviewers).GroupBy(reviewer => reviewer.DisplayName).ToDictionary(t => t.Key, t => t.Count());
-
-            //_developerReviewedPrLinks = reviewedPrs.GroupBy(pr => pr.CreatedBy.DisplayName).ToDictionary(t => t.Key, t => t.Select(pr => (pr.Title, GetFormattedPrUrl(pr))).DistinctBy(p => p.Title).ToList());
             
             return teamMemberReviewerStats;
         }

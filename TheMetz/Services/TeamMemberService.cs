@@ -22,8 +22,6 @@ namespace TheMetz.Services
         
         public async Task<List<TeamMember>?> GetCustomerOptimizationTeamMembers()
         {
-            (List<string> CustomerOptimizationTeamMembers, List<string> OtherTeamMembers) allTeamMembers = GetAllTeamMembersAsync();
-            
             var teamClient = await _connection.GetClientAsync<TeamHttpClient>();
 
             // Retrieve the team members
@@ -33,29 +31,6 @@ namespace TheMetz.Services
             );
             
             return members;
-        }
-        
-        private static (List<string> CustomerOptimizationTeamMembers, List<string> OtherTeamMembers) GetAllTeamMembersAsync()
-        {
-            var customerOptimizationTeamMembers = new List<string>
-            {
-                "Dylan Manning",
-                "David Acker",
-                "Kerry Hannigan",
-                "Liudmila Solovyeva",
-                "Andrew Chanthavisith",
-                "Michal Lesniewski",
-                "Khrystyna Kregenbild"
-            };
-            var otherTeamMembers = new List<string>
-            {
-                "Phil Gathany",
-                "Brandon George",
-                "Shane Lieffers",
-                "Shawn Dreier"
-            };
-            
-            return (customerOptimizationTeamMembers, otherTeamMembers);
         }
     }
 }
