@@ -10,6 +10,13 @@
         <TabControl VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10" TabStripPlacement="Bottom">
             <TabItem Header="PR Reviews">
                 <Grid>
+                    <Button Name="UpdatePullRequests" Content="Update Pull Requests" HorizontalAlignment="Left"
+                            Margin="289,5,0,0" VerticalAlignment="Top" Width="125" Click="UpdatePullRequestsButtonClicked" />
+                    <Label Name="LoadingLabel" HorizontalAlignment="Left"
+                           Margin="140,1,0,0"
+                           Background="White"
+                           VerticalAlignment="Top">
+                    </Label>
                     <Label HorizontalAlignment="Left"
                            Margin="33,5,0,0"
                            VerticalAlignment="Top">

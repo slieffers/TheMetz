@@ -9,6 +9,9 @@ namespace TheMetz.Services
 {
     public interface IPullRequestService
     {
+        public Task UpdateAdoPullRequests();
+        public Task<List<GitPullRequest>> GetPullRequestsByDateOpened(int numberOfDaysAgoOpened);
+        public Task<List<GitPullRequest>> GetPullRequestsByDateClosed(int numberOfDaysAgoClosed);
         public Task<List<GitPullRequest>> GetPullRequestsByDateOpenedOrClosed(int numberOfDaysAgoOpened, int numberOfDaysAgoClosed = 0);
     }
 
@@ -16,7 +19,7 @@ namespace TheMetz.Services
     {
         private readonly VssConnection _connection;
         private readonly IPrRepository _prRepository;
-        private List<GitPullRequest> PullRequests = [];
+        private List<GitPullRequest> _pullRequests = [];
 
         private readonly List<(string projectName, List<(string, Guid)> repos)> _projectInfo =
         [
@@ -53,6 +56,7 @@ namespace TheMetz.Services
         ];
 
         private int _currentNumberOfDays = 0;
+        private DateTime _prCutoffDate = new DateTime(2024, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
         public PullRequestService(VssConnection connection, IPrRepository prRepository)
         {
@@ -62,55 +66,59 @@ namespace TheMetz.Services
 
         public async Task<List<GitPullRequest>> GetPullRequestsByDateOpened(int numberOfDaysAgoOpened)
         {
-            var prCutoffDate = new DateTime(2024, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-
             DateTime openedFromDate = DateTime.Now.AddDays(-numberOfDaysAgoOpened);
-
-            if (openedFromDate < prCutoffDate)
+            if (openedFromDate < _prCutoffDate)
             {
                 throw new ArgumentException(
                     "Cannot get pull requests before 2024-01-01 without manually changing the cutoff date.");
             }
 
-            GitPullRequest? latestCreatedPr = await _prRepository.GetLatestCreatedPullRequest();
-            GitPullRequest? latestClosedPr = await _prRepository.GetLatestClosedPullRequest();
+            //await UpdateAdoPullRequests();
 
-            if (latestCreatedPr == null)
+            return await _prRepository.GetPullRequestsByDateOpened(openedFromDate);
+        }
+
+        public async Task<List<GitPullRequest>> GetPullRequestsByDateClosed(int numberOfDaysAgoClosed)
+        {
+            DateTime closedFromDate = DateTime.Now.AddDays(-numberOfDaysAgoClosed);
+            if (closedFromDate < _prCutoffDate)
             {
-                await StorePullRequestsFromDate(prCutoffDate, prCutoffDate);
-            }
-            else
-            {
-                DateTime latestResultCreationDateTime = latestCreatedPr.CreationDate;
-                DateTime latestResultClosedDateTime = latestClosedPr!.ClosedDate;
-            
-                await StorePullRequestsFromDate(latestResultCreationDateTime, latestResultClosedDateTime);
+                throw new ArgumentException(
+                    "Cannot get pull requests before 2024-01-01 without manually changing the cutoff date.");
             }
 
-            List<GitPullRequest> filteredPrLoad = await _prRepository.GetPullRequestsByDateOpened(openedFromDate);
-            PullRequests = filteredPrLoad.Where(p => p.CreationDate >= openedFromDate).ToList();
+            //await UpdateAdoPullRequests();
 
-            return PullRequests;
+            return await _prRepository.GetPullRequestsByDateClosed(closedFromDate);
         }
 
         public async Task<List<GitPullRequest>> GetPullRequestsByDateOpenedOrClosed(int numberOfDaysAgoOpened, int numberOfDaysAgoClosed = 0)
         {
-            var prCutoffDate = new DateTime(2024, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-
             DateTime openedFromDate = DateTime.Now.AddDays(-numberOfDaysAgoOpened);
             DateTime closedFromDate = numberOfDaysAgoClosed == 0 ? openedFromDate : DateTime.Now.AddDays(-numberOfDaysAgoClosed);
-            if (openedFromDate < prCutoffDate || closedFromDate < prCutoffDate)
+            if (openedFromDate < _prCutoffDate || closedFromDate < _prCutoffDate)
             {
                 throw new ArgumentException(
                     "Cannot get pull requests before 2024-01-01 without manually changing the cutoff date.");
             }
 
+            //await UpdateAdoPullRequests();
+
+            return await _prRepository.GetPullRequestsByDateOpenedOrClosed(openedFromDate, closedFromDate);
+            List<GitPullRequest> filteredPrLoad = await _prRepository.GetPullRequestsByDateOpenedOrClosed(openedFromDate, closedFromDate);
+            _pullRequests = filteredPrLoad.Where(p => p.CreationDate >= openedFromDate || p.ClosedDate >= closedFromDate).ToList();
+
+            return _pullRequests;
+        }
+
+        public async Task UpdateAdoPullRequests()
+        {
             GitPullRequest? latestCreatedPr = await _prRepository.GetLatestCreatedPullRequest();
             GitPullRequest? latestClosedPr = await _prRepository.GetLatestClosedPullRequest();
 
             if (latestCreatedPr == null)
             {
-                await StorePullRequestsFromDate(prCutoffDate, prCutoffDate);
+                await StorePullRequestsFromDate(_prCutoffDate, _prCutoffDate);
             }
             else
             {
@@ -119,11 +127,6 @@ namespace TheMetz.Services
             
                 await StorePullRequestsFromDate(latestResultCreationDateTime, latestResultClosedDateTime);
             }
-
-            List<GitPullRequest> filteredPrLoad = await _prRepository.GetPullRequestsByDateOpenedOrClosed(openedFromDate, closedFromDate);
-            PullRequests = filteredPrLoad.Where(p => p.CreationDate >= openedFromDate || p.ClosedDate >= closedFromDate).ToList();
-
-            return PullRequests;
         }
 
         private async Task LoadProjectRepos(GitHttpClient gitClient, string projectName)
@@ -179,29 +182,39 @@ namespace TheMetz.Services
                         {
                             skip += pageSize;
 
-                            List<string> createdPrs = paginatedPullRequests
-                                .Where(pr =>
-                                    pr.CreationDate > prCreatedCutoffDate)
-                                .Select(pr => JsonSerializer.Serialize(pr)).ToList();
+                            await ExtractAndStoreCreatedPullRequests(prCreatedCutoffDate, paginatedPullRequests);
 
-                            foreach (string prJsonString in createdPrs)
-                            {
-                                await _prRepository.AddPullRequest(prJsonString);
-                            }
-                            
-                            IEnumerable<GitPullRequest> closedPrs = paginatedPullRequests
-                                .Where(pr => pr.ClosedDate > prClosedCutoffDate);
-                            foreach (GitPullRequest closedPr in closedPrs)
-                            {
-                                GitPullRequest pr = await _prRepository.GetPullRequestByAdoPullRequestId(closedPr.PullRequestId);
-                                await _prRepository.UpdatePullRequest(pr.PullRequestId, JsonSerializer.Serialize(closedPr));
-                            }    
+                            await UpdateClosedPullRequests(prClosedCutoffDate, paginatedPullRequests);
                         }
                     } while (paginatedPullRequests.Count == pageSize &&
                              paginatedPullRequests.Any(pr =>
                                  pr.CreationDate > prCreatedCutoffDate
                                  || pr.ClosedDate > prClosedCutoffDate));
                 }
+            }
+        }
+
+        private async Task UpdateClosedPullRequests(DateTime prClosedCutoffDate, List<GitPullRequest> paginatedPullRequests)
+        {
+            IEnumerable<GitPullRequest> closedPrs = paginatedPullRequests
+                .Where(pr => pr.ClosedDate > prClosedCutoffDate);
+            foreach (GitPullRequest closedPr in closedPrs)
+            {
+                GitPullRequest pr = await _prRepository.GetPullRequestByAdoPullRequestId(closedPr.PullRequestId);
+                await _prRepository.UpdatePullRequest(pr.PullRequestId, JsonSerializer.Serialize(closedPr));
+            }
+        }
+
+        private async Task ExtractAndStoreCreatedPullRequests(DateTime prCreatedCutoffDate, List<GitPullRequest> paginatedPullRequests)
+        {
+            List<string> createdPrs = paginatedPullRequests
+                .Where(pr =>
+                    pr.CreationDate > prCreatedCutoffDate)
+                .Select(pr => JsonSerializer.Serialize(pr)).ToList();
+
+            foreach (string prJsonString in createdPrs)
+            {
+                await _prRepository.AddPullRequest(prJsonString);
             }
         }
     }

@@ -14,7 +14,7 @@ public partial class MainWindow
 
     private async Task LoadPrOpenedData()
     {
-        await _workItemService.GetWorkItems([]);
+        //await _workItemService.GetWorkItems([]);
         
         PrOpenedResultsList.Items.Clear();
 

@@ -7,15 +7,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="Add `PrRepository` with SQLite support and update `MainWindow` logic&#10;&#10;Introduced `PrRepository` to handle SQLite-based pull request operations and implemented the required CRUD functionalities. Updated `MainWindow` to integrate `IWorkItemService` and streamlined the PR-related features by removing redundant methods. This lays the foundation for better data handling and interface enhancements.">
-      <change afterPath="$PROJECT_DIR$/TheMetz/Repositories/WorkItemRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources/4ba9a3e6-44db-4d0e-9d22-53920ddb7392.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources/4ba9a3e6-44db-4d0e-9d22-53920ddb7392.xml" afterDir="false" />
+    <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="Add new pull request methods and update SQLite schema&#10;&#10;Introduced multiple new methods to the `IPrRepository` interface and its implementation to improve pull request querying capabilities (e.g., by opened/closed dates or ADO pull request IDs). Additionally, updated SQLite database schema, including JSON-related improvements and refined collation settings. These changes enhance functionality and database compatibility.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/MainWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/MainWindow.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/MainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/MainWindow.xaml.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TheMetz/Partials/Stats.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Partials/Stats.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Repositories/PrRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Repositories/PrRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TheMetz/Services/PullRequestService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Services/WorkItemService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/WorkItemService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Services/PullRequestStateChangeService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestStateChangeService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +48,7 @@
     <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/389e7c2ab78e45459258cce6b2ead5455d1c0/88/10ef390d/PullRequest.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4ba9689707054942be5dc24ae7475db0e0dc0/fd/da07bcc8/GitPullRequest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz/Partials/Stats.xaml.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -145,7 +144,7 @@
       <workItem from="1741612254059" duration="11179000" />
       <workItem from="1742563996150" duration="15488000" />
       <workItem from="1742905414909" duration="19793000" />
-      <workItem from="1742992117797" duration="16712000" />
+      <workItem from="1742992117797" duration="21621000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial solution and application for TheMetz project&#10;&#10;Includes .gitignore, a WPF application using .NET 8.0, and ADO pull request data processing services. Also adds project configuration files for Visual Studio and JetBrains Rider IDEs.">
       <option name="closed" value="true" />
@@ -195,7 +194,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743003975172</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Add new pull request methods and update SQLite schema&#10;&#10;Introduced multiple new methods to the `IPrRepository` interface and its implementation to improve pull request querying capabilities (e.g., by opened/closed dates or ADO pull request IDs). Additionally, updated SQLite database schema, including JSON-related improvements and refined collation settings. These changes enhance functionality and database compatibility.">
+      <option name="closed" value="true" />
+      <created>1743010658612</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1743010658612</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,7 +218,8 @@
     <MESSAGE value="Add functionality to display reviewed PRs in UI&#10;&#10;Implemented backend and UI updates to fetch, process, and display reviewed pull requests for each developer. Added methods to `PullRequestStatsService` for reviewed PR handling and extended `MainWindow.xaml` to show corresponding data. Streamlined code by removing unused `PullRequestResponse` models." />
     <MESSAGE value="Remove unused methods and streamline PR reviewer stats handling.&#10;&#10;Removed an unused method from `TeamMemberService` to improve code clarity. Optimized dictionary operations in `PullRequestStatsService` by using `TryAdd` and `TryGetValue` for cleaner handling and reduced redundancy. These changes enhance maintainability and efficiency of the codebase." />
     <MESSAGE value="Add `PrRepository` with SQLite support and update `MainWindow` logic&#10;&#10;Introduced `PrRepository` to handle SQLite-based pull request operations and implemented the required CRUD functionalities. Updated `MainWindow` to integrate `IWorkItemService` and streamlined the PR-related features by removing redundant methods. This lays the foundation for better data handling and interface enhancements." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add `PrRepository` with SQLite support and update `MainWindow` logic&#10;&#10;Introduced `PrRepository` to handle SQLite-based pull request operations and implemented the required CRUD functionalities. Updated `MainWindow` to integrate `IWorkItemService` and streamlined the PR-related features by removing redundant methods. This lays the foundation for better data handling and interface enhancements." />
+    <MESSAGE value="Add new pull request methods and update SQLite schema&#10;&#10;Introduced multiple new methods to the `IPrRepository` interface and its implementation to improve pull request querying capabilities (e.g., by opened/closed dates or ADO pull request IDs). Additionally, updated SQLite database schema, including JSON-related improvements and refined collation settings. These changes enhance functionality and database compatibility." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add new pull request methods and update SQLite schema&#10;&#10;Introduced multiple new methods to the `IPrRepository` interface and its implementation to improve pull request querying capabilities (e.g., by opened/closed dates or ADO pull request IDs). Additionally, updated SQLite database schema, including JSON-related improvements and refined collation settings. These changes enhance functionality and database compatibility." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

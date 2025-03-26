@@ -37,7 +37,7 @@ namespace TheMetz.Services
 
         public async Task<Dictionary<string, int>> ShowOpenedPrCounts(int numberOfDays)
         {
-            List<GitPullRequest> pullRequests = await _pullRequestService.GetPullRequestsByDateOpenedOrClosed(numberOfDays);
+            List<GitPullRequest> pullRequests = await _pullRequestService.GetPullRequestsByDateOpened(numberOfDays);
 
             using var gitClient = await _connection.GetClientAsync<GitHttpClient>();
 
@@ -70,7 +70,7 @@ namespace TheMetz.Services
         
         public async Task<Dictionary<string, int>> ShowClosedPrCounts(int numberOfDays)
         {
-            List<GitPullRequest> pullRequests = await _pullRequestService.GetPullRequestsByDateOpenedOrClosed(numberOfDays);
+            List<GitPullRequest> pullRequests = await _pullRequestService.GetPullRequestsByDateClosed(numberOfDays);
 
             using var gitClient = await _connection.GetClientAsync<GitHttpClient>();
 
