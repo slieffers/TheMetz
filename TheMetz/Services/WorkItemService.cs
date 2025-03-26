@@ -3,6 +3,7 @@ using Microsoft.TeamFoundation.WorkItemTracking.WebApi;
 using Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models;
 using Microsoft.VisualStudio.Services.Common;
 using Microsoft.VisualStudio.Services.WebApi;
+using TheMetz.Repositories;
 
 namespace TheMetz.Services
 {
@@ -15,12 +16,17 @@ namespace TheMetz.Services
     {
         private readonly VssConnection _connection;
         private readonly ITeamMemberService _teamMemberService;
+        private readonly IPullRequestService _pullRequestService;
+        private readonly IWorkItemRepository _workItemRepository;
         private readonly Dictionary<string, List<WorkItem>> _workItems = [];
-        
-        public WorkItemService(VssConnection connection, ITeamMemberService teamMemberService)
+
+        public WorkItemService(VssConnection connection, ITeamMemberService teamMemberService,
+            IWorkItemRepository workItemRepository, IPullRequestService pullRequestService)
         {
             _connection = connection;
             _teamMemberService = teamMemberService;
+            _workItemRepository = workItemRepository;
+            _pullRequestService = pullRequestService;
         }
 
         public async Task<Dictionary<string, List<WorkItem>>> GetWorkItems(List<int> workItemIds)
@@ -28,13 +34,15 @@ namespace TheMetz.Services
             var teamMembers = await _teamMemberService.GetCustomerOptimizationTeamMembers();
             foreach (TeamMember teamMember in teamMembers)
             {
-                _workItems.AddRange(await GetWorkItemsCompletedByDev(teamMember.Identity.DisplayName));
+                _workItems.Add(teamMember.Identity.DisplayName,
+                    await GetWorkItemsCompletedByDev(teamMember.Identity.DisplayName));
             }
 
             var results = new Dictionary<string, int>();
             foreach (var dev in _workItems)
             {
-                var effortFieldPBIs = dev.Value.Where(x => x.Fields.ContainsKey("Microsoft.VSTS.Scheduling.Effort"));
+                var effortFieldPBIs = dev.Value.Where(x =>
+                    x.Fields != null && x.Fields.ContainsKey("Microsoft.VSTS.Scheduling.Effort"));
 
                 var avarageEffort = effortFieldPBIs.Average(x => (double)x.Fields["Microsoft.VSTS.Scheduling.Effort"]);
             }
@@ -90,33 +98,38 @@ namespace TheMetz.Services
             return _workItems;
         }
 
-        private async Task<Dictionary<string, List<WorkItem>>> GetWorkItemsCompletedByDev(string devName, string workItemType = "Product Backlog Item")
+        private async Task<List<WorkItem>> GetWorkItemsCompletedByDev(string devName,
+            string workItemType = "Product Backlog Item")
         {
             var workItemTracking = await _connection.GetClientAsync<WorkItemTrackingHttpClient>();
 
+            // string query = @$"SELECT [System.Id], [System.Title], [System.AssignedTo]
+            //     FROM workitems
+            //     WHERE [System.AssignedTo] = '{devName}'
+            //     AND [System.State] = 'Done'
+            //     AND [System.ChangedDate] >= '2024-01-01'
+            //     AND [System.WorkItemType] = '{workItemType}'
+            //     ORDER BY [System.ChangedDate] DESC";
+            //
             string query = @$"SELECT [System.Id], [System.Title], [System.AssignedTo]
                 FROM workitems
                 WHERE [System.AssignedTo] = '{devName}'
-                AND [System.State] = 'Done'
-                AND [System.ChangedDate] >= '2024-01-01'
-                AND [System.WorkItemType] = '{workItemType}'
-                ORDER BY [System.ChangedDate] DESC";
+                AND [System.ChangedDate] >= '2024-01-01'";
 
             Wiql wiql = new() { Query = query };
-            var result = await workItemTracking.QueryByWiqlAsync(wiql, top:100);
+            var result = await workItemTracking.QueryByWiqlAsync(wiql, top: 100);
 
             var workItemIds = result?.WorkItems?.Select(wi => wi.Id).ToList();
 
-            var results = new Dictionary<string, List<WorkItem>>();
-            results.Add(devName, new List<WorkItem>());
+            var results = new List<WorkItem>();
             if (workItemIds != null && workItemIds.Any())
             {
                 var workItems = await workItemTracking.GetWorkItemsAsync(workItemIds, expand: WorkItemExpand.All);
 
-                results[devName] = workItems;
+                results = workItems;
             }
 
-            return results;
+            return results.ToList();
         }
     }
 }

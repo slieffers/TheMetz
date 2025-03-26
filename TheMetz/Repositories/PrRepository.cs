@@ -7,8 +7,12 @@ namespace TheMetz.Repositories;
 public interface IPrRepository
 {
     Task AddPullRequest(string prJson);
+    Task UpdatePullRequest(int pullRequestId, string prJson);
     Task<List<GitPullRequest>> GetAllPullRequests();
-    Task<List<GitPullRequest>> GetPullRequestsByDate(DateTime dateOpened, DateTime dateClosed = default);
+    Task<List<GitPullRequest>> GetPullRequestsByDateOpened(DateTime dateOpened);
+    Task<GitPullRequest> GetPullRequestByAdoPullRequestId(int pullRequestId);
+    Task<List<GitPullRequest>> GetPullRequestsByDateClosed(DateTime dateClosed);
+    Task<List<GitPullRequest>> GetPullRequestsByDateOpenedOrClosed(DateTime dateOpened, DateTime dateClosed);
     Task<GitPullRequest?> GetLatestCreatedPullRequest();
     Task<GitPullRequest?> GetLatestClosedPullRequest();
 }
@@ -34,6 +38,22 @@ public class PrRepository : IPrRepository
                 INSERT INTO main.PullRequests (Data) VALUES ($prJson)
             ";
         command.Parameters.AddWithValue("$prJson", prJson);
+        await command.ExecuteNonQueryAsync();
+    }
+
+    public async Task UpdatePullRequest(int pullRequestId, string prJson)
+    {
+        await using var connection = new SqliteConnection(_connectionString);
+        
+        await connection.OpenAsync();
+
+        SqliteCommand command = connection.CreateCommand();
+        command.CommandText = @"
+                UPDATE main.PullRequests SET Data = $prJson
+                WHERE PullRequestsId = $pullRequestId
+            ";
+        command.Parameters.AddWithValue("$prJson", prJson);
+        command.Parameters.AddWithValue("$pullRequestId", pullRequestId);
         await command.ExecuteNonQueryAsync();
     }
 
@@ -64,13 +84,102 @@ public class PrRepository : IPrRepository
         return pullRequests;
     }
 
-    public async Task<List<GitPullRequest>> GetPullRequestsByDate(DateTime dateOpened, DateTime dateClosed = default)
+    public async Task<List<GitPullRequest>> GetPullRequestsByDateOpened(DateTime dateOpened)
     {
-        if (dateClosed == default)
-        {
-            dateClosed = dateOpened;
-        }
+        await using var connection = new SqliteConnection(_connectionString);
         
+        await connection.OpenAsync();
+
+        SqliteCommand command = connection.CreateCommand();
+        command.CommandText = @"
+                SELECT pr.Data FROM main.PullRequests pr
+                WHERE DATETIME(json_extract(pr.Data, '$.CreationDate')) >= DATETIME($dateOpened)
+            ";
+
+        command.Parameters.AddWithValue("$dateOpened", dateOpened.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss"));
+        
+        var pullRequests = new List<GitPullRequest>();
+
+        await using SqliteDataReader reader = await command.ExecuteReaderAsync();
+        
+        while (await reader.ReadAsync())
+        {
+            var pullRequest = JsonSerializer.Deserialize<GitPullRequest>(reader.GetString(0));
+            if (pullRequest != null)
+            {
+                pullRequests.Add(pullRequest);
+            }
+        }
+
+        return pullRequests;
+    }
+    
+    public async Task<GitPullRequest?> GetPullRequestByAdoPullRequestId(int pullRequestId)
+    {
+        await using var connection = new SqliteConnection(_connectionString);
+        
+        await connection.OpenAsync();
+
+        SqliteCommand command = connection.CreateCommand();
+        command.CommandText = @"
+                SELECT pr.Data FROM main.PullRequests pr
+                WHERE json_extract(pr.Data, '$.PullRequestId') = $pullRequestId
+            ";
+
+        command.Parameters.AddWithValue("pullRequestId", pullRequestId);
+        
+        await using SqliteDataReader reader = await command.ExecuteReaderAsync();
+        
+        GitPullRequest? pullRequestResult = null;
+        while (await reader.ReadAsync())
+        {
+            if (pullRequestResult != null)
+            {
+                throw new ArgumentException("Multiple pull requests found with the same ADO Pull Request ID");
+            }
+            
+            var pullRequest = JsonSerializer.Deserialize<GitPullRequest>(reader.GetString(0));
+            if (pullRequest != null)
+            {
+                pullRequestResult = pullRequest;
+            }
+        }
+
+        return pullRequestResult;
+    }
+    
+    public async Task<List<GitPullRequest>> GetPullRequestsByDateClosed(DateTime dateClosed)
+    {
+        await using var connection = new SqliteConnection(_connectionString);
+        
+        await connection.OpenAsync();
+
+        SqliteCommand command = connection.CreateCommand();
+        command.CommandText = @"
+                SELECT pr.Data FROM main.PullRequests pr
+                WHERE DATETIME(json_extract(pr.Data, '$.ClosedDate')) >= DATETIME($dateClosed)
+            ";
+
+        command.Parameters.AddWithValue("dateClosed", dateClosed.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss"));
+        
+        var pullRequests = new List<GitPullRequest>();
+
+        await using SqliteDataReader reader = await command.ExecuteReaderAsync();
+        
+        while (await reader.ReadAsync())
+        {
+            var pullRequest = JsonSerializer.Deserialize<GitPullRequest>(reader.GetString(0));
+            if (pullRequest != null)
+            {
+                pullRequests.Add(pullRequest);
+            }
+        }
+
+        return pullRequests;
+    }
+    
+    public async Task<List<GitPullRequest>> GetPullRequestsByDateOpenedOrClosed(DateTime dateOpened, DateTime dateClosed)
+    {
         await using var connection = new SqliteConnection(_connectionString);
         
         await connection.OpenAsync();

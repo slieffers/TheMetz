@@ -60,6 +60,39 @@ namespace TheMetz.Services
             _prRepository = prRepository;
         }
 
+        public async Task<List<GitPullRequest>> GetPullRequestsByDateOpened(int numberOfDaysAgoOpened)
+        {
+            var prCutoffDate = new DateTime(2024, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
+            DateTime openedFromDate = DateTime.Now.AddDays(-numberOfDaysAgoOpened);
+
+            if (openedFromDate < prCutoffDate)
+            {
+                throw new ArgumentException(
+                    "Cannot get pull requests before 2024-01-01 without manually changing the cutoff date.");
+            }
+
+            GitPullRequest? latestCreatedPr = await _prRepository.GetLatestCreatedPullRequest();
+            GitPullRequest? latestClosedPr = await _prRepository.GetLatestClosedPullRequest();
+
+            if (latestCreatedPr == null)
+            {
+                await StorePullRequestsFromDate(prCutoffDate, prCutoffDate);
+            }
+            else
+            {
+                DateTime latestResultCreationDateTime = latestCreatedPr.CreationDate;
+                DateTime latestResultClosedDateTime = latestClosedPr!.ClosedDate;
+            
+                await StorePullRequestsFromDate(latestResultCreationDateTime, latestResultClosedDateTime);
+            }
+
+            List<GitPullRequest> filteredPrLoad = await _prRepository.GetPullRequestsByDateOpened(openedFromDate);
+            PullRequests = filteredPrLoad.Where(p => p.CreationDate >= openedFromDate).ToList();
+
+            return PullRequests;
+        }
+
         public async Task<List<GitPullRequest>> GetPullRequestsByDateOpenedOrClosed(int numberOfDaysAgoOpened, int numberOfDaysAgoClosed = 0)
         {
             var prCutoffDate = new DateTime(2024, 1, 1, 0, 0, 0, DateTimeKind.Utc);
@@ -87,7 +120,7 @@ namespace TheMetz.Services
                 await StorePullRequestsFromDate(latestResultCreationDateTime, latestResultClosedDateTime);
             }
 
-            List<GitPullRequest> filteredPrLoad = await _prRepository.GetPullRequestsByDate(openedFromDate, closedFromDate);
+            List<GitPullRequest> filteredPrLoad = await _prRepository.GetPullRequestsByDateOpenedOrClosed(openedFromDate, closedFromDate);
             PullRequests = filteredPrLoad.Where(p => p.CreationDate >= openedFromDate || p.ClosedDate >= closedFromDate).ToList();
 
             return PullRequests;
@@ -146,16 +179,23 @@ namespace TheMetz.Services
                         {
                             skip += pageSize;
 
-                            List<string> validPrs = paginatedPullRequests
+                            List<string> createdPrs = paginatedPullRequests
                                 .Where(pr =>
-                                    pr.CreationDate > prCreatedCutoffDate ||
-                                    pr.ClosedDate > prClosedCutoffDate)
+                                    pr.CreationDate > prCreatedCutoffDate)
                                 .Select(pr => JsonSerializer.Serialize(pr)).ToList();
 
-                            foreach (string prJsonString in validPrs)
+                            foreach (string prJsonString in createdPrs)
                             {
                                 await _prRepository.AddPullRequest(prJsonString);
                             }
+                            
+                            IEnumerable<GitPullRequest> closedPrs = paginatedPullRequests
+                                .Where(pr => pr.ClosedDate > prClosedCutoffDate);
+                            foreach (GitPullRequest closedPr in closedPrs)
+                            {
+                                GitPullRequest pr = await _prRepository.GetPullRequestByAdoPullRequestId(closedPr.PullRequestId);
+                                await _prRepository.UpdatePullRequest(pr.PullRequestId, JsonSerializer.Serialize(closedPr));
+                            }    
                         }
                     } while (paginatedPullRequests.Count == pageSize &&
                              paginatedPullRequests.Any(pr =>

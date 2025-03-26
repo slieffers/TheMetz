@@ -32,6 +32,7 @@ public static class Startup
         services.AddSingleton<IPullRequestStateChangeService, PullRequestStateChangeService>();
         services.AddSingleton<IWorkItemService, WorkItemService>();
         services.AddSingleton<IPrRepository, PrRepository>();
+        services.AddSingleton<IWorkItemRepository, WorkItemRepository>();
 
         services.AddTransient<MainWindow>();
 
