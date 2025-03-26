@@ -25,10 +25,12 @@ namespace TheMetz.Services
 
         public async Task<IEnumerable<KeyValuePair<string, int>>> ShowCommentCounts(int numberOfDays)
         {
+            DateTime fromDate = DateTime.Today.AddDays(-numberOfDays);
+            
             (List<string> CustomerOptimizationTeamMembers, List<string> OtherTeamMembers) allTeamMembers =
                 GetAllTeamMembersAsync();
 
-            List<GitPullRequest> pullRequests = await _pullRequestService.GetPullRequests(numberOfDays);
+            List<GitPullRequest> pullRequests = await _pullRequestService.GetPullRequestsByDateOpenedOrClosed(numberOfDays);
 
             var developerCommentCount = new ConcurrentDictionary<string, int>();
             _developerCommentLinks = new ConcurrentDictionary<string, List<(string, string)>>();
@@ -43,19 +45,24 @@ namespace TheMetz.Services
 
             using var gitClient = await _connection.GetClientAsync<GitHttpClient>();
 
-            foreach (GitPullRequest pr in filteredPullRequests)
+            await Parallel.ForEachAsync(filteredPullRequests, new ParallelOptions
+            {
+                MaxDegreeOfParallelism = Environment.ProcessorCount // Adjust as needed
+            }, async (pr, cancellationToken) =>
             {
                 try
                 {
                     List<GitPullRequestCommentThread> threads = (await gitClient.GetThreadsAsync(
                         repositoryId: pr.Repository.Id,
-                        pullRequestId: pr.PullRequestId
+                        pullRequestId: pr.PullRequestId,
+                        cancellationToken: cancellationToken
                     )).ToList();
 
                     IEnumerable<string> authorComments = threads.SelectMany(t => t.Comments)
-                        .Where(c => c.CommentType != CommentType.System)
+                        .Where(c => c.CommentType != CommentType.System && c.PublishedDate >= fromDate)
                         .GroupBy(c => c.Author.DisplayName)
                         .Select(c => c.Key).ToList();
+
                     foreach (string? authorComment in authorComments)
                     {
                         if (authorComment == pr.CreatedBy.DisplayName
@@ -91,8 +98,8 @@ namespace TheMetz.Services
                 {
                     Console.WriteLine(e);
                 }
-            }
-
+            });
+            
             return developerCommentCount;
         }
 

@@ -1,11 +1,12 @@
 ﻿using Microsoft.TeamFoundation.SourceControl.WebApi;
 using Microsoft.VisualStudio.Services.WebApi;
 using System.Collections.Concurrent;
+using Microsoft.TeamFoundation.WorkItemTracking.WebApi;
 using Microsoft.VisualStudio.Services.Common;
 
 namespace TheMetz.Services
 {
-    public interface IPullRequestStatsService
+    public interface IPullRequestStateChangeService
     {
         public Task<Dictionary<string, int>> ShowOpenedPrCounts(int numberOfDays);
         public Task<Dictionary<string, int>> ShowClosedPrCounts(int numberOfDays);
@@ -15,7 +16,7 @@ namespace TheMetz.Services
         List<(string Title, string Url)> GetDeveloperReviewedPrLinks(string developerName);
     }
 
-    internal class PullRequestStatsService : IPullRequestStatsService
+    internal class PullRequestStateChangeService : IPullRequestStateChangeService
     {
         private readonly VssConnection _connection;
 
@@ -26,7 +27,7 @@ namespace TheMetz.Services
         private readonly IPullRequestService _pullRequestService;
         private readonly ITeamMemberService _teamMemberService;
 
-        public PullRequestStatsService(VssConnection connection, IPullRequestService pullRequestService,
+        public PullRequestStateChangeService(VssConnection connection, IPullRequestService pullRequestService,
             ITeamMemberService teamMemberService)
         {
             _connection = connection;
@@ -36,7 +37,7 @@ namespace TheMetz.Services
 
         public async Task<Dictionary<string, int>> ShowOpenedPrCounts(int numberOfDays)
         {
-            List<GitPullRequest> pullRequests = await _pullRequestService.GetPullRequests(numberOfDays);
+            List<GitPullRequest> pullRequests = await _pullRequestService.GetPullRequestsByDateOpenedOrClosed(numberOfDays);
 
             using var gitClient = await _connection.GetClientAsync<GitHttpClient>();
 
@@ -54,7 +55,12 @@ namespace TheMetz.Services
             IEnumerable<GitPullRequest> customerOptimizationPullRequests = openPrs
                 .Where(pr => teamMembers.Select(t => t.Identity.Id).Contains(pr.CreatedBy.Id))
                 .ToList();
+            // var test = (ReferenceLink)customerOptimizationPullRequests.First().Links.Links["workItems"];
+            // var test2 = await gitClient.GetPullRequestWorkItemRefsAsync("Marketplace", new Guid("c16d6b18-39a8-4755-b59c-528bd8b950a1"), 338388);
+            // var workItemClient = await _connection.GetClientAsync<WorkItemTrackingHttpClient>();
+            // var workItems = await workItemClient.GetWorkItemsAsync([1290620]);
 
+            
             Dictionary<string, int> teamMembersOpenPrStats = customerOptimizationPullRequests.GroupBy(pr => pr.CreatedBy.DisplayName).ToDictionary(t => t.Key, t => t.Count());
 
             _developerOpenedPrLinks = openPrs.GroupBy(pr => pr.CreatedBy.DisplayName).ToDictionary(t => t.Key, t => t.Select(pr => (pr.Title, GetFormattedPrUrl(pr))).DistinctBy(p => p.Title).ToList());
@@ -64,7 +70,7 @@ namespace TheMetz.Services
         
         public async Task<Dictionary<string, int>> ShowClosedPrCounts(int numberOfDays)
         {
-            List<GitPullRequest> pullRequests = await _pullRequestService.GetPullRequests(numberOfDays);
+            List<GitPullRequest> pullRequests = await _pullRequestService.GetPullRequestsByDateOpenedOrClosed(numberOfDays);
 
             using var gitClient = await _connection.GetClientAsync<GitHttpClient>();
 
@@ -92,10 +98,9 @@ namespace TheMetz.Services
         
         public async Task<Dictionary<string, int>> ShowReviewedPrCounts(int numberOfDays)
         {
-            List<GitPullRequest> pullRequests = await _pullRequestService.GetPullRequests(numberOfDays);
-
-            using var gitClient = await _connection.GetClientAsync<GitHttpClient>();
-
+            List<GitPullRequest> pullRequests = await _pullRequestService.GetPullRequestsByDateOpenedOrClosed(numberOfDays);
+            pullRequests = pullRequests.Where(pr => pr.CreationDate >= DateTime.Today.AddDays(-numberOfDays)).ToList();
+            
             _developerReviewedPrLinks.Clear();
 
             List<TeamMember>? teamMembers = await _teamMemberService.GetCustomerOptimizationTeamMembers();

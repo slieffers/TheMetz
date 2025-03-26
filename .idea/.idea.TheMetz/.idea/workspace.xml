@@ -7,9 +7,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="Add functionality to display reviewed PRs in UI&#10;&#10;Implemented backend and UI updates to fetch, process, and display reviewed pull requests for each developer. Added methods to `PullRequestStatsService` for reviewed PR handling and extended `MainWindow.xaml` to show corresponding data. Streamlined code by removing unused `PullRequestResponse` models.">
-      <change beforePath="$PROJECT_DIR$/TheMetz/Services/PullRequestStatsService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestStatsService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Services/TeamMemberService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/TeamMemberService.cs" afterDir="false" />
+    <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/TheMetz/Partials/Comments.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheMetz/Partials/Stats.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheMetz/Repositories/PrRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheMetz/Services/AzureDevOpsPullRequestFetcher.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestEffortService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheMetz/Services/WorkItemService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheMetz/TheMetz.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/MainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/MainWindow.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Services/PullRequestCommentService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestCommentService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Services/PullRequestService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Services/PullRequestStatsService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestStateChangeService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/TheMetz.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/TheMetz.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +37,19 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/389e7c2ab78e45459258cce6b2ead5455d1c0/88/10ef390d/PullRequest.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4ba9689707054942be5dc24ae7475db0e0dc0/fd/da07bcc8/GitPullRequest.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -50,6 +74,14 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
+    ],
+    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect&quot;: [
+      &quot;SQLite&quot;
+    ]
   }
 }</component>
   <component name="RunManager">
@@ -99,7 +131,16 @@
       <workItem from="1739995230491" duration="1122000" />
       <workItem from="1740053767958" duration="11577000" />
       <workItem from="1740492148075" duration="3102000" />
-      <workItem from="1740496441768" duration="4336000" />
+      <workItem from="1740496441768" duration="4652000" />
+      <workItem from="1740668297810" duration="130000" />
+      <workItem from="1740668443043" duration="879000" />
+      <workItem from="1740748585461" duration="594000" />
+      <workItem from="1741007883802" duration="4258000" />
+      <workItem from="1741182600062" duration="7458000" />
+      <workItem from="1741612254059" duration="11179000" />
+      <workItem from="1742563996150" duration="15488000" />
+      <workItem from="1742905414909" duration="19793000" />
+      <workItem from="1742992117797" duration="9230000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial solution and application for TheMetz project&#10;&#10;Includes .gitignore, a WPF application using .NET 8.0, and ADO pull request data processing services. Also adds project configuration files for Visual Studio and JetBrains Rider IDEs.">
       <option name="closed" value="true" />
@@ -133,7 +174,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740500819116</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Remove unused methods and streamline PR reviewer stats handling.&#10;&#10;Removed an unused method from `TeamMemberService` to improve code clarity. Optimized dictionary operations in `PullRequestStatsService` by using `TryAdd` and `TryGetValue` for cleaner handling and reduced redundancy. These changes enhance maintainability and efficiency of the codebase.">
+      <option name="closed" value="true" />
+      <created>1740501437076</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1740501437076</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,6 +196,39 @@
     <MESSAGE value="Refactor pull request handling and add modular services.&#10;&#10;Replaces AdoDataService with modular services for better code structure. Adds PullRequestService, PullRequestCommentService, and TeamMemberService for handling specific functionalities. Introduces new Startup configuration, AppSettings model, and updates workspace settings to support refactored logic and .NET 8.0 WPF application setup." />
     <MESSAGE value="Add support for closed PR statistics in UI and services&#10;&#10;Introduced functionality to fetch and display closed pull request statistics. Added methods to `PullRequestStatsService` for closed PR data processing, UI controls in `MainWindow.xaml/xaml.cs` for displaying closed PR data, and updated data models to handle closed PR links. Refinements were also made to optimize code structure and functionality." />
     <MESSAGE value="Add functionality to display reviewed PRs in UI&#10;&#10;Implemented backend and UI updates to fetch, process, and display reviewed pull requests for each developer. Added methods to `PullRequestStatsService` for reviewed PR handling and extended `MainWindow.xaml` to show corresponding data. Streamlined code by removing unused `PullRequestResponse` models." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add functionality to display reviewed PRs in UI&#10;&#10;Implemented backend and UI updates to fetch, process, and display reviewed pull requests for each developer. Added methods to `PullRequestStatsService` for reviewed PR handling and extended `MainWindow.xaml` to show corresponding data. Streamlined code by removing unused `PullRequestResponse` models." />
+    <MESSAGE value="Remove unused methods and streamline PR reviewer stats handling.&#10;&#10;Removed an unused method from `TeamMemberService` to improve code clarity. Optimized dictionary operations in `PullRequestStatsService` by using `TryAdd` and `TryGetValue` for cleaner handling and reduced redundancy. These changes enhance maintainability and efficiency of the codebase." />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove unused methods and streamline PR reviewer stats handling.&#10;&#10;Removed an unused method from `TeamMemberService` to improve code clarity. Optimized dictionary operations in `PullRequestStatsService` by using `TryAdd` and `TryGetValue` for cleaner handling and reduced redundancy. These changes enhance maintainability and efficiency of the codebase." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/TheMetz/Services/WorkItemService.cs</url>
+          <line>89</line>
+          <properties documentPath="C:\Users\slieffers\source\repos\TheMetz\TheMetz\Services\WorkItemService.cs" containingFunctionPresentation="Method 'GetWorkItems'">
+            <startOffsets>
+              <option value="4010" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4028" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/TheMetz/Services/WorkItemService.cs</url>
+          <line>38</line>
+          <properties documentPath="C:\Users\slieffers\source\repos\TheMetz\TheMetz\Services\WorkItemService.cs" containingFunctionPresentation="Method 'GetWorkItems'">
+            <startOffsets>
+              <option value="1549" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1652" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

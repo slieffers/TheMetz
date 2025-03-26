@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models;
 using Microsoft.VisualStudio.Services.Common;
 using Microsoft.VisualStudio.Services.WebApi;
 using TheMetz.Models;
+using TheMetz.Repositories;
 using TheMetz.Services;
 
 namespace TheMetz;
@@ -27,7 +29,9 @@ public static class Startup
         services.AddSingleton<IPullRequestCommentService, PullRequestCommentService>();
         services.AddSingleton<IPullRequestService, PullRequestService>();
         services.AddSingleton<ITeamMemberService, TeamMemberService>();
-        services.AddSingleton<IPullRequestStatsService, PullRequestStatsService>();
+        services.AddSingleton<IPullRequestStateChangeService, PullRequestStateChangeService>();
+        services.AddSingleton<IWorkItemService, WorkItemService>();
+        services.AddSingleton<IPrRepository, PrRepository>();
 
         services.AddTransient<MainWindow>();
 
