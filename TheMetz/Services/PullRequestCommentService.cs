@@ -1,6 +1,7 @@
 ﻿using Microsoft.TeamFoundation.SourceControl.WebApi;
 using System.Collections.Concurrent;
 using Microsoft.TeamFoundation.Core.WebApi;
+using Microsoft.VisualStudio.Services.Common;
 using Microsoft.VisualStudio.Services.WebApi;
 
 namespace TheMetz.Services
@@ -16,20 +17,23 @@ namespace TheMetz.Services
         private readonly VssConnection _connection;
         private ConcurrentDictionary<string, List<(string Title, string Url)>> _developerCommentLinks = new();
         private readonly IPullRequestService _pullRequestService;
+        private readonly ITeamMemberService _teamMemberService;
 
-        public PullRequestCommentService(VssConnection connection, IPullRequestService pullRequestService)
+        public PullRequestCommentService(VssConnection connection, IPullRequestService pullRequestService, ITeamMemberService teamMemberService)
         {
             _connection = connection;
             _pullRequestService = pullRequestService;
+            _teamMemberService = teamMemberService;
         }
 
         public async Task<IEnumerable<KeyValuePair<string, int>>> ShowCommentCounts(int numberOfDays)
         {
             DateTime fromDate = DateTime.Today.AddDays(-numberOfDays);
-            
-            (List<string> CustomerOptimizationTeamMembers, List<string> OtherTeamMembers) allTeamMembers =
-                GetAllTeamMembersAsync();
 
+            List<TeamMember>? allTeamMembers= await _teamMemberService.GetCustomerOptimizationTeamMembers();
+            var memberNames = new ConcurrentBag<string>();
+            allTeamMembers!.Select(t => t.Identity.DisplayName).ForEach(m => memberNames.Add(m));
+            
             List<GitPullRequest> pullRequests = await _pullRequestService.GetPullRequestsByDateOpenedOrClosed(numberOfDays);
 
             var developerCommentCount = new ConcurrentDictionary<string, int>();
@@ -40,8 +44,7 @@ namespace TheMetz.Services
                     pr.SourceRefName != "refs/heads/develop"
                     && pr.SourceRefName != "refs/heads/Test"
                     && pr.CreatedBy.DisplayName != "Project Collection Build Service (DefaultCollection)"
-                    && pr.Reviewers.Any(r =>
-                        GetAllTeamMembersAsync().CustomerOptimizationTeamMembers.Contains(r.DisplayName))).ToList();
+                    && pr.Reviewers.Any(r => memberNames.Contains(r.DisplayName))).ToList();
 
             using var gitClient = await _connection.GetClientAsync<GitHttpClient>();
 
@@ -66,7 +69,7 @@ namespace TheMetz.Services
                     foreach (string? authorComment in authorComments)
                     {
                         if (authorComment == pr.CreatedBy.DisplayName
-                            || !allTeamMembers.CustomerOptimizationTeamMembers.Contains(authorComment))
+                            || !memberNames.Contains(authorComment))
                         {
                             continue;
                         }

@@ -30,6 +30,14 @@ namespace TheMetz.Services
                 teamId: "Customer Optimization"
             );
             
+            var bizopsTeamMembers = await teamClient.GetTeamMembersWithExtendedPropertiesAsync(
+                projectId: "Marketplace",
+                teamId: "Customer Integrations"
+            );
+            
+            members.Add(bizopsTeamMembers.First(t => t.Identity.DisplayName == "Brandon George" ));
+            members.Add(bizopsTeamMembers.First(t => t.Identity.DisplayName == "Phil Gathany" ));
+            
             return members;
         }
     }

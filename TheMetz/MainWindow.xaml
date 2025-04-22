@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TheMetz"
+        xmlns:partials="clr-namespace:TheMetz.Partials"
         mc:Ignorable="d"
         Title="The Metz" Height="800" Width="1200">
     <Grid>
@@ -11,117 +12,20 @@
             <TabItem Header="PR Reviews">
                 <Grid>
                     <Button Name="UpdatePullRequests" Content="Update Pull Requests" HorizontalAlignment="Left"
-                            Margin="289,5,0,0" VerticalAlignment="Top" Width="125" Click="UpdatePullRequestsButtonClicked" />
+                            Margin="289,5,0,0" VerticalAlignment="Top" Width="125"
+                            Click="UpdatePullRequestsButtonClicked" />
                     <Label Name="LoadingLabel" HorizontalAlignment="Left"
                            Margin="140,1,0,0"
                            Background="White"
                            VerticalAlignment="Top">
                     </Label>
-                    <Label HorizontalAlignment="Left"
-                           Margin="33,5,0,0"
-                           VerticalAlignment="Top">
-                        PRs Reviewed
-                    </Label>
-                    <ListBox Name="PrReviewResultsList"
-                             HorizontalAlignment="Left"
-                             Margin="33,32,0,0"
-                             VerticalAlignment="Top"
-                             Width="229"
-                             Height="206"
-                             SelectionChanged="PrCommentResultsList_SelectionChanged" />
-                    <Button Name="FetchPrReviewData" Content="Fetch Data" HorizontalAlignment="Left"
-                            Margin="289,32,0,0" VerticalAlignment="Top" Width="75" Click="FetchPrCommentButtonClicked" />
-                    <Label Margin="444,5,0,0">PRs with Comments for Selected Dev</Label>
-                    <RichTextBox Name="PrReviewResults" Margin="444,32,0,0">
-                        <FlowDocument>
-                            <Paragraph>
-                            </Paragraph>
-                        </FlowDocument>
-                    </RichTextBox>
-                    <local:DaysControl Margin="282,69,0,0" />
+                    <partials:CommentStats x:Name="CommentStatsControl"/>
                 </Grid>
             </TabItem>
             <TabItem Header="PR Stats" Height="22" Margin="-2,0,-2,-2" VerticalAlignment="Bottom">
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-
-                    <Label Grid.Row="0" HorizontalAlignment="Left"
-                           Margin="33,5,0,0"
-                           VerticalAlignment="Top">
-                        PRs Opened
-                    </Label>
-                    <ListBox Grid.Row="0" Name="PrOpenedResultsList"
-                             HorizontalAlignment="Left"
-                             Margin="33,32,0,0"
-                             VerticalAlignment="Top"
-                             Width="229"
-                             Height="206"
-                             SelectionChanged="PrOpenedResultsList_SelectionChanged" />
-                    <Button Grid.Row="0" Name="FetchPrOpenedData" Content="Fetch Data" HorizontalAlignment="Left"
-                            Margin="289,32,10,0" VerticalAlignment="Top" Width="75" Click="FetchOpenedPrsButtonClicked" />
-                    <Label Grid.Row="0" Margin="444,5,0,0">PRs Opened for Selected Dev</Label>
-                    <RichTextBox Grid.Row="0" Name="PrOpenedResults" Margin="444,32,0,0" Height="206" Width="500"
-                                 VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <FlowDocument>
-                            <Paragraph>
-                            </Paragraph>
-                        </FlowDocument>
-                    </RichTextBox>
-                    <local:DaysControl Grid.Row="0" Margin="282,69,0,0" />
-                    
-                    <Label Grid.Row="1" HorizontalAlignment="Left"
-                           Margin="33,5,0,0"
-                           VerticalAlignment="Top">
-                        PRs Closed
-                    </Label>
-                    <ListBox Grid.Row="1" Name="PrClosedResultsList"
-                             HorizontalAlignment="Left"
-                             Margin="33,32,0,0"
-                             VerticalAlignment="Top"
-                             Width="229"
-                             Height="206"
-                             SelectionChanged="PrClosedResultsList_SelectionChanged" />
-                    <Button Grid.Row="1" Name="FetchPrClosedData" Content="Fetch Data" HorizontalAlignment="Left"
-                            Margin="289,32,10,0" VerticalAlignment="Top" Width="75" Click="FetchClosedPrsButtonClicked" />
-                    <Label Grid.Row="1" Margin="444,5,0,0">PRs Closed for Selected Dev</Label>
-                    <RichTextBox Grid.Row="1" Name="PrClosedResults" Margin="444,32,0,0" Height="206" Width="500"
-                                 VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <FlowDocument>
-                            <Paragraph>
-                            </Paragraph>
-                        </FlowDocument>
-                    </RichTextBox>
-                    <local:DaysControl Grid.Row="1" Margin="282,69,0,0" />
-                    
-                    <Label Grid.Row="2" HorizontalAlignment="Left"
-                           Margin="33,5,0,0"
-                           VerticalAlignment="Top">
-                        PRs Reviewed
-                    </Label>
-                    <ListBox Grid.Row="2" Name="PrReviewedResultsList"
-                             HorizontalAlignment="Left"
-                             Margin="33,32,0,0"
-                             VerticalAlignment="Top"
-                             Width="229"
-                             Height="206"
-                             SelectionChanged="PrReviewedResultsList_SelectionChanged" />
-                    <Button Grid.Row="2" Name="FetchPrReviewedData" Content="Fetch Data" HorizontalAlignment="Left"
-                            Margin="289,32,10,0" VerticalAlignment="Top" Width="75" Click="FetchReviewedPrsButtonClicked" />
-                    <Label Grid.Row="2" Margin="444,5,0,0">PRs Reviewed for Selected Dev</Label>
-                    <RichTextBox Grid.Row="2" Name="PrReviewedResults" Margin="444,32,0,0" Height="206" Width="500"
-                                 VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <FlowDocument>
-                            <Paragraph>
-                            </Paragraph>
-                        </FlowDocument>
-                    </RichTextBox>
-                    <local:DaysControl Grid.Row="2" Margin="282,69,0,0" />
+                    <partials:PullRequestStats x:Name="PullRequestStatsControl"/>
                 </Grid>
-
             </TabItem>
             <TabItem Header="Tab 3">
                 <Grid>

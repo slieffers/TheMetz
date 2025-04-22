@@ -24,9 +24,7 @@
       <None Update="appsettings.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
-      <None Update="TheMetz.db">
-        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      </None>
+      <None Remove="TheMetz.db" />
     </ItemGroup>
 
 </Project>

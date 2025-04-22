@@ -3,30 +3,34 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
-using TheMetz.Services;
+using TheMetz.Models;
 
-// ReSharper disable once CheckNamespace
-namespace TheMetz;
+namespace TheMetz.Partials;
 
-public partial class MainWindow
+public partial class CommentStats : UserControl
 {
-    private readonly IPullRequestCommentService _pullRequestCommentService;
+    private CommentStatsViewModel ViewModel => (CommentStatsViewModel)DataContext;
 
-    private async Task LoadPrCommentData()
+    public CommentStats()
     {
-        PrReviewResultsList.Items.Clear();
-
-        PrReviewResultsList.Items.Add("Loading...");
-
-        IEnumerable<KeyValuePair<string, int>> test = await _pullRequestCommentService.ShowCommentCounts(_numberOfDaysToFetch);
-
-        PrReviewResultsList.Items.Clear();
-
-        foreach (KeyValuePair<string, int> keyValuePair in test)
-        {
-            PrReviewResultsList.Items.Add($"{keyValuePair.Key}: {keyValuePair.Value}");
-        }
+        InitializeComponent();
     }
+    
+    // private async Task LoadPrCommentData()
+    // {
+    //     PrReviewResultsList.Items.Clear();
+    //
+    //     PrReviewResultsList.Items.Add("Loading...");
+    //
+    //     IEnumerable<KeyValuePair<string, int>> test = await _pullRequestCommentService.ShowCommentCounts(_numberOfDaysToFetch);
+    //
+    //     PrReviewResultsList.Items.Clear();
+    //
+    //     foreach (KeyValuePair<string, int> keyValuePair in test)
+    //     {
+    //         PrReviewResultsList.Items.Add($"{keyValuePair.Key}: {keyValuePair.Value}");
+    //     }
+    // }
 
     private void PrCommentResultsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
@@ -44,7 +48,7 @@ public partial class MainWindow
 
         int truncateIndex = selectedAuthor!.IndexOf(':');
         string authorName = selectedAuthor[..(truncateIndex == -1 ? selectedAuthor.Length : truncateIndex)];
-        List<(string Title, string Url)> commentLinks = _pullRequestCommentService.GetDeveloperCommentLinks(authorName);
+        List<(string Title, string Url)> commentLinks = ViewModel.PullRequestCommentService.GetDeveloperCommentLinks(authorName);
 
         foreach ((string Title, string Url) linkInfo in commentLinks)
         {
@@ -72,6 +76,6 @@ public partial class MainWindow
     
     private async void FetchPrCommentButtonClicked(object sender, RoutedEventArgs e)
     {
-        await LoadPrCommentData();
+        await ViewModel.LoadPrCommentData(DaysControl.GetDaysSliderValue(CommentStatsDaysControl.DaysSliderControl));
     }
 }

@@ -14,7 +14,7 @@ public interface IPrRepository
     Task<List<GitPullRequest>> GetPullRequestsByDateClosed(DateTime dateClosed);
     Task<List<GitPullRequest>> GetPullRequestsByDateOpenedOrClosed(DateTime dateOpened, DateTime dateClosed);
     Task<GitPullRequest?> GetLatestCreatedPullRequest();
-    Task<GitPullRequest?> GetLatestClosedPullRequest();
+    Task<GitPullRequest?> GetOldestOpenPullRequest();
 }
 
 public class PrRepository : IPrRepository
@@ -24,7 +24,7 @@ public class PrRepository : IPrRepository
     public PrRepository()
     {
         // Specify the path to your SQLite database file
-        _connectionString = "Data Source=TheMetz.db"; 
+        _connectionString = "Data Source=../../../TheMetz.db"; 
     }
     
     public async Task AddPullRequest(string prJson)
@@ -218,9 +218,15 @@ public class PrRepository : IPrRepository
         await connection.OpenAsync();
 
         SqliteCommand command = connection.CreateCommand();
+        // command.CommandText = @"
+        //         SELECT pr.* FROM main.PullRequests pr
+        //         ORDER BY json_extract(pr.Data, '$.CreationDate') DESC
+        //         LIMIT 1;
+        //     ";
+        
         command.CommandText = @"
                 SELECT pr.* FROM main.PullRequests pr
-                ORDER BY json_extract(pr.Data, '$.CreationDate') DESC
+                ORDER BY pr.DateUpdated DESC
                 LIMIT 1;
             ";
         
@@ -238,16 +244,18 @@ public class PrRepository : IPrRepository
         return null;
     }
     
-    public async Task<GitPullRequest?> GetLatestClosedPullRequest()
+    public async Task<GitPullRequest?> GetOldestOpenPullRequest()
     {
         await using var connection = new SqliteConnection(_connectionString);
         
         await connection.OpenAsync();
-
+        int status = (int)PullRequestStatus.Active;
+        
         SqliteCommand command = connection.CreateCommand();
-        command.CommandText = @"
+        command.CommandText = @$"
                 SELECT pr.* FROM main.PullRequests pr
-                ORDER BY json_extract(pr.Data, '$.ClosedDate') DESC
+                WHERE json_extract(pr.Data, '$.Status') = {status}
+                ORDER BY json_extract(pr.Data, '$.CreationDate')
                 LIMIT 1;
             ";
         

@@ -61,7 +61,7 @@ namespace TheMetz.Services
             // var workItems = await workItemClient.GetWorkItemsAsync([1290620]);
 
             
-            Dictionary<string, int> teamMembersOpenPrStats = customerOptimizationPullRequests.GroupBy(pr => pr.CreatedBy.DisplayName).ToDictionary(t => t.Key, t => t.Count());
+            Dictionary<string, int> teamMembersOpenPrStats = customerOptimizationPullRequests.GroupBy(pr => pr.CreatedBy.DisplayName).ToDictionary(t => t.Key, t => t.DistinctBy(p => p.Title).Count());
 
             _developerOpenedPrLinks = openPrs.GroupBy(pr => pr.CreatedBy.DisplayName).ToDictionary(t => t.Key, t => t.Select(pr => (pr.Title, GetFormattedPrUrl(pr))).DistinctBy(p => p.Title).ToList());
             
@@ -89,7 +89,7 @@ namespace TheMetz.Services
                 .Where(pr => teamMembers.Select(t => t.Identity.Id).Contains(pr.CreatedBy.Id))
                 .ToList();
 
-            Dictionary<string, int> teamMembersClosedPrStats = customerOptimizationPullRequests.GroupBy(pr => pr.CreatedBy.DisplayName).ToDictionary(t => t.Key, t => t.Count());
+            Dictionary<string, int> teamMembersClosedPrStats = customerOptimizationPullRequests.GroupBy(pr => pr.CreatedBy.DisplayName).ToDictionary(t => t.Key, t => t.DistinctBy(p => p.Title).Count());
 
             _developerClosedPrLinks = closedPrs.GroupBy(pr => pr.CreatedBy.DisplayName).ToDictionary(t => t.Key, t => t.Select(pr => (pr.Title, GetFormattedPrUrl(pr))).DistinctBy(p => p.Title).ToList());
             

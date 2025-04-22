@@ -33,6 +33,8 @@ public static class Startup
         services.AddSingleton<IWorkItemService, WorkItemService>();
         services.AddSingleton<IPrRepository, PrRepository>();
         services.AddSingleton<IWorkItemRepository, WorkItemRepository>();
+        services.AddTransient<PullRequestStatsViewModel>();
+        services.AddTransient<CommentStatsViewModel>();
 
         services.AddTransient<MainWindow>();
 

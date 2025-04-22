@@ -114,7 +114,7 @@ namespace TheMetz.Services
         public async Task UpdateAdoPullRequests()
         {
             GitPullRequest? latestCreatedPr = await _prRepository.GetLatestCreatedPullRequest();
-            GitPullRequest? latestClosedPr = await _prRepository.GetLatestClosedPullRequest();
+            GitPullRequest? oldestOpenPr = await _prRepository.GetOldestOpenPullRequest();
 
             if (latestCreatedPr == null)
             {
@@ -123,9 +123,9 @@ namespace TheMetz.Services
             else
             {
                 DateTime latestResultCreationDateTime = latestCreatedPr.CreationDate;
-                DateTime latestResultClosedDateTime = latestClosedPr!.ClosedDate;
+                DateTime oldestResultOpenDateTime = oldestOpenPr!.CreationDate;
             
-                await StorePullRequestsFromDate(latestResultCreationDateTime, latestResultClosedDateTime);
+                await StorePullRequestsFromDate(latestResultCreationDateTime, oldestResultOpenDateTime);
             }
         }
 
@@ -149,7 +149,7 @@ namespace TheMetz.Services
             _projectInfo[_projectInfo.IndexOf(project)] = repoInfo;
         }
 
-        private async Task StorePullRequestsFromDate(DateTime prCreatedCutoffDate, DateTime prClosedCutoffDate)
+        private async Task StorePullRequestsFromDate(DateTime prCreatedCutoffDate, DateTime prOpenCutoffDate)
         {
             using var gitClient = await _connection.GetClientAsync<GitHttpClient>();
 
@@ -161,7 +161,7 @@ namespace TheMetz.Services
 
             foreach ((string projectName, List<(string name, Guid id)> repos) info in _projectInfo)
             {
-                foreach ((string name, Guid id) repo in info.repos)
+                //foreach ((string name, Guid id) repo in info.repos)
                 {
                     var skip = 0;
                     const int pageSize = 100;
@@ -169,11 +169,19 @@ namespace TheMetz.Services
 
                     do
                     {
-                        paginatedPullRequests = (await gitClient.GetPullRequestsAsync(
+                        // paginatedPullRequests = (await gitClient.GetPullRequestsAsync(
+                        //     project: info.projectName,
+                        //     repositoryId: repo.id,
+                        //     searchCriteria: new GitPullRequestSearchCriteria
+                        //         { Status = PullRequestStatus.All, IncludeLinks = true, MinTime = prOpenCutoffDate},
+                        //     top: pageSize,
+                        //     skip: skip
+                        // )).ToList();
+
+                        paginatedPullRequests = (await gitClient.GetPullRequestsByProjectAsync(
                             project: info.projectName,
-                            repositoryId: repo.id,
                             searchCriteria: new GitPullRequestSearchCriteria
-                                { Status = PullRequestStatus.All, IncludeLinks = true },
+                                { Status = PullRequestStatus.All, IncludeLinks = true, MinTime = prOpenCutoffDate},
                             top: pageSize,
                             skip: skip
                         )).ToList();
@@ -184,20 +192,21 @@ namespace TheMetz.Services
 
                             await ExtractAndStoreCreatedPullRequests(prCreatedCutoffDate, paginatedPullRequests);
 
-                            await UpdateClosedPullRequests(prClosedCutoffDate, paginatedPullRequests);
+                            if (prCreatedCutoffDate > _prCutoffDate)
+                            {
+                                await UpdateClosedPullRequests(prCreatedCutoffDate, paginatedPullRequests);
+                            }
                         }
-                    } while (paginatedPullRequests.Count == pageSize &&
-                             paginatedPullRequests.Any(pr =>
-                                 pr.CreationDate > prCreatedCutoffDate
-                                 || pr.ClosedDate > prClosedCutoffDate));
+                    } while (paginatedPullRequests.Count == pageSize /*&&
+                             paginatedPullRequests.Any(pr => pr.CreationDate > prOpenCutoffDate)*/);
                 }
             }
         }
 
-        private async Task UpdateClosedPullRequests(DateTime prClosedCutoffDate, List<GitPullRequest> paginatedPullRequests)
+        private async Task UpdateClosedPullRequests(DateTime prLatestCreatedCutoffDate, List<GitPullRequest> paginatedPullRequests)
         {
             IEnumerable<GitPullRequest> closedPrs = paginatedPullRequests
-                .Where(pr => pr.ClosedDate > prClosedCutoffDate);
+                .Where(pr => pr.ClosedDate > prLatestCreatedCutoffDate);
             foreach (GitPullRequest closedPr in closedPrs)
             {
                 GitPullRequest pr = await _prRepository.GetPullRequestByAdoPullRequestId(closedPr.PullRequestId);

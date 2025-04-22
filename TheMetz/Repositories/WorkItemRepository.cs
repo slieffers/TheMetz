@@ -21,7 +21,7 @@ public class WorkItemRepository : IWorkItemRepository
     public WorkItemRepository()
     {
         // Specify the path to your SQLite database file
-        _connectionString = "Data Source=TheMetz.db"; 
+        _connectionString = "Data Source=../../../TheMetz.db"; 
     }
     
     public async Task AddWorkItem(string workItemJson)
