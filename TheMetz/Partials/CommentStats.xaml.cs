@@ -76,6 +76,6 @@ public partial class CommentStats : UserControl
     
     private async void FetchPrCommentButtonClicked(object sender, RoutedEventArgs e)
     {
-        await ViewModel.LoadPrCommentData(DaysControl.GetDaysSliderValue(CommentStatsDaysControl.DaysSliderControl));
+        await ViewModel.LoadPrCommentData(CommentStatsDaysControl.GetDaysSliderValue());
     }
 }

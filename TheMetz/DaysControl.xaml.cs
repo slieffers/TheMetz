@@ -23,9 +23,9 @@ namespace TheMetz
             DaysSliderControl.Value = 14;
         }
         
-        public static int GetDaysSliderValue(Slider slider)
+        public int GetDaysSliderValue()
         {
-            return (int)Math.Round(slider.Value);
+            return (int)Math.Round(DaysSliderControl.Value);
         }
     }
 }

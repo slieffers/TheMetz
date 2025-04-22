@@ -149,16 +149,16 @@ public partial class PullRequestStats : UserControl
 
     private async void FetchOpenedPrsButtonClicked(object sender, RoutedEventArgs e)
     {
-        await ViewModel.LoadPrOpenedData(DaysControl.GetDaysSliderValue(PrsOpenedDaysControl.DaysSliderControl));
+        await ViewModel.LoadPrOpenedData(PrsOpenedDaysControl.GetDaysSliderValue());
     }
 
     private async void FetchClosedPrsButtonClicked(object sender, RoutedEventArgs e)
     {
-        await ViewModel.LoadPrClosedData(DaysControl.GetDaysSliderValue(PrsClosedDaysControl.DaysSliderControl));
+        await ViewModel.LoadPrClosedData(PrsClosedDaysControl.GetDaysSliderValue());
     }
 
     private async void FetchReviewedPrsButtonClicked(object sender, RoutedEventArgs e)
     {
-        await ViewModel.LoadPrReviewedData(DaysControl.GetDaysSliderValue(PrsReviewedDaysControl.DaysSliderControl));
+        await ViewModel.LoadPrReviewedData(PrsReviewedDaysControl.GetDaysSliderValue());
     }
 }
