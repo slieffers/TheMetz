@@ -12,8 +12,8 @@ public partial class MainWindow : Window
 {
     private readonly IPullRequestService _pullRequestService;
 
-    public MainWindow(IPullRequestCommentService pullRequestCommentService, IWorkItemService workItemService,
-        IPullRequestService pullRequestService, PullRequestStatsViewModel pullRequestStatsViewModel, CommentStatsViewModel commentStatsViewModel)
+    public MainWindow(IPullRequestService pullRequestService, PullRequestStatsViewModel pullRequestStatsViewModel, 
+        CommentStatsViewModel commentStatsViewModel)
     {
         InitializeComponent();
 

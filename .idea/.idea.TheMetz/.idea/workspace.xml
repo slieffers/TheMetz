@@ -7,12 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/DaysControl.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/DaysControl.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Partials/CommentStats.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Partials/CommentStats.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Partials/PullRequestStats.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Partials/PullRequestStats.xaml.cs" afterDir="false" />
-    </list>
+    <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -143,7 +138,7 @@
       <workItem from="1745247269146" duration="2318000" />
       <workItem from="1745324957739" duration="11658000" />
       <workItem from="1745343832410" duration="203000" />
-      <workItem from="1745344576186" duration="119000" />
+      <workItem from="1745344576186" duration="860000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial solution and application for TheMetz project&#10;&#10;Includes .gitignore, a WPF application using .NET 8.0, and ADO pull request data processing services. Also adds project configuration files for Visual Studio and JetBrains Rider IDEs.">
       <option name="closed" value="true" />
@@ -217,7 +212,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745343913736</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Refactor days slider value handling in PR and comment stats&#10;&#10;Replaced static DaysControl method calls with instance-level methods for improved design and encapsulation. Updated related XAML partial classes to use the new method for fetching slider values, eliminating redundant parameters and streamlining code.">
+      <option name="closed" value="true" />
+      <created>1745344800400</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1745344800400</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,7 +240,8 @@
     <MESSAGE value="Add pull request updates and UI enhancements&#10;&#10;Introduced new methods in `PullRequestService` for fetching PRs by opened/closed dates and added a UI button to trigger PR updates. Refactored services to improve PR handling and updated `MainWindow` to display a loading indicator during operations. These changes enhance usability and streamline pull request management." />
     <MESSAGE value="Refactor UI and logic for PR and comment stats.&#10;&#10;Moved comment and PR statistics to dedicated ViewModels for better separation of concerns. Added new XAML partials for improved modularity and updated services to streamline data handling processes. These changes enhance maintainability and scalability." />
     <MESSAGE value="Remove Comments.xaml.cs and database file&#10;&#10;Deleted the Comments.xaml.cs class and the associated database file as they are no longer needed. This cleanup removes unused functionality and reduces project complexity." />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove Comments.xaml.cs and database file&#10;&#10;Deleted the Comments.xaml.cs class and the associated database file as they are no longer needed. This cleanup removes unused functionality and reduces project complexity." />
+    <MESSAGE value="Refactor days slider value handling in PR and comment stats&#10;&#10;Replaced static DaysControl method calls with instance-level methods for improved design and encapsulation. Updated related XAML partial classes to use the new method for fetching slider values, eliminating redundant parameters and streamlining code." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor days slider value handling in PR and comment stats&#10;&#10;Replaced static DaysControl method calls with instance-level methods for improved design and encapsulation. Updated related XAML partial classes to use the new method for fetching slider values, eliminating redundant parameters and streamlining code." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

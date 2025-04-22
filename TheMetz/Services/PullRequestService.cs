@@ -1,7 +1,5 @@
 ﻿using System.Text.Json;
-using Microsoft.TeamFoundation.Build.WebApi;
 using Microsoft.TeamFoundation.SourceControl.WebApi;
-using Microsoft.TeamFoundation.Test.WebApi;
 using Microsoft.VisualStudio.Services.WebApi;
 using TheMetz.Repositories;
 

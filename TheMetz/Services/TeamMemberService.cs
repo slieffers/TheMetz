@@ -1,8 +1,5 @@
-﻿using Microsoft.TeamFoundation.SourceControl.WebApi;
-using Microsoft.VisualStudio.Services.WebApi;
-using System.Collections.Concurrent;
+﻿using Microsoft.VisualStudio.Services.WebApi;
 using Microsoft.TeamFoundation.Core.WebApi;
-using Microsoft.VisualStudio.Services.Graph.Client;
 
 namespace TheMetz.Services
 {

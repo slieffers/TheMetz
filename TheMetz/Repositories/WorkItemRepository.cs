@@ -1,6 +1,5 @@
 ﻿using System.Text.Json;
 using Microsoft.Data.Sqlite;
-using Microsoft.TeamFoundation.SourceControl.WebApi;
 using Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models;
 
 namespace TheMetz.Repositories;

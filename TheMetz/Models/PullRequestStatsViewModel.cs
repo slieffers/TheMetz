@@ -1,9 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
 using TheMetz.Services;
 
 namespace TheMetz.Models;
@@ -39,12 +34,12 @@ public class PullRequestStatsViewModel
 
         PrClosedResults.Add("Loading...");
 
-        IEnumerable<KeyValuePair<string, int>> test =
+        IEnumerable<KeyValuePair<string, int>> closed =
             await PullRequestStateChangeService.ShowClosedPrCounts(numberOfDaysToFetch);
 
         PrClosedResults.Clear();
 
-        foreach (KeyValuePair<string, int> keyValuePair in test)
+        foreach (KeyValuePair<string, int> keyValuePair in closed)
         {
             PrClosedResults.Add($"{keyValuePair.Key}: {keyValuePair.Value}");
         }
@@ -56,12 +51,12 @@ public class PullRequestStatsViewModel
 
         PrReviewedResults.Add("Loading...");
 
-        IEnumerable<KeyValuePair<string, int>> test =
+        IEnumerable<KeyValuePair<string, int>> reviewed =
             await PullRequestStateChangeService.ShowReviewedPrCounts(numberOfDaysToFetch);
 
         PrReviewedResults.Clear();
 
-        foreach (KeyValuePair<string, int> keyValuePair in test)
+        foreach (KeyValuePair<string, int> keyValuePair in reviewed)
         {
             PrReviewedResults.Add($"{keyValuePair.Key}: {keyValuePair.Value}");
         }

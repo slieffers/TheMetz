@@ -1,7 +1,5 @@
 ﻿using Microsoft.TeamFoundation.SourceControl.WebApi;
 using Microsoft.VisualStudio.Services.WebApi;
-using System.Collections.Concurrent;
-using Microsoft.VisualStudio.Services.Common;
 
 namespace TheMetz.Services
 {

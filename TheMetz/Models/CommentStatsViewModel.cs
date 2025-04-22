@@ -1,9 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
 using TheMetz.Services;
 
 namespace TheMetz.Models;
@@ -25,11 +20,11 @@ public class CommentStatsViewModel
 
         PrReviewResults.Add("Loading...");
 
-        IEnumerable<KeyValuePair<string, int>> test = await PullRequestCommentService.ShowCommentCounts(numberOfDaysToFetch);
+        IEnumerable<KeyValuePair<string, int>> comments = await PullRequestCommentService.ShowCommentCounts(numberOfDaysToFetch);
 
         PrReviewResults.Clear();
 
-        foreach (KeyValuePair<string, int> keyValuePair in test)
+        foreach (KeyValuePair<string, int> keyValuePair in comments)
         {
             PrReviewResults.Add($"{keyValuePair.Key}: {keyValuePair.Value}");
         }
