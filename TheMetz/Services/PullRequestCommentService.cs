@@ -7,7 +7,7 @@ namespace TheMetz.Services
 {
     public interface IPullRequestCommentService
     {
-        public Task<IEnumerable<KeyValuePair<string, int>>> ShowCommentCounts(int numberOfDays);
+        public Task<IEnumerable<KeyValuePair<string, (int totalReviews, int withComments)>>> ShowCommentCounts(int numberOfDays);
         public List<(string Title, string Url)> GetDeveloperCommentLinks(string developerName);
     }
 
@@ -25,7 +25,7 @@ namespace TheMetz.Services
             _teamMemberService = teamMemberService;
         }
 
-        public async Task<IEnumerable<KeyValuePair<string, int>>> ShowCommentCounts(int numberOfDays)
+        public async Task<IEnumerable<KeyValuePair<string, (int, int)>>> ShowCommentCounts(int numberOfDays)
         {
             DateTime fromDate = DateTime.Today.AddDays(-numberOfDays);
 
@@ -35,7 +35,7 @@ namespace TheMetz.Services
             
             List<GitPullRequest> pullRequests = await _pullRequestService.GetPullRequestsByDateOpenedOrClosed(numberOfDays);
 
-            var developerCommentCount = new ConcurrentDictionary<string, int>();
+            var developerCommentCount = new ConcurrentDictionary<string, (int, int)>();
             _developerCommentLinks = new ConcurrentDictionary<string, List<(string, string)>>();
 
             List<GitPullRequest> filteredPullRequests = pullRequests
@@ -45,6 +45,12 @@ namespace TheMetz.Services
                     && pr.CreatedBy.DisplayName != "Project Collection Build Service (DefaultCollection)"
                     && pr.Reviewers.Any(r => memberNames.Contains(r.DisplayName))).ToList();
 
+            Dictionary<string, int> perAuthorTotalReviews = new Dictionary<string, int>();
+            foreach (string memberName in memberNames)
+            {
+                perAuthorTotalReviews.Add(memberName, filteredPullRequests.Count(pr => pr.Reviewers.Any(r => memberName == r.DisplayName)));
+            }
+            
             using var gitClient = await _connection.GetClientAsync<GitHttpClient>();
 
             await Parallel.ForEachAsync(filteredPullRequests, new ParallelOptions
@@ -60,7 +66,7 @@ namespace TheMetz.Services
                         cancellationToken: cancellationToken
                     )).ToList();
 
-                    IEnumerable<string> authorComments = threads.SelectMany(t => t.Comments)
+                    List<string> authorComments = threads.SelectMany(t => t.Comments)
                         .Where(c => c.CommentType != CommentType.System && c.PublishedDate >= fromDate)
                         .GroupBy(c => c.Author.DisplayName)
                         .Select(c => c.Key).ToList();
@@ -82,8 +88,8 @@ namespace TheMetz.Services
 
                         developerCommentCount.AddOrUpdate(
                             authorComment,
-                            1,
-                            (_, count) => count + 1
+                            (perAuthorTotalReviews[authorComment], 1),
+                            (string _, (int totalReviews, int commentCount)count) => (count.totalReviews, count.commentCount + 1)
                         );
                         _developerCommentLinks.AddOrUpdate(
                             authorComment,
@@ -102,7 +108,7 @@ namespace TheMetz.Services
                 }
             });
             
-            return developerCommentCount;
+            return (developerCommentCount);
         }
 
         public List<(string Title, string Url)> GetDeveloperCommentLinks(string developerName)

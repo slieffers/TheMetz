@@ -20,13 +20,13 @@ public class CommentStatsViewModel
 
         PrReviewResults.Add("Loading...");
 
-        IEnumerable<KeyValuePair<string, int>> comments = await PullRequestCommentService.ShowCommentCounts(numberOfDaysToFetch);
+        IEnumerable<KeyValuePair<string, (int totalReviews, int commentCount)>> comments = await PullRequestCommentService.ShowCommentCounts(numberOfDaysToFetch);
 
         PrReviewResults.Clear();
 
-        foreach (KeyValuePair<string, int> keyValuePair in comments)
+        foreach (KeyValuePair<string, (int totalComments, int commentCount)> keyValuePair in comments)
         {
-            PrReviewResults.Add($"{keyValuePair.Key}: {keyValuePair.Value}");
+            PrReviewResults.Add($"{keyValuePair.Key}: {keyValuePair.Value.totalComments} Reviews, {keyValuePair.Value.commentCount} With Comments");
         }
     }
 }

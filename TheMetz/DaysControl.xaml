@@ -14,7 +14,7 @@
                 Width="120" 
                 ValueChanged="SliderControl_ValueChanged"
                 Minimum="1"
-                Maximum="90"
+                Maximum="360"
                 Value="{Binding NumberOfDaysToFetch, Mode=TwoWay}"/>
         <Label Name="SliderLabel" 
                Content="Number of Days to Fetch" 

@@ -133,12 +133,13 @@ public class PrRepository : IPrRepository
         GitPullRequest? pullRequestResult = null;
         while (await reader.ReadAsync())
         {
-            if (pullRequestResult != null)
+            var pullRequest = JsonSerializer.Deserialize<GitPullRequest>(reader.GetString(0));
+
+            if (pullRequestResult != null && pullRequest != null && pullRequest.ClosedDate < pullRequestResult.ClosedDate)
             {
-                throw new ArgumentException("Multiple pull requests found with the same ADO Pull Request ID");
+                pullRequest = null;
             }
             
-            var pullRequest = JsonSerializer.Deserialize<GitPullRequest>(reader.GetString(0));
             if (pullRequest != null)
             {
                 pullRequestResult = pullRequest;
