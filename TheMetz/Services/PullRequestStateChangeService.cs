@@ -52,11 +52,6 @@ namespace TheMetz.Services
             IEnumerable<GitPullRequest> customerOptimizationPullRequests = openPrs
                 .Where(pr => teamMembers.Select(t => t.Identity.Id).Contains(pr.CreatedBy.Id))
                 .ToList();
-            // var test = (ReferenceLink)customerOptimizationPullRequests.First().Links.Links["workItems"];
-            // var test2 = await gitClient.GetPullRequestWorkItemRefsAsync("Marketplace", new Guid("c16d6b18-39a8-4755-b59c-528bd8b950a1"), 338388);
-            // var workItemClient = await _connection.GetClientAsync<WorkItemTrackingHttpClient>();
-            // var workItems = await workItemClient.GetWorkItemsAsync([1290620]);
-
             
             Dictionary<string, int> teamMembersOpenPrStats = customerOptimizationPullRequests.GroupBy(pr => pr.CreatedBy.DisplayName).ToDictionary(t => t.Key, t => t.DistinctBy(p => p.Title).Count());
 

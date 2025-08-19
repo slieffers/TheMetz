@@ -8,10 +8,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/TheMetz/Models/DTO/WorkItemDomainModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheMetz/Models/WorkItemStatsViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheMetz/Partials/WorkItemStats.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheMetz/Partials/WorkItemStats.xaml.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Repositories/PrRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Repositories/PrRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Services/PullRequestCommentService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestCommentService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Services/PullRequestService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/MainWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/MainWindow.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/MainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/MainWindow.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Services/PullRequestStateChangeService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestStateChangeService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Services/TeamMemberService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/TeamMemberService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Services/WorkItemService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/WorkItemService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/TheMetz.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/TheMetz.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,9 +33,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///AIAssistantSnippet.." root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///AIAssistantSnippet.." root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz/Services/PullRequestService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6647d2bd482b49658b7944ffe383331e3d820/8e/802d761e/WorkItemBatchGetRequest.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6647d2bd482b49658b7944ffe383331e3d820/ac/c492d094/WorkItem.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/TheMetz/Models/DTO/WorkItemDTO.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -44,7 +52,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;.NET Project.TheMetz.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Project.TheMetz.executor&quot;: &quot;Debug&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
@@ -152,7 +160,7 @@
       <workItem from="1755284266581" duration="232000" />
       <workItem from="1755518862127" duration="692000" />
       <workItem from="1755532404341" duration="9220000" />
-      <workItem from="1755602566885" duration="1115000" />
+      <workItem from="1755602566885" duration="17002000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial solution and application for TheMetz project&#10;&#10;Includes .gitignore, a WPF application using .NET 8.0, and ADO pull request data processing services. Also adds project configuration files for Visual Studio and JetBrains Rider IDEs.">
       <option name="closed" value="true" />
@@ -250,7 +258,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755282222637</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Add methods for updating and querying pull requests, improve repository logic&#10;&#10;Enhanced `IPrRepository` with methods for updating pull requests by ADO ID and querying open PRs. Updated `PullRequestService` to incorporate efficient handling of open PRs and real-time updates. Adjusted `PullRequestCommentService` logic to exclude self-reviews during PR filtering. These changes increase functionality and improve code maintainability.">
+      <option name="closed" value="true" />
+      <created>1755603718502</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1755603718502</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -273,37 +289,12 @@
     <MESSAGE value="Refactor days slider value handling in PR and comment stats&#10;&#10;Replaced static DaysControl method calls with instance-level methods for improved design and encapsulation. Updated related XAML partial classes to use the new method for fetching slider values, eliminating redundant parameters and streamlining code." />
     <MESSAGE value="Refactor variable names and remove unused imports&#10;&#10;Replaced ambiguous variable names in ViewModels with more meaningful ones for better readability and clarity. Removed unused imports across multiple files to clean up the codebase and improve maintainability. These changes streamline the code and enhance developer productivity." />
     <MESSAGE value="Refactor comment counting logic and enhance data models&#10;&#10;Updated `ShowCommentCounts` in `PullRequestCommentService` to include total reviews alongside comments, improving statistics granularity. Adjusted related ViewModels and logic to display both metrics in the UI. Increased slider range to support extended data fetching. Minor repository and configuration updates for better maintainability." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor comment counting logic and enhance data models&#10;&#10;Updated `ShowCommentCounts` in `PullRequestCommentService` to include total reviews alongside comments, improving statistics granularity. Adjusted related ViewModels and logic to display both metrics in the UI. Increased slider range to support extended data fetching. Minor repository and configuration updates for better maintainability." />
+    <MESSAGE value="Add methods for updating and querying pull requests, improve repository logic&#10;&#10;Enhanced `IPrRepository` with methods for updating pull requests by ADO ID and querying open PRs. Updated `PullRequestService` to incorporate efficient handling of open PRs and real-time updates. Adjusted `PullRequestCommentService` logic to exclude self-reviews during PR filtering. These changes increase functionality and improve code maintainability." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add methods for updating and querying pull requests, improve repository logic&#10;&#10;Enhanced `IPrRepository` with methods for updating pull requests by ADO ID and querying open PRs. Updated `PullRequestService` to incorporate efficient handling of open PRs and real-time updates. Adjusted `PullRequestCommentService` logic to exclude self-reviews during PR filtering. These changes increase functionality and improve code maintainability." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/TheMetz/Services/WorkItemService.cs</url>
-          <line>95</line>
-          <properties documentPath="C:\Users\slieffers\source\repos\TheMetz\TheMetz\Services\WorkItemService.cs" containingFunctionPresentation="Method 'GetWorkItems'">
-            <startOffsets>
-              <option value="4351" />
-            </startOffsets>
-            <endOffsets>
-              <option value="4369" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/TheMetz/Services/WorkItemService.cs</url>
-          <line>39</line>
-          <properties documentPath="C:\Users\slieffers\source\repos\TheMetz\TheMetz\Services\WorkItemService.cs" containingFunctionPresentation="Method 'GetWorkItems'">
-            <startOffsets>
-              <option value="1669" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1700" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
         <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
           <properties exception="System.OperationCanceledException" breakIfHandledByOtherCode="false" displayValue="System.OperationCanceledException" />
           <option name="timeStamp" value="34" />

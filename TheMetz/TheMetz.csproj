@@ -27,4 +27,12 @@
       <None Remove="TheMetz.db" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Page Update="Partials\WorkItemStats.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+    </ItemGroup>
+
 </Project>
