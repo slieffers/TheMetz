@@ -48,7 +48,8 @@ namespace TheMetz.Services
             Dictionary<string, int> perAuthorTotalReviews = new Dictionary<string, int>();
             foreach (string memberName in memberNames)
             {
-                perAuthorTotalReviews.Add(memberName, filteredPullRequests.Count(pr => pr.Reviewers.Any(r => memberName == r.DisplayName)));
+                perAuthorTotalReviews.Add(memberName, filteredPullRequests.Count(pr => 
+                    pr.Reviewers.Any(r => memberName == r.DisplayName) && pr.CreatedBy.DisplayName != memberName));
             }
             
             using var gitClient = await _connection.GetClientAsync<GitHttpClient>();

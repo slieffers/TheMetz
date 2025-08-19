@@ -8,12 +8,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/DaysControl.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/DaysControl.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Models/CommentStatsViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Models/CommentStatsViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TheMetz/Repositories/PrRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Repositories/PrRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TheMetz/Services/PullRequestCommentService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestCommentService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Services/PullRequestService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +23,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///AIAssistantSnippet.." root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///AIAssistantSnippet.." root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz/Services/PullRequestService.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -39,31 +42,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Project.TheMetz.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "XThreadsFramesViewSplitterKey": "0.40441176",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Project.TheMetz.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.40441176&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlite"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
     ],
-    "com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect": [
-      "SQLite"
+    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect&quot;: [
+      &quot;SQLite&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="TheMetz" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/TheMetz/bin/Debug/net8.0-windows/TheMetz.exe" />
@@ -145,7 +148,11 @@
       <workItem from="1745344576186" duration="2928000" />
       <workItem from="1750341143168" duration="2705000" />
       <workItem from="1755277071563" duration="227000" />
-      <workItem from="1755277329950" duration="4620000" />
+      <workItem from="1755277329950" duration="4806000" />
+      <workItem from="1755284266581" duration="232000" />
+      <workItem from="1755518862127" duration="692000" />
+      <workItem from="1755532404341" duration="9220000" />
+      <workItem from="1755602566885" duration="1115000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial solution and application for TheMetz project&#10;&#10;Includes .gitignore, a WPF application using .NET 8.0, and ADO pull request data processing services. Also adds project configuration files for Visual Studio and JetBrains Rider IDEs.">
       <option name="closed" value="true" />
@@ -235,7 +242,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745347156579</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Refactor comment counting logic and enhance data models&#10;&#10;Updated `ShowCommentCounts` in `PullRequestCommentService` to include total reviews alongside comments, improving statistics granularity. Adjusted related ViewModels and logic to display both metrics in the UI. Increased slider range to support extended data fetching. Minor repository and configuration updates for better maintainability.">
+      <option name="closed" value="true" />
+      <created>1755282222637</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1755282222637</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,7 +272,8 @@
     <MESSAGE value="Remove Comments.xaml.cs and database file&#10;&#10;Deleted the Comments.xaml.cs class and the associated database file as they are no longer needed. This cleanup removes unused functionality and reduces project complexity." />
     <MESSAGE value="Refactor days slider value handling in PR and comment stats&#10;&#10;Replaced static DaysControl method calls with instance-level methods for improved design and encapsulation. Updated related XAML partial classes to use the new method for fetching slider values, eliminating redundant parameters and streamlining code." />
     <MESSAGE value="Refactor variable names and remove unused imports&#10;&#10;Replaced ambiguous variable names in ViewModels with more meaningful ones for better readability and clarity. Removed unused imports across multiple files to clean up the codebase and improve maintainability. These changes streamline the code and enhance developer productivity." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor variable names and remove unused imports&#10;&#10;Replaced ambiguous variable names in ViewModels with more meaningful ones for better readability and clarity. Removed unused imports across multiple files to clean up the codebase and improve maintainability. These changes streamline the code and enhance developer productivity." />
+    <MESSAGE value="Refactor comment counting logic and enhance data models&#10;&#10;Updated `ShowCommentCounts` in `PullRequestCommentService` to include total reviews alongside comments, improving statistics granularity. Adjusted related ViewModels and logic to display both metrics in the UI. Increased slider range to support extended data fetching. Minor repository and configuration updates for better maintainability." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor comment counting logic and enhance data models&#10;&#10;Updated `ShowCommentCounts` in `PullRequestCommentService` to include total reviews alongside comments, improving statistics granularity. Adjusted related ViewModels and logic to display both metrics in the UI. Increased slider range to support extended data fetching. Minor repository and configuration updates for better maintainability." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
