@@ -1,5 +1,4 @@
-﻿using System.Text;
-using Microsoft.TeamFoundation.WorkItemTracking.WebApi;
+﻿using Microsoft.TeamFoundation.WorkItemTracking.WebApi;
 using Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models;
 using Microsoft.VisualStudio.Services.WebApi;
 using TheMetz.Models.DTO;
@@ -9,13 +8,8 @@ namespace TheMetz.Services
 {
     public interface IWorkItemService
     {
-        Task<Dictionary<string, List<WorkItem>>> GetWorkItems(List<int> workItemIds);
-
-        Task<List<WorkItemDomainModel>> GetWorkItemsCompletedByDev(string devName,
-            string workItemType = "Product Backlog Item");
-
+        Task<List<WorkItemDomainModel>> GetWorkItemsCompletedByDev(string devName, string workItemType = "Product Backlog Item");
         WorkItemDomainModel GetWorkItemsCompletedByDevLinks(string devName);
-
         Task<List<WorkItemDomainModel>> GetWorkItemsWithDeveloperReferenceSinceDate(DateTime sinceDate);
     }
 
@@ -34,75 +28,6 @@ namespace TheMetz.Services
             _teamMemberService = teamMemberService;
             _workItemRepository = workItemRepository;
             _pullRequestService = pullRequestService;
-        }
-
-        public async Task<Dictionary<string, List<WorkItem>>> GetWorkItems(List<int> workItemIds)
-        {
-            // var teamMembers = await _teamMemberService.GetCustomerOptimizationTeamMembers();
-            // foreach (TeamMember teamMember in teamMembers)
-            // {
-            //     _workItems.Add(teamMember.Identity.DisplayName,
-            //         await GetWorkItemsCompletedByDev(teamMember.Identity.DisplayName));
-            // }
-            //
-            // var results = new Dictionary<string, int>();
-            // foreach (var dev in _workItems)
-            // {
-            //     var effortFieldPBIs = dev.Value.Where(x =>
-            //         x.Fields != null && x.Fields.ContainsKey("Microsoft.VSTS.Scheduling.Effort"));
-            //
-            //     var avarageEffort = effortFieldPBIs.Average(x => (double)x.Fields["Microsoft.VSTS.Scheduling.Effort"]);
-            // }
-            // if (_pullRequests.Count != 0)
-            // {
-            //     return _pullRequests.Where(p => p.CreationDate >= fromDate || p.ClosedDate >= fromDate).ToList();
-            // }
-            //
-            // _workItems.Clear();
-            //
-            // using var gitClient = await _connection.GetClientAsync<WorkItemTrackingHttpClient>();
-            // gitClient.GetWorkItemsAsync(workItemIds);
-            //
-            // IEnumerable<string> projectNames = _projectInfo.Select(p => p.projectName).ToList();
-            // foreach (string projectName in projectNames)
-            // {
-            //     await LoadProjectRepos(gitClient, projectName);
-            // }
-            //
-            // foreach ((string projectName, List<(string name, Guid id)> repos) info in _projectInfo)
-            // {
-            //     foreach ((string name, Guid id) repo in info.repos)
-            //     {
-            //         var skip = 0;
-            //         const int pageSize = 100;
-            //         List<GitPullRequest> paginatedPullRequests;
-            //
-            //         do
-            //         {
-            //             paginatedPullRequests = await gitClient.GetPullRequestsAsync(
-            //                 project: info.projectName,
-            //                 repositoryId: repo.id,
-            //                 searchCriteria: new GitPullRequestSearchCriteria
-            //                     { Status = PullRequestStatus.All, IncludeLinks = true},
-            //                 top: pageSize,
-            //                 skip: skip
-            //             );
-            //
-            //             if (paginatedPullRequests.Any())
-            //             {
-            //                 _pullRequests.AddRange(paginatedPullRequests);
-            //                 skip += pageSize;
-            //             }
-            //         } while (paginatedPullRequests.Count == pageSize &&
-            //                  paginatedPullRequests.Any(pr => 
-            //                      pr.CreationDate >= fromDate 
-            //                      || pr.ClosedDate >= fromDate));
-            //     }
-            // }
-            //
-            // return _pullRequests.Where(p => p.CreationDate >= fromDate || p.ClosedDate >= fromDate).ToList();
-
-            return [];
         }
 
         public async Task<List<WorkItemDomainModel>> GetWorkItemsCompletedByDev(string devName,

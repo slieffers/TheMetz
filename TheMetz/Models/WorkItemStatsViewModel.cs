@@ -23,7 +23,7 @@ public class WorkItemStatsViewModel
         WorkItemResults.Add("Loading...");
 
         List<WorkItemDomainModel> workItems =
-            await WorkItemService.GetWorkItemsWithDeveloperReferenceSinceDate(new DateTime(2025, 8, 18));
+            await WorkItemService.GetWorkItemsWithDeveloperReferenceSinceDate(DateTime.Today.Subtract(TimeSpan.FromDays(numberOfDaysToFetch)));
 
         WorkItemResults.Clear();
 
