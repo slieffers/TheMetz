@@ -43,7 +43,7 @@ namespace TheMetz.Services
             Wiql wiql = new() { Query = query };
             WorkItemQueryResult? result = await workItemTracking.QueryByWiqlAsync(wiql, top: 100);
 
-            var workItemIds = result?.WorkItems?.Select(wi => wi.Id).ToList();
+            var workItemIds = result?.WorkItems?.Select(wi => wi.Id).Distinct().ToList();
 
             var results = new List<WorkItem>();
             if (workItemIds != null && workItemIds.Any())
@@ -112,11 +112,16 @@ namespace TheMetz.Services
                         continue;
                     }
 
-                    int[] workItemIds = result.WorkItems.Select(wi => wi.Id).ToArray();
+                    int[] workItemIds = result.WorkItems.Select(wi => wi.Id).Distinct().ToArray();
 
-                    List<WorkItem>? workItems = await workItemClient.GetWorkItemsAsync(
-                        workItemIds,
-                        expand: WorkItemExpand.All);
+                    var workItems = new List<WorkItem>();
+                    
+                    for (var i = 0; i < workItemIds.Length; i += 200)
+                    {
+                        workItems.AddRange(await workItemClient.GetWorkItemsAsync(
+                            workItemIds.Skip(i).Take(200),
+                            expand: WorkItemExpand.All));
+                    }
                     
                     WorkItemDomainModel? entryToUpdate =
                         _workItems.FirstOrDefault(wi => wi.DeveloperName == teamMember.Identity.DisplayName);
