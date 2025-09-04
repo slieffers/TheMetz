@@ -2,9 +2,11 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.Services.Common;
 using Microsoft.VisualStudio.Services.WebApi;
+using TheMetz.Interfaces;
 using TheMetz.Models;
 using TheMetz.Repositories;
 using TheMetz.Services;
+//using IPullRequestService = TheMetz.Services.IPullRequestService;
 
 namespace TheMetz;
 
@@ -26,7 +28,12 @@ public static class Startup
         var adoConnection = new VssConnection(new Uri(appSettings.OrganizationUrl), new VssBasicCredential(string.Empty, appSettings.PersonalAccessToken));
         services.AddSingleton(adoConnection);
         services.AddSingleton<IPullRequestCommentService, PullRequestCommentService>();
-        services.AddSingleton<IPullRequestService, PullRequestService>();
+        services.AddSingleton<IPullRequestService>(sp =>
+            new TheMetz.FSharp.PullRequestService(
+                sp.GetRequiredService<VssConnection>(),
+                sp.GetRequiredService<IPrRepository>(),
+                new DateTime(2024, 1, 1, 0, 0, 0, DateTimeKind.Utc)
+            ));
         services.AddSingleton<ITeamMemberService, TeamMemberService>();
         services.AddSingleton<IPullRequestStateChangeService, PullRequestStateChangeService>();
         services.AddSingleton<IWorkItemService, WorkItemService>();

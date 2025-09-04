@@ -1,6 +1,7 @@
 ﻿using Microsoft.TeamFoundation.WorkItemTracking.WebApi;
 using Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models;
 using Microsoft.VisualStudio.Services.WebApi;
+using TheMetz.Interfaces;
 using TheMetz.Models.DTO;
 using TheMetz.Repositories;
 

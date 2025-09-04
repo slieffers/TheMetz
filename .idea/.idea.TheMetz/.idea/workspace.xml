@@ -22,9 +22,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/TheMetz.FSharp/PullRequestService.fs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheMetz.FSharp/TheMetz.FSharp.fsproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheMetz.Interfaces/IPrRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheMetz.Interfaces/IPullRequestService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz.sln" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/MainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/MainWindow.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Repositories/PrRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Repositories/PrRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Services/PullRequestCommentService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestCommentService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Services/PullRequestEffortService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestEffortService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Services/PullRequestService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Services/PullRequestStateChangeService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestStateChangeService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TheMetz/Services/WorkItemService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/WorkItemService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/TheMetz.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/TheMetz.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,12 +52,18 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6647d2bd482b49658b7944ffe383331e3d820/6b/b05de96b/WorkItemTrackingHttpClientBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bd1d5c50194fea68ff3559c160230b0ab50f5acf4ce3061bffd6d62958e2182/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/TheMetz.FSharp/PullRequestService.fs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/TheMetz.Interfaces/IPrRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/TheMetz.Interfaces/IPullRequestService.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
 }</component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="AISelfReview" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -168,6 +186,9 @@
       <workItem from="1755787581461" duration="1616000" />
       <workItem from="1756819405990" duration="3695000" />
       <workItem from="1756907141847" duration="17000" />
+      <workItem from="1756907175491" duration="17400000" />
+      <workItem from="1756926830591" duration="854000" />
+      <workItem from="1756988510146" duration="7630000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial solution and application for TheMetz project&#10;&#10;Includes .gitignore, a WPF application using .NET 8.0, and ADO pull request data processing services. Also adds project configuration files for Visual Studio and JetBrains Rider IDEs.">
       <option name="closed" value="true" />
@@ -289,7 +310,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755803605893</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Ensure distinct work item IDs in `WorkItemService` and batch fetch requests for improved performance.">
+      <option name="closed" value="true" />
+      <created>1756907376444</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1756907376444</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -321,7 +350,8 @@
     <MESSAGE value="Add work item statistics functionality and UI integration&#10;&#10;Implemented work item statistics feature, including methods in `IWorkItemService` and `WorkItemService` for querying work items by developer and date. Added `WorkItemStatsViewModel` for data handling and `WorkItemStats.xaml` for user interface. Updated `MainWindow.xaml` to integrate the new feature, enabling the display and interaction with work item data." />
     <MESSAGE value="Remove unused `GetWorkItems` method and clean up `IWorkItemService` interface" />
     <MESSAGE value="Remove unused `GetWorkItems` method from `WorkItemService` and clean up imports." />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove unused `GetWorkItems` method from `WorkItemService` and clean up imports." />
+    <MESSAGE value="Ensure distinct work item IDs in `WorkItemService` and batch fetch requests for improved performance." />
+    <option name="LAST_COMMIT_MESSAGE" value="Ensure distinct work item IDs in `WorkItemService` and batch fetch requests for improved performance." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -340,13 +370,13 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/TheMetz/Services/WorkItemService.cs</url>
-          <line>43</line>
+          <line>44</line>
           <properties documentPath="C:\Users\slieffers\source\repos\TheMetz\TheMetz\Services\WorkItemService.cs" containingFunctionPresentation="Method 'GetWorkItemsCompletedByDev'">
             <startOffsets>
-              <option value="1944" />
+              <option value="1970" />
             </startOffsets>
             <endOffsets>
-              <option value="2030" />
+              <option value="2056" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="41" />

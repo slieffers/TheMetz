@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Media;
+using TheMetz.Interfaces;
 using TheMetz.Models;
 using TheMetz.Services;
 

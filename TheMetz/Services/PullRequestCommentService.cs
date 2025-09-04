@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using Microsoft.VisualStudio.Services.Common;
 using Microsoft.VisualStudio.Services.WebApi;
+using TheMetz.Interfaces;
 
 namespace TheMetz.Services
 {
