@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.Services.Common;
 using Microsoft.VisualStudio.Services.WebApi;
+using TheMetz.FSharp;
 using TheMetz.Interfaces;
 using TheMetz.Models;
 using TheMetz.Repositories;

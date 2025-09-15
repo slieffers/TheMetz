@@ -21,7 +21,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="" />
+    <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/TheMetz.FSharp/TeamMemberService.fs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheMetz.Interfaces/ITeamMemberService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz.FSharp/PullRequestService.fs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz.FSharp/PullRequestService.fs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz.FSharp/TheMetz.FSharp.fsproj" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz.FSharp/TheMetz.FSharp.fsproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Services/TeamMemberService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/TeamMemberService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Startup.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,8 +47,10 @@
     <setting file="file://$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources/25099ff7-2437-43cd-8ccf-6b840048af3a/storage_v2/_src_/schema/main.uQUzAA.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz.FSharp/PullRequestService.fs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.FSharp/PullRequestService.fs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/TheMetz.FSharp/TeamMemberService.fs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.Interfaces/IPrRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.Interfaces/IPullRequestService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/TheMetz.Interfaces/ITeamMemberService.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -58,31 +68,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Project.TheMetz.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.40441176&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propDebugger&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Project.TheMetz.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "XThreadsFramesViewSplitterKey": "0.40441176",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "project.propDebugger",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlite&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
     ],
-    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect&quot;: [
-      &quot;SQLite&quot;
+    "com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect": [
+      "SQLite"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="TheMetz" type="DotNetProject" factoryName=".NET Project" activateToolWindowBeforeRun="false">
       <option name="EXE_PATH" value="$PROJECT_DIR$/TheMetz/bin/Debug/net8.0-windows/TheMetz.exe" />
@@ -177,7 +187,7 @@
       <workItem from="1756988510146" duration="9022000" />
       <workItem from="1757332233753" duration="4396000" />
       <workItem from="1757935386774" duration="3413000" />
-      <workItem from="1757944161986" duration="1636000" />
+      <workItem from="1757944161986" duration="3767000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial solution and application for TheMetz project&#10;&#10;Includes .gitignore, a WPF application using .NET 8.0, and ADO pull request data processing services. Also adds project configuration files for Visual Studio and JetBrains Rider IDEs.">
       <option name="closed" value="true" />
@@ -395,7 +405,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757944853052</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Remove `PullRequestEffortService` and unused comments.">
+      <option name="closed" value="true" />
+      <created>1757946200396</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1757946200396</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -405,7 +423,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Add methods for updating and querying pull requests, improve repository logic&#10;&#10;Enhanced `IPrRepository` with methods for updating pull requests by ADO ID and querying open PRs. Updated `PullRequestService` to incorporate efficient handling of open PRs and real-time updates. Adjusted `PullRequestCommentService` logic to exclude self-reviews during PR filtering. These changes increase functionality and improve code maintainability." />
     <MESSAGE value="Add work item tracking and developer activity features to UI&#10;&#10;Introduced `WorkItemStatsViewModel` and `WorkItemDomainModel` to track developer activity on work items. Updated `WorkItemService` with new methods for retrieving and grouping work items by developer and project. Added `WorkItemStats` partial class with UI enhancements, integrated into `MainWindow`. Refactored XAML files to include a new tab for work item statistics, improving application functionality and dev activity tracking." />
     <MESSAGE value="Add work item tracking functionality and integrate it into UI&#10;&#10;Introduced methods in `WorkItemService` for fetching developer-specific and project-specific work items. Added `WorkItemStatsViewModel` to handle related data and logic. Updated the UI with a new `WorkItemStats` partial class to display work items and integrated it into `MainWindow.xaml`. These changes enhance functionality by enabling work item tracking and visualization." />
     <MESSAGE value="Add work item data integration and update UI components&#10;&#10;Introduced methods in `WorkItemService` to retrieve and process work items by developer and date. Added `WorkItemStatsViewModel` and new XAML partial for displaying work item statistics. Updated `MainWindow` to integrate work item data retrieval, along with corresponding buttons and controls for improved UI functionality. These updates enhance work item tracking and visualization capabilities." />
@@ -430,7 +447,8 @@
     <MESSAGE value="Update project configuration to refine `.NET Project` settings and adjust tasks tracking setup." />
     <MESSAGE value="Remove SQLite data source configuration file from `.idea` directory." />
     <MESSAGE value="Update SQLite data source configuration with new `created-in` version." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update SQLite data source configuration with new `created-in` version." />
+    <MESSAGE value="Remove `PullRequestEffortService` and unused comments." />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove `PullRequestEffortService` and unused comments." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

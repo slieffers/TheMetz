@@ -126,7 +126,7 @@ type PullRequestService(connection: VssConnection, prRepository: IPrRepository, 
             do! loop 0
         }
 
-    let GetAndUpdatePullRequest (gitClient:GitHttpClient) (pullRequest: GitPullRequest) : Task=
+    let GetAndUpdatePullRequest (gitClient:GitHttpClient) (pullRequest: GitPullRequest) : Task =
         task {
             let! adoPr = gitClient.GetPullRequestByIdAsync(pullRequest.PullRequestId)
             if not (isNull adoPr) then
