@@ -7,7 +7,7 @@
           <value>
             <AIAssistantStoredInstruction>
               <option name="actionId" value="AIAssistant.VCS.GenerateCommitMessage" />
-              <option name="content" value="Avoid overly verbose descriptions or unnecessary details. Do not append statements to the end describing the overall effect, reason for, or result of the changes on the application" />
+              <option name="content" value="Avoid overly verbose descriptions. Do not append statements to the end describing the overall effect, reason for, or result of the changes on the application" />
             </AIAssistantStoredInstruction>
           </value>
         </entry>
@@ -23,9 +23,11 @@
   <component name="ChangeListManager">
     <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources/4ba9a3e6-44db-4d0e-9d22-53920ddb7392.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources/4ba9a3e6-44db-4d0e-9d22-53920ddb7392.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources/4ba9a3e6-44db-4d0e-9d22-53920ddb7392.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources/4ba9a3e6-44db-4d0e-9d22-53920ddb7392/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz.FSharp/PullRequestService.fs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz.FSharp/PullRequestService.fs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Services/AzureDevOpsPullRequestFetcher.cs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +43,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6647d2bd482b49658b7944ffe383331e3d820/6b/b05de96b/WorkItemTrackingHttpClientBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bd1d5c50194fea68ff3559c160230b0ab50f5acf4ce3061bffd6d62958e2182/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources/25099ff7-2437-43cd-8ccf-6b840048af3a/storage_v2/_src_/schema/main.uQUzAA.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.FSharp/PullRequestService.fs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.Interfaces/IPrRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.Interfaces/IPullRequestService.cs" root0="FORCE_HIGHLIGHTING" />
@@ -63,7 +66,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;.NET Project.TheMetz.executor&quot;: &quot;Debug&quot;,
+    &quot;.NET Project.TheMetz.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
@@ -87,7 +90,7 @@
   }
 }</component>
   <component name="RunManager">
-    <configuration name="TheMetz" type="DotNetProject" factoryName=".NET Project">
+    <configuration name="TheMetz" type="DotNetProject" factoryName=".NET Project" activateToolWindowBeforeRun="false">
       <option name="EXE_PATH" value="$PROJECT_DIR$/TheMetz/bin/Debug/net8.0-windows/TheMetz.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TheMetz/bin/Debug/net8.0-windows" />
@@ -177,7 +180,10 @@
       <workItem from="1756907141847" duration="17000" />
       <workItem from="1756907175491" duration="17400000" />
       <workItem from="1756926830591" duration="854000" />
-      <workItem from="1756988510146" duration="8983000" />
+      <workItem from="1756988510146" duration="9022000" />
+      <workItem from="1757332233753" duration="4396000" />
+      <workItem from="1757935386774" duration="3413000" />
+      <workItem from="1757944161986" duration="432000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial solution and application for TheMetz project&#10;&#10;Includes .gitignore, a WPF application using .NET 8.0, and ADO pull request data processing services. Also adds project configuration files for Visual Studio and JetBrains Rider IDEs.">
       <option name="closed" value="true" />
@@ -315,7 +321,55 @@
       <option name="project" value="LOCAL" />
       <updated>1756997987774</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Update SQLite data source configuration and dataSources XML files.">
+      <option name="closed" value="true" />
+      <created>1756999318708</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1756999318708</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Refine `WorkItemService` query to include 'Done' state filter and update UI by removing unused test button.">
+      <option name="closed" value="true" />
+      <created>1757938310031</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1757938310031</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Update `.gitignore` to exclude `.db` files.">
+      <option name="closed" value="true" />
+      <created>1757938479385</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1757938479385</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Update `.gitignore` to exclude `idea/*` directory.">
+      <option name="closed" value="true" />
+      <created>1757938593163</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1757938593163</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Update `.gitignore` to exclude `idea/*` directory.">
+      <option name="closed" value="true" />
+      <created>1757938631089</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1757938631089</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Update `.gitignore` to standardize `.idea/*` exclusion pattern.">
+      <option name="closed" value="true" />
+      <created>1757938651857</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1757938651857</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -325,15 +379,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Add initial solution and application for TheMetz project&#10;&#10;Includes .gitignore, a WPF application using .NET 8.0, and ADO pull request data processing services. Also adds project configuration files for Visual Studio and JetBrains Rider IDEs." />
-    <MESSAGE value="Refactor pull request handling and add modular services.&#10;&#10;Replaces AdoDataService with modular services for better code structure. Adds PullRequestService, PullRequestCommentService, and TeamMemberService for handling specific functionalities. Introduces new Startup configuration, AppSettings model, and updates workspace settings to support refactored logic and .NET 8.0 WPF application setup." />
-    <MESSAGE value="Add support for closed PR statistics in UI and services&#10;&#10;Introduced functionality to fetch and display closed pull request statistics. Added methods to `PullRequestStatsService` for closed PR data processing, UI controls in `MainWindow.xaml/xaml.cs` for displaying closed PR data, and updated data models to handle closed PR links. Refinements were also made to optimize code structure and functionality." />
-    <MESSAGE value="Add functionality to display reviewed PRs in UI&#10;&#10;Implemented backend and UI updates to fetch, process, and display reviewed pull requests for each developer. Added methods to `PullRequestStatsService` for reviewed PR handling and extended `MainWindow.xaml` to show corresponding data. Streamlined code by removing unused `PullRequestResponse` models." />
-    <MESSAGE value="Remove unused methods and streamline PR reviewer stats handling.&#10;&#10;Removed an unused method from `TeamMemberService` to improve code clarity. Optimized dictionary operations in `PullRequestStatsService` by using `TryAdd` and `TryGetValue` for cleaner handling and reduced redundancy. These changes enhance maintainability and efficiency of the codebase." />
-    <MESSAGE value="Add `PrRepository` with SQLite support and update `MainWindow` logic&#10;&#10;Introduced `PrRepository` to handle SQLite-based pull request operations and implemented the required CRUD functionalities. Updated `MainWindow` to integrate `IWorkItemService` and streamlined the PR-related features by removing redundant methods. This lays the foundation for better data handling and interface enhancements." />
-    <MESSAGE value="Add new pull request methods and update SQLite schema&#10;&#10;Introduced multiple new methods to the `IPrRepository` interface and its implementation to improve pull request querying capabilities (e.g., by opened/closed dates or ADO pull request IDs). Additionally, updated SQLite database schema, including JSON-related improvements and refined collation settings. These changes enhance functionality and database compatibility." />
-    <MESSAGE value="Add pull request updates and UI enhancements&#10;&#10;Introduced new methods in `PullRequestService` for fetching PRs by opened/closed dates and added a UI button to trigger PR updates. Refactored services to improve PR handling and updated `MainWindow` to display a loading indicator during operations. These changes enhance usability and streamline pull request management." />
-    <MESSAGE value="Refactor UI and logic for PR and comment stats.&#10;&#10;Moved comment and PR statistics to dedicated ViewModels for better separation of concerns. Added new XAML partials for improved modularity and updated services to streamline data handling processes. These changes enhance maintainability and scalability." />
     <MESSAGE value="Remove Comments.xaml.cs and database file&#10;&#10;Deleted the Comments.xaml.cs class and the associated database file as they are no longer needed. This cleanup removes unused functionality and reduces project complexity." />
     <MESSAGE value="Refactor days slider value handling in PR and comment stats&#10;&#10;Replaced static DaysControl method calls with instance-level methods for improved design and encapsulation. Updated related XAML partial classes to use the new method for fetching slider values, eliminating redundant parameters and streamlining code." />
     <MESSAGE value="Refactor variable names and remove unused imports&#10;&#10;Replaced ambiguous variable names in ViewModels with more meaningful ones for better readability and clarity. Removed unused imports across multiple files to clean up the codebase and improve maintainability. These changes streamline the code and enhance developer productivity." />
@@ -350,7 +395,16 @@
     <MESSAGE value="Ensure distinct work item IDs in `WorkItemService` and batch fetch requests for improved performance." />
     <MESSAGE value="Introduce `PullRequestService` in F# and integrate with `IPrRepository` for pull request handling." />
     <MESSAGE value="Integrate new F# implementation for `PullRequestService` and `IPrRepository` with updated DI configuration." />
-    <option name="LAST_COMMIT_MESSAGE" value="Integrate new F# implementation for `PullRequestService` and `IPrRepository` with updated DI configuration." />
+    <MESSAGE value="Update SQLite data source configuration and dataSources XML files." />
+    <MESSAGE value="Remove obsolete SQLite data source XML configuration." />
+    <MESSAGE value="Remove SQLite data source configuration file." />
+    <MESSAGE value="Refine work item query to include recently closed items; remove unused `TestWorkItems` button from UI." />
+    <MESSAGE value="Filter work items by state and remove obsolete test button in MainWindow." />
+    <MESSAGE value="Refine `WorkItemService` query to include 'Done' state filter and update UI by removing unused test button." />
+    <MESSAGE value="Update `.gitignore` to exclude `.db` files." />
+    <MESSAGE value="Update `.gitignore` to exclude `idea/*` directory." />
+    <MESSAGE value="Update `.gitignore` to standardize `.idea/*` exclusion pattern." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update `.gitignore` to standardize `.idea/*` exclusion pattern." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -367,49 +421,6 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="36" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/TheMetz/Services/WorkItemService.cs</url>
-          <line>44</line>
-          <properties documentPath="C:\Users\slieffers\source\repos\TheMetz\TheMetz\Services\WorkItemService.cs" containingFunctionPresentation="Method 'GetWorkItemsCompletedByDev'">
-            <startOffsets>
-              <option value="1970" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2056" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="41" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/TheMetz.FSharp/PullRequestService.fs</url>
-          <line>113</line>
-          <properties documentPath="C:\Users\slieffers\source\repos\TheMetz\TheMetz.FSharp\PullRequestService.fs" containingFunctionPresentation="">
-            <startOffsets>
-              <option value="4330" />
-              <option value="4322" />
-            </startOffsets>
-            <endOffsets>
-              <option value="4340" />
-              <option value="4326" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="45" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/TheMetz.FSharp/PullRequestService.fs</url>
-          <line>77</line>
-          <properties documentPath="C:\Users\slieffers\source\repos\TheMetz\TheMetz.FSharp\PullRequestService.fs" containingFunctionPresentation="">
-            <startOffsets>
-              <option value="2928" />
-              <option value="2932" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2951" />
-              <option value="2951" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="47" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
