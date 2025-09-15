@@ -21,14 +21,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources/4ba9a3e6-44db-4d0e-9d22-53920ddb7392.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources/4ba9a3e6-44db-4d0e-9d22-53920ddb7392/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz.FSharp/PullRequestService.fs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz.FSharp/PullRequestService.fs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Services/AzureDevOpsPullRequestFetcher.cs" beforeDir="false" />
-    </list>
+    <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,6 +37,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6647d2bd482b49658b7944ffe383331e3d820/6b/b05de96b/WorkItemTrackingHttpClientBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bd1d5c50194fea68ff3559c160230b0ab50f5acf4ce3061bffd6d62958e2182/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources/25099ff7-2437-43cd-8ccf-6b840048af3a/storage_v2/_src_/schema/main.uQUzAA.meta" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz.FSharp/PullRequestService.fs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.FSharp/PullRequestService.fs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.Interfaces/IPrRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.Interfaces/IPullRequestService.cs" root0="FORCE_HIGHLIGHTING" />
@@ -183,7 +177,7 @@
       <workItem from="1756988510146" duration="9022000" />
       <workItem from="1757332233753" duration="4396000" />
       <workItem from="1757935386774" duration="3413000" />
-      <workItem from="1757944161986" duration="432000" />
+      <workItem from="1757944161986" duration="1636000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial solution and application for TheMetz project&#10;&#10;Includes .gitignore, a WPF application using .NET 8.0, and ADO pull request data processing services. Also adds project configuration files for Visual Studio and JetBrains Rider IDEs.">
       <option name="closed" value="true" />
@@ -369,7 +363,39 @@
       <option name="project" value="LOCAL" />
       <updated>1757938651857</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Remove `AzureDevOpsPullRequestFetcher` and redundant comments in F# `PullRequestService`.">
+      <option name="closed" value="true" />
+      <created>1757944625841</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1757944625841</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Update project configuration to refine `.NET Project` settings and adjust tasks tracking setup.">
+      <option name="closed" value="true" />
+      <created>1757944787206</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1757944787206</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Remove SQLite data source configuration file from `.idea` directory.">
+      <option name="closed" value="true" />
+      <created>1757944829175</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1757944829175</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Update SQLite data source configuration with new `created-in` version.">
+      <option name="closed" value="true" />
+      <created>1757944853052</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1757944853052</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -379,10 +405,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Remove Comments.xaml.cs and database file&#10;&#10;Deleted the Comments.xaml.cs class and the associated database file as they are no longer needed. This cleanup removes unused functionality and reduces project complexity." />
-    <MESSAGE value="Refactor days slider value handling in PR and comment stats&#10;&#10;Replaced static DaysControl method calls with instance-level methods for improved design and encapsulation. Updated related XAML partial classes to use the new method for fetching slider values, eliminating redundant parameters and streamlining code." />
-    <MESSAGE value="Refactor variable names and remove unused imports&#10;&#10;Replaced ambiguous variable names in ViewModels with more meaningful ones for better readability and clarity. Removed unused imports across multiple files to clean up the codebase and improve maintainability. These changes streamline the code and enhance developer productivity." />
-    <MESSAGE value="Refactor comment counting logic and enhance data models&#10;&#10;Updated `ShowCommentCounts` in `PullRequestCommentService` to include total reviews alongside comments, improving statistics granularity. Adjusted related ViewModels and logic to display both metrics in the UI. Increased slider range to support extended data fetching. Minor repository and configuration updates for better maintainability." />
     <MESSAGE value="Add methods for updating and querying pull requests, improve repository logic&#10;&#10;Enhanced `IPrRepository` with methods for updating pull requests by ADO ID and querying open PRs. Updated `PullRequestService` to incorporate efficient handling of open PRs and real-time updates. Adjusted `PullRequestCommentService` logic to exclude self-reviews during PR filtering. These changes increase functionality and improve code maintainability." />
     <MESSAGE value="Add work item tracking and developer activity features to UI&#10;&#10;Introduced `WorkItemStatsViewModel` and `WorkItemDomainModel` to track developer activity on work items. Updated `WorkItemService` with new methods for retrieving and grouping work items by developer and project. Added `WorkItemStats` partial class with UI enhancements, integrated into `MainWindow`. Refactored XAML files to include a new tab for work item statistics, improving application functionality and dev activity tracking." />
     <MESSAGE value="Add work item tracking functionality and integrate it into UI&#10;&#10;Introduced methods in `WorkItemService` for fetching developer-specific and project-specific work items. Added `WorkItemStatsViewModel` to handle related data and logic. Updated the UI with a new `WorkItemStats` partial class to display work items and integrated it into `MainWindow.xaml`. These changes enhance functionality by enabling work item tracking and visualization." />
@@ -404,7 +426,11 @@
     <MESSAGE value="Update `.gitignore` to exclude `.db` files." />
     <MESSAGE value="Update `.gitignore` to exclude `idea/*` directory." />
     <MESSAGE value="Update `.gitignore` to standardize `.idea/*` exclusion pattern." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update `.gitignore` to standardize `.idea/*` exclusion pattern." />
+    <MESSAGE value="Remove `AzureDevOpsPullRequestFetcher` and redundant comments in F# `PullRequestService`." />
+    <MESSAGE value="Update project configuration to refine `.NET Project` settings and adjust tasks tracking setup." />
+    <MESSAGE value="Remove SQLite data source configuration file from `.idea` directory." />
+    <MESSAGE value="Update SQLite data source configuration with new `created-in` version." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update SQLite data source configuration with new `created-in` version." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

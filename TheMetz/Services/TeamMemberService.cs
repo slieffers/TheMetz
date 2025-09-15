@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.Services.WebApi;
 using Microsoft.TeamFoundation.Core.WebApi;
 using Microsoft.TeamFoundation.WorkItemTracking.WebApi;
-using Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models;
 
 namespace TheMetz.Services
 {
@@ -24,7 +23,6 @@ namespace TheMetz.Services
             var teamClient = await _connection.GetClientAsync<TeamHttpClient>();
             var test = await _connection.GetClientAsync<WorkItemTrackingHttpClient>();
                 
-            // Retrieve the team members
             List<TeamMember>? members = await teamClient.GetTeamMembersWithExtendedPropertiesAsync(
                 projectId: "Marketplace",
                 teamId: "Customer Optimization"
