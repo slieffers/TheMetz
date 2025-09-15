@@ -56,10 +56,8 @@ type PullRequestService(connection: VssConnection, prRepository: IPrRepository, 
             getProjectInfoTemplate
 
         task {
-            // Kick off repo fetch for each project
             let tasks = projectInfoTemplate |> List.map FetchProjectRepos
 
-            // Await all projects' repos and keep the grouped structure
             let! projectsWithRepos = Task.WhenAll(tasks)
 
             return projectsWithRepos |> Array.toList
@@ -146,11 +144,9 @@ type PullRequestService(connection: VssConnection, prRepository: IPrRepository, 
                 |> Seq.map (fun pr -> pr.PullRequestId)
                 |> Set.ofSeq
 
-            // Update existing open PRs first
             let openPullRequestsTaskList = Seq.map (GetAndUpdatePullRequest gitClient) openPullRequests
             do! Task.WhenAll(openPullRequestsTaskList)
 
-            // Load project info (project name + filtered repos)
             let! projectInfo = LoadProjectInfo
             let projectNames = projectInfo |> List.map fst
 
@@ -203,7 +199,6 @@ type PullRequestService(connection: VssConnection, prRepository: IPrRepository, 
 
         member _.UpdateAdoPullRequests() : Task =
             task {
-            //(DateTime dateUpdated, GitPullRequest? gitPullRequest) latestCreatedPr
             let! latestCreatedPr = prRepository.GetLatestCreatedPullRequest()
             let latestCreatedPrTuple = latestCreatedPr.ToTuple()
             let! oldestOpenPr = prRepository.GetOldestOpenPullRequest()
