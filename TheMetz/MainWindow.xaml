@@ -19,9 +19,6 @@
                            Background="White"
                            VerticalAlignment="Top">
                     </Label>
-                    <Button Name="TestWorkItems" Content="Test Work Items" HorizontalAlignment="Left"
-                            Margin="289,20,0,0" VerticalAlignment="Top" Width="125"
-                            Click="TestWorkItemsButtonClicked" />
                     <partials:CommentStats x:Name="CommentStatsControl"/>
                 </Grid>
             </TabItem>

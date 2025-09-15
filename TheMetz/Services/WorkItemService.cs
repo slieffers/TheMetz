@@ -74,6 +74,7 @@ namespace TheMetz.Services
             FROM WorkItems 
             WHERE [System.TeamProject] = '{projectName}' 
             AND [System.ChangedDate] >= '{startDate}'
+            AND ([System.State] = 'Active' OR ([System.State] = 'Done' AND [Microsoft.VSTS.Common.ClosedDate] >= '{startDate}'))
             AND (
                 [System.History] CONTAINS '{developerDisplayName}'
                 OR [System.History] CONTAINS '{developerEmail}'
