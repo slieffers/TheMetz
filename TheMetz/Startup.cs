@@ -7,6 +7,7 @@ using TheMetz.Interfaces;
 using TheMetz.Models;
 using TheMetz.Repositories;
 using TheMetz.Services;
+
 //using IPullRequestService = TheMetz.Services.IPullRequestService;
 
 namespace TheMetz;
@@ -28,7 +29,8 @@ public static class Startup
 
         var adoConnection = new VssConnection(new Uri(appSettings.OrganizationUrl), new VssBasicCredential(string.Empty, appSettings.PersonalAccessToken));
         services.AddSingleton(adoConnection);
-        services.AddSingleton<IPullRequestCommentService, PullRequestCommentService>();
+        //services.AddSingleton<IPullRequestCommentService, PullRequestCommentService>();
+        services.AddSingleton<IPullRequestCommentService, FSharp.PullRequestCommentService>();
         services.AddSingleton<IPullRequestService>(sp =>
             new TheMetz.FSharp.PullRequestService(
                 sp.GetRequiredService<VssConnection>(),

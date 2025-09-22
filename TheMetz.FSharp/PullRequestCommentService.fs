@@ -11,7 +11,7 @@ open Microsoft.VisualStudio.Services.WebApi
 open TheMetz.FSharp.Models
 open TheMetz.Interfaces
 
-type PullRequestCommentServiceF
+type PullRequestCommentService
     (connection: VssConnection, pullRequestService: IPullRequestService, teamService: ITeamMemberService) =
     let developerCommentLinks = ConcurrentDictionary<string, Link list>()
 
@@ -43,12 +43,12 @@ type PullRequestCommentServiceF
         developerCommentLinks.AddOrUpdate(
             authorWithComment,
             (fun _ -> [ { Title = pr.Title; Url = GetFormattedPrUrl(pr)}]),
-            (fun _ existing -> existing @ [{Title = pr.Title; Url = "" } ])
+            (fun _ existing -> existing @ [{Title = pr.Title; Url = GetFormattedPrUrl(pr) } ])
         ) |> ignore
             
-    interface ICommentService with
+    interface IPullRequestCommentService with
         member this.GetDeveloperCommentLinks developerName =
-            System.Collections.Generic.List(developerCommentLinks.[developerName])
+            List(developerCommentLinks.[developerName])
             
         member this.ShowCommentCounts numberOfDays =
             let fromDate = DateTime.Today.AddDays(-numberOfDays)

@@ -48,9 +48,9 @@ public partial class CommentStats : UserControl
 
         int truncateIndex = selectedAuthor!.IndexOf(':');
         string authorName = selectedAuthor[..(truncateIndex == -1 ? selectedAuthor.Length : truncateIndex)];
-        List<(string Title, string Url)> commentLinks = ViewModel.PullRequestCommentService.GetDeveloperCommentLinks(authorName);
+        List<FSharp.Models.Link> commentLinks = ViewModel.PullRequestCommentService.GetDeveloperCommentLinks(authorName);
 
-        foreach ((string Title, string Url) linkInfo in commentLinks)
+        foreach (FSharp.Models.Link linkInfo in commentLinks)
         {
             var paragraph = new Paragraph();
             var hyperlink = new Hyperlink(new Run(linkInfo.Title))

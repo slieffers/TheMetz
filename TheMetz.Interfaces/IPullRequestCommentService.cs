@@ -4,6 +4,6 @@ using TheMetz.FSharp;
 
 public interface IPullRequestCommentService
 {
-    public Task<IEnumerable<KeyValuePair<string, (int totalReviews, int withComments)>>> ShowCommentCounts(int numberOfDays);
-    public List<(string Title, string Url)> GetDeveloperCommentLinks(string developerName);
+    public Task<Dictionary<string, Models.ReviewCounts>> ShowCommentCounts(int numberOfDays);
+    public List<Models.Link> GetDeveloperCommentLinks(string developerName);
 }
