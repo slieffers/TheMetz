@@ -2,7 +2,10 @@
 
 open System
 open System.Collections.Concurrent
+open System.Collections.Generic
 open System.Linq
+open System.Threading
+open System.Threading.Tasks
 open Microsoft.TeamFoundation.SourceControl.WebApi
 open Microsoft.VisualStudio.Services.WebApi
 open TheMetz.FSharp.Models
@@ -15,10 +18,38 @@ type PullRequestCommentServiceF
     let GetFormattedPrUrl (pr: GitPullRequest) =
         $"https://tfs.clarkinc.biz/DefaultCollection/{pr.Repository.ProjectReference.Name}/_git/{pr.Repository.Name}/pullrequest/{pr.PullRequestId}"
 
+    let CalculateDeveloperTotalReviews (filteredPullRequests: GitPullRequest seq) (teamMembers: string seq) =
+        teamMembers
+        |> Seq.map (fun m ->
+            m,
+            filteredPullRequests
+            |> Seq.sumBy (fun pr ->
+                if
+                    (pr.CreatedBy.DisplayName <> m
+                     && pr.Reviewers |> Seq.exists (fun r -> m = r.DisplayName))
+                then
+                    1
+                else
+                    0))
+        |> dict
+
+    let UpdateDevInfo (perAuthorTotalReviews: IDictionary<string, int>) (developerCommentCount: ConcurrentDictionary<string, ReviewCounts>) (authorWithComment: string) (pr: GitPullRequest)  =
+        developerCommentCount.AddOrUpdate(
+            authorWithComment,
+            (fun _ -> { TotalReviews = perAuthorTotalReviews.[authorWithComment]; WithComments = 1 }),
+            (fun _ existing -> { existing with WithComments = existing.WithComments + 1 })
+        ) |> ignore
+        
+        developerCommentLinks.AddOrUpdate(
+            authorWithComment,
+            (fun _ -> [ { Title = pr.Title; Url = GetFormattedPrUrl(pr)}]),
+            (fun _ existing -> existing @ [{Title = pr.Title; Url = "" } ])
+        ) |> ignore
+            
     interface ICommentService with
         member this.GetDeveloperCommentLinks developerName =
             System.Collections.Generic.List(developerCommentLinks.[developerName])
-
+            
         member this.ShowCommentCounts numberOfDays =
             let fromDate = DateTime.Today.AddDays(-numberOfDays)
 
@@ -44,69 +75,49 @@ type PullRequestCommentServiceF
                                |> Seq.map (fun t -> t.Identity.DisplayName)
                                |> Seq.contains r.DisplayName))
 
-                let perAuthorTotalReviews = dict<string, int>
-                // foreach (string memberName in memberNames)
-                // {
-                //     perAuthorTotalReviews.Add(memberName, filteredPullRequests.Count(pr =>
-                //         pr.Reviewers.Any(r => memberName == r.DisplayName) && pr.CreatedBy.DisplayName != memberName));
-                // }
-                //
-                // using var gitClient = await _connection.GetClientAsync<GitHttpClient>();
-                //
-                // await Parallel.ForEachAsync(filteredPullRequests, new ParallelOptions
-                // {
-                //     MaxDegreeOfParallelism = Environment.ProcessorCount // Adjust as needed
-                // }, async (pr, cancellationToken) =>
-                // {
-                //     try
-                //     {
-                //         List<GitPullRequestCommentThread> threads = (await gitClient.GetThreadsAsync(
-                //             repositoryId: pr.Repository.Id,
-                //             pullRequestId: pr.PullRequestId,
-                //             cancellationToken: cancellationToken
-                //         )).ToList();
-                //
-                //         List<string> authorComments = threads.SelectMany(t => t.Comments)
-                //             .Where(c => c.CommentType != CommentType.System && c.PublishedDate >= fromDate)
-                //             .GroupBy(c => c.Author.DisplayName)
-                //             .Select(c => c.Key).ToList();
-                //
-                //         foreach (string? authorComment in authorComments)
-                //         {
-                //             if (authorComment == pr.CreatedBy.DisplayName
-                //                 || !memberNames.Contains(authorComment))
-                //             {
-                //                 continue;
-                //             }
-                //
-                //             if (_developerCommentLinks.TryGetValue(authorComment,
-                //                     out List<(string Title, string Url)>? value)
-                //                 && value.Any(r => r.Title == pr.Title))
-                //             {
-                //                 continue;
-                //             }
-                //
-                //             developerCommentCount.AddOrUpdate(
-                //                 authorComment,
-                //                 (perAuthorTotalReviews[authorComment], 1),
-                //                 (string _, (int totalReviews, int commentCount)count) => (count.totalReviews, count.commentCount + 1)
-                //             );
-                //             _developerCommentLinks.AddOrUpdate(
-                //                 authorComment,
-                //                 _ => new List<(string, string)> { (pr.Title, GetFormattedPrUrl(pr)) },
-                //                 (_, existingList) =>
-                //                 {
-                //                     existingList.Add((pr.Title, GetFormattedPrUrl(pr)));
-                //                     return existingList;
-                //                 }
-                //             );
-                //         }
-                //     }
-                //     catch (Exception e)
-                //     {
-                //         Console.WriteLine(e);
-                //     }
-                // });
-                //
+                let perAuthorTotalReviews = CalculateDeveloperTotalReviews filteredPullRequests memberNames
+
+                let updateDevInfoFunc = UpdateDevInfo perAuthorTotalReviews developerCommentCount
+
+                use! gitClient = connection.GetClientAsync<GitHttpClient>() |> Async.AwaitTask
+
+                do!
+                    Parallel.ForEachAsync(
+                        filteredPullRequests,
+                        ParallelOptions(MaxDegreeOfParallelism = Environment.ProcessorCount),
+                        Func<_, _, _>(fun (pr: GitPullRequest) (ct: CancellationToken) ->
+                            task {
+                                let! threads =
+                                    gitClient.GetThreadsAsync(
+                                        repositoryId = pr.Repository.Id,
+                                        pullRequestId = pr.PullRequestId,
+                                        cancellationToken = ct
+                                    )
+
+                                let authorsWithComments =
+                                    threads
+                                    |> Seq.collect (fun t -> t.Comments)
+                                    |> Seq.filter (fun c ->
+                                        c.CommentType <> CommentType.System && c.PublishedDate >= fromDate)
+                                    |> Seq.groupBy (fun c -> c.Author.DisplayName)
+                                    |> Seq.map fst
+                                    |> Seq.filter (fun awc ->
+                                        awc <> pr.CreatedBy.DisplayName
+                                        && memberNames |> Seq.contains awc
+                                        && ((developerCommentLinks.ContainsKey(awc)
+                                             |> not)
+                                                || developerCommentLinks.[awc] |> (fun values ->
+                                                values |> Seq.exists (fun x -> x.Title = pr.Title)
+                                                |> not)
+                                            )
+                                        )
+
+                                authorsWithComments |> Seq.iter (fun awc -> updateDevInfoFunc awc pr)
+
+                                return ()
+                            }
+                            |> fun t -> ValueTask t)
+                    )
+                    
                 return developerCommentCount.ToDictionary()
             }

@@ -22,20 +22,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/TheMetz.FSharp/PullRequestCommentService.fs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TheMetz.FSharp/TeamService.fs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TheMetz.Interfaces/ICommentService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TheMetz.Interfaces/IPullRequestCommentService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz.FSharp/PullRequestService.fs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz.FSharp/PullRequestService.fs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz.FSharp/TeamMemberService.fs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz.FSharp/TheMetz.FSharp.fsproj" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz.FSharp/TheMetz.FSharp.fsproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz.Interfaces/TheMetz.Interfaces.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz.Interfaces/TheMetz.Interfaces.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz.sln" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Models/CommentStatsViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Models/CommentStatsViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Services/PullRequestCommentService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestCommentService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz.FSharp/PullRequestCommentService.fs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz.FSharp/PullRequestCommentService.fs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,11 +48,7 @@
     <setting file="file://$PROJECT_DIR$/TheMetz.Interfaces/IPullRequestCommentService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.Interfaces/IPullRequestService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.Interfaces/ITeamMemberService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz/Services/PullRequestCommentService.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz/Services/PullRequestCommentService.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz/Services/PullRequestCommentService.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz/Startup.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz/Startup.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz/Models/CommentStatsViewModel.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -203,7 +187,7 @@
       <workItem from="1757944161986" duration="10426000" />
       <workItem from="1758539836234" duration="1637000" />
       <workItem from="1758541491187" duration="12000" />
-      <workItem from="1758541518773" duration="9182000" />
+      <workItem from="1758541518773" duration="19454000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial solution and application for TheMetz project&#10;&#10;Includes .gitignore, a WPF application using .NET 8.0, and ADO pull request data processing services. Also adds project configuration files for Visual Studio and JetBrains Rider IDEs.">
       <option name="closed" value="true" />
@@ -437,7 +421,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757948152228</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Move `TeamMemberService` functionality to `TeamService`, add `PullRequestCommentService`, and integrate `ICommentService` interface.">
+      <option name="closed" value="true" />
+      <created>1758554653511</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1758554653511</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -447,7 +439,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Add work item data integration and update UI components&#10;&#10;Introduced methods in `WorkItemService` to retrieve and process work items by developer and date. Added `WorkItemStatsViewModel` and new XAML partial for displaying work item statistics. Updated `MainWindow` to integrate work item data retrieval, along with corresponding buttons and controls for improved UI functionality. These updates enhance work item tracking and visualization capabilities." />
     <MESSAGE value="Add work item tracking functionality and UI integration&#10;&#10;Introduced comprehensive work item tracking features in `IWorkItemService`, including methods to fetch work items by developer, query work items since a specific date, and track developer references. Added `WorkItemStatsViewModel` for managing work item data and updated `MainWindow` and new `WorkItemStats.xaml` for UI integration. These changes improve visibility into work item activity and enhance overall project monitoring capabilities." />
     <MESSAGE value="Add work item tracking functionality and UI integration&#10;&#10;Introduced methods in `WorkItemService` for fetching and organizing work items based on developers and recent activity. Added `WorkItemDomainModel` and `WorkItemStatsViewModel` for enhanced data management. Integrated a new `WorkItemStats` user control and updated `MainWindow.xaml` to include a dedicated tab for work item statistics. These changes improve tracking and visualization of developer contributions." />
     <MESSAGE value="Add work item statistics functionality and UI integration&#10;&#10;Implemented work item statistics feature, including methods in `IWorkItemService` and `WorkItemService` for querying work items by developer and date. Added `WorkItemStatsViewModel` for data handling and `WorkItemStats.xaml` for user interface. Updated `MainWindow.xaml` to integrate the new feature, enabling the display and interaction with work item data." />
@@ -472,7 +463,8 @@
     <MESSAGE value="Remove `PullRequestEffortService` and unused comments." />
     <MESSAGE value="Introduce `ITeamMemberService` interface and add F# `TeamMemberService` implementation." />
     <MESSAGE value="Move `TeamMemberService` to F#, create `ITeamMemberService` interface, and update project references." />
-    <option name="LAST_COMMIT_MESSAGE" value="Move `TeamMemberService` to F#, create `ITeamMemberService` interface, and update project references." />
+    <MESSAGE value="Move `TeamMemberService` functionality to `TeamService`, add `PullRequestCommentService`, and integrate `ICommentService` interface." />
+    <option name="LAST_COMMIT_MESSAGE" value="Move `TeamMemberService` functionality to `TeamService`, add `PullRequestCommentService`, and integrate `ICommentService` interface." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
