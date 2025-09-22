@@ -35,7 +35,7 @@ public static class Startup
                 sp.GetRequiredService<IPrRepository>(),
                 new DateTime(2024, 1, 1, 0, 0, 0, DateTimeKind.Utc)
             ));
-        services.AddSingleton<ITeamMemberService, TeamMemberService>();
+        services.AddSingleton<ITeamMemberService, TeamService>();
         services.AddSingleton<IPullRequestStateChangeService, PullRequestStateChangeService>();
         services.AddSingleton<IWorkItemService, WorkItemService>();
         services.AddSingleton<IPrRepository, PrRepository>();

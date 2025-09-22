@@ -6,6 +6,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "TheMetz.FSharp", "TheMetz.F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheMetz.Interfaces", "TheMetz.Interfaces\TheMetz.Interfaces.csproj", "{D0B51C47-ACFC-4913-AD0A-3D93FC82D02D}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "TheMetz.FSharp.Models", "TheMetz.FSharp.Models\TheMetz.FSharp.Models.fsproj", "{20F40411-9477-426A-88DD-C16A3DAAD321}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{D0B51C47-ACFC-4913-AD0A-3D93FC82D02D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0B51C47-ACFC-4913-AD0A-3D93FC82D02D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0B51C47-ACFC-4913-AD0A-3D93FC82D02D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20F40411-9477-426A-88DD-C16A3DAAD321}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20F40411-9477-426A-88DD-C16A3DAAD321}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20F40411-9477-426A-88DD-C16A3DAAD321}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20F40411-9477-426A-88DD-C16A3DAAD321}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

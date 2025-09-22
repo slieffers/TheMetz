@@ -6,12 +6,6 @@ using TheMetz.Interfaces;
 
 namespace TheMetz.Services
 {
-    public interface IPullRequestCommentService
-    {
-        public Task<IEnumerable<KeyValuePair<string, (int totalReviews, int withComments)>>> ShowCommentCounts(int numberOfDays);
-        public List<(string Title, string Url)> GetDeveloperCommentLinks(string developerName);
-    }
-
     internal class PullRequestCommentService : IPullRequestCommentService
     {
         private readonly VssConnection _connection;
@@ -112,40 +106,16 @@ namespace TheMetz.Services
             
             return (developerCommentCount);
         }
-
+        
         public List<(string Title, string Url)> GetDeveloperCommentLinks(string developerName)
         {
             return _developerCommentLinks[developerName].ToList();
         }
-
+        
         private static string GetFormattedPrUrl(GitPullRequest pr)
         {
             return
                 $"https://tfs.clarkinc.biz/DefaultCollection/{pr.Repository.ProjectReference.Name}/_git/{pr.Repository.Name}/pullrequest/{pr.PullRequestId}";
-        }
-
-        private static (List<string> CustomerOptimizationTeamMembers, List<string> OtherTeamMembers)
-            GetAllTeamMembersAsync()
-        {
-            var customerOptimizationTeamMembers = new List<string>
-            {
-                "Dylan Manning",
-                "David Acker",
-                "Kerry Hannigan",
-                "Liudmila Solovyeva",
-                "Andrew Chanthavisith",
-                "Michal Lesniewski",
-                "Khrystyna Kregenbild"
-            };
-            var otherTeamMembers = new List<string>
-            {
-                "Phil Gathany",
-                "Brandon George",
-                "Shane Lieffers",
-                "Shawn Dreier"
-            };
-
-            return (customerOptimizationTeamMembers, otherTeamMembers);
         }
     }
 }

@@ -10,4 +10,8 @@
       <PackageReference Include="Microsoft.TeamFoundationServer.Client" Version="19.225.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\TheMetz.FSharp.Models\TheMetz.FSharp.Models.fsproj" />
+    </ItemGroup>
+
 </Project>

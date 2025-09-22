@@ -6,8 +6,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="TeamMemberService.fs" />
+        <Compile Include="TeamService.fs" />
         <Compile Include="PullRequestService.fs" />
+        <Compile Include="PullRequestCommentService.fs" />
     </ItemGroup>
 
     <ItemGroup>
