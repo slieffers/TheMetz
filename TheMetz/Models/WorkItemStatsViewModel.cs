@@ -1,7 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models;
-using TheMetz.Models.DTO;
-using TheMetz.Services;
+using TheMetz.Interfaces;
 
 namespace TheMetz.Models;
 
@@ -22,12 +20,12 @@ public class WorkItemStatsViewModel
 
         WorkItemResults.Add("Loading...");
 
-        List<WorkItemDomainModel> workItems =
-            await WorkItemService.GetWorkItemsWithDeveloperReferenceSinceDate(DateTime.Today.Subtract(TimeSpan.FromDays(numberOfDaysToFetch)));
+        List<FSharp.Models.WorkItemInfo> workItems =
+            (await WorkItemService.GetWorkItemsWithDeveloperReferenceSinceDate(DateTime.Today.Subtract(TimeSpan.FromDays(numberOfDaysToFetch)))).ToList();
 
         WorkItemResults.Clear();
 
-        foreach (WorkItemDomainModel workItem in workItems)
+        foreach (FSharp.Models.WorkItemInfo workItem in workItems)
         {
             WorkItemResults.Add(workItem.DeveloperName);
         }

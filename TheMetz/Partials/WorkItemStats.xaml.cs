@@ -3,7 +3,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
-using Microsoft.VisualStudio.Services.WebApi;
 using TheMetz.Models;
 
 namespace TheMetz.Partials;

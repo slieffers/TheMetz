@@ -41,7 +41,7 @@ namespace TheMetz.Services
 
             _developerOpenedPrLinks.Clear();
 
-            List<TeamMember>? teamMembers = await _teamMemberService.GetCustomerOptimizationTeamMembers();
+            List<TeamMember>? teamMembers = (await _teamMemberService.GetCustomerOptimizationTeamMembers()).ToList();
             if (teamMembers == null)
             {
                 return new Dictionary<string, int>();
@@ -69,7 +69,7 @@ namespace TheMetz.Services
 
             _developerClosedPrLinks.Clear();
 
-            List<TeamMember>? teamMembers = await _teamMemberService.GetCustomerOptimizationTeamMembers();
+            List<TeamMember>? teamMembers = (await _teamMemberService.GetCustomerOptimizationTeamMembers()).ToList();
             if (teamMembers == null)
             {
                 return new Dictionary<string, int>();
@@ -96,7 +96,7 @@ namespace TheMetz.Services
             
             _developerReviewedPrLinks.Clear();
 
-            List<TeamMember>? teamMembers = await _teamMemberService.GetCustomerOptimizationTeamMembers();
+            List<TeamMember>? teamMembers = (await _teamMemberService.GetCustomerOptimizationTeamMembers()).ToList();
             if (teamMembers == null)
             {
                 return new Dictionary<string, int>();

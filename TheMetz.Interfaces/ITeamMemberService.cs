@@ -4,5 +4,5 @@ namespace TheMetz.Interfaces;
 
 public interface ITeamMemberService
 {
-    public Task<List<TeamMember>> GetCustomerOptimizationTeamMembers();
+    public Task<IEnumerable<TeamMember>> GetCustomerOptimizationTeamMembers();
 }

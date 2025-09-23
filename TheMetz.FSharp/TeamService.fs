@@ -1,6 +1,7 @@
 ﻿namespace TheMetz.FSharp
 
 open System
+open System.Linq
 open System.Threading.Tasks
 open Microsoft.TeamFoundation.Core.WebApi
 open Microsoft.TeamFoundation.SourceControl.WebApi
@@ -62,7 +63,7 @@ type TeamService(connection: VssConnection) =
         }        
         
     interface ITeamMemberService with
-        member _.GetCustomerOptimizationTeamMembers() : Task<System.Collections.Generic.List<TeamMember>> =
+        member _.GetCustomerOptimizationTeamMembers() : Task<TeamMember seq> =
             task {
                 let! teamClient = connection.GetClientAsync<TeamHttpClient>();
                     
@@ -71,5 +72,5 @@ type TeamService(connection: VssConnection) =
                     teamId = "Customer Optimization"
                 )
                 
-                return members
+                return members.AsEnumerable()
             }

@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using TheMetz.Interfaces;
-using TheMetz.Services;
 
 namespace TheMetz.Models;
 
@@ -27,7 +26,7 @@ public class CommentStatsViewModel
 
         foreach (KeyValuePair<string, FSharp.Models.ReviewCounts> comment in comments)
         {
-            PrReviewResults.Add($"{comment.Key}: {comment.Value.TotalReviews} Reviews, {comment.Value.WithComments} With Comments");
+            PrReviewResults.Add($"{comment.Key}: {comment.Value.TotalReviews} Reviews, {comment.Value.ReviewsWithComments} With Comments");
         }
     }
 }

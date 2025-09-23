@@ -36,8 +36,8 @@ type PullRequestCommentService
     let UpdateDevInfo (perAuthorTotalReviews: IDictionary<string, int>) (developerCommentCount: ConcurrentDictionary<string, ReviewCounts>) (authorWithComment: string) (pr: GitPullRequest)  =
         developerCommentCount.AddOrUpdate(
             authorWithComment,
-            (fun _ -> { TotalReviews = perAuthorTotalReviews.[authorWithComment]; WithComments = 1 }),
-            (fun _ existing -> { existing with WithComments = existing.WithComments + 1 })
+            (fun _ -> { TotalReviews = perAuthorTotalReviews.[authorWithComment]; ReviewsWithComments = 1 }),
+            (fun _ existing -> { existing with ReviewsWithComments = existing.ReviewsWithComments + 1 })
         ) |> ignore
         
         developerCommentLinks.AddOrUpdate(

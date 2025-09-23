@@ -2,7 +2,6 @@
 using System.Windows.Media;
 using TheMetz.Interfaces;
 using TheMetz.Models;
-using TheMetz.Services;
 
 namespace TheMetz;
 
@@ -38,23 +37,6 @@ public partial class MainWindow : Window
         LoadingLabel.Content = "Updating Pull Requests...";
         
         await _pullRequestService.UpdateAdoPullRequests();
-        
-        LoadingLabel.Content = "";
-        LoadingLabel.Background = new SolidColorBrush(Colors.White);
-        
-        UpdatePullRequests.IsEnabled = true;
-        CommentStatsControl.FetchPrReviewData.IsEnabled = true;
-    }
-
-    private async void TestWorkItemsButtonClicked(object sender, RoutedEventArgs e)
-    {
-        UpdatePullRequests.IsEnabled = false;
-        CommentStatsControl.FetchPrReviewData.IsEnabled = false;
-        
-        LoadingLabel.Background = new SolidColorBrush(Colors.Plum);
-        LoadingLabel.Content = "Testing Work Items...";
-        
-        await _workItemService.GetWorkItemsCompletedByDev("Liudmila Solovyeva");
         
         LoadingLabel.Content = "";
         LoadingLabel.Background = new SolidColorBrush(Colors.White);

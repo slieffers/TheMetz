@@ -3,12 +3,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.Services.Common;
 using Microsoft.VisualStudio.Services.WebApi;
 using TheMetz.FSharp;
+using TheMetz.FSharp.WorkItemRepository;
+using TheMetz.FSharp.WorkItemService;
 using TheMetz.Interfaces;
 using TheMetz.Models;
 using TheMetz.Repositories;
 using TheMetz.Services;
-
-//using IPullRequestService = TheMetz.Services.IPullRequestService;
 
 namespace TheMetz;
 
