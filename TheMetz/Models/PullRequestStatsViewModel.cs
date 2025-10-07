@@ -7,9 +7,9 @@ public class PullRequestStatsViewModel
 {
     public readonly IPullRequestStateChangeService PullRequestStateChangeService;
 
-    public ObservableCollection<string> PrOpenedResults { get; } = new();
-    public ObservableCollection<string> PrClosedResults { get; } = new();
-    public ObservableCollection<string> PrReviewedResults { get; } = new();
+    public ObservableCollection<string> PrOpenedResults => [];
+    public ObservableCollection<string> PrClosedResults => [];
+    public ObservableCollection<string> PrReviewedResults => [];
 
     public PullRequestStatsViewModel(IPullRequestStateChangeService pullRequestStateChangeService)
     {
@@ -25,7 +25,9 @@ public class PullRequestStatsViewModel
 
         PrOpenedResults.Clear();
         foreach (var kvp in opened)
+        {
             PrOpenedResults.Add($"{kvp.Key}: {kvp.Value}");
+        }
     }
 
     public async Task LoadPrClosedData(int numberOfDaysToFetch)

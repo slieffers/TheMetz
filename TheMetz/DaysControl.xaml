@@ -26,6 +26,7 @@
                  Margin="50,30,0,0" 
                  TextWrapping="Wrap" 
                  Text="{Binding NumberOfDaysToFetch, Mode=TwoWay}"
+                 TextChanged="DaysTextBox_OnTextChanged"
                  VerticalAlignment="Top" 
                  Width="48"/>
     </Grid>

@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="The Metz" Height="800" Width="1200">
     <Grid>
-        <TabControl VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10" TabStripPlacement="Bottom">
+        <TabControl VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0" TabStripPlacement="Bottom">
             <TabItem Header="PR Reviews">
                 <Grid>
                     <Button Name="UpdatePullRequests" Content="Update Pull Requests" HorizontalAlignment="Left"

@@ -16,22 +16,6 @@ public partial class CommentStats : UserControl
         InitializeComponent();
     }
     
-    // private async Task LoadPrCommentData()
-    // {
-    //     PrReviewResultsList.Items.Clear();
-    //
-    //     PrReviewResultsList.Items.Add("Loading...");
-    //
-    //     IEnumerable<KeyValuePair<string, int>> test = await _pullRequestCommentService.ShowCommentCounts(_numberOfDaysToFetch);
-    //
-    //     PrReviewResultsList.Items.Clear();
-    //
-    //     foreach (KeyValuePair<string, int> keyValuePair in test)
-    //     {
-    //         PrReviewResultsList.Items.Add($"{keyValuePair.Key}: {keyValuePair.Value}");
-    //     }
-    // }
-
     private void PrCommentResultsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (PrReviewResultsList.SelectedItem == null)

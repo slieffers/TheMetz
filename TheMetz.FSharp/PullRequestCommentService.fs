@@ -51,6 +51,7 @@ type PullRequestCommentService
             List(developerCommentLinks.[developerName])
             
         member this.ShowCommentCounts numberOfDays =
+            developerCommentLinks.Clear();
             let fromDate = DateTime.Today.AddDays(-numberOfDays)
 
             task {

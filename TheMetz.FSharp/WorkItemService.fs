@@ -79,7 +79,7 @@ type WorkItemService
             let projects = [ "Marketplace"; "Atlas"; "Concorde"; "Specialty Channel Development" ]
             let projectQuery = QueryByProject workItemClient startDate teamMember
 
-            let! workItemsArrays =
+            let! _ =
                     [ for i in 0 .. (projects.Length - 1) ->
                         projectQuery projects.[i] ]
                     |> Task.WhenAll
@@ -101,9 +101,10 @@ type WorkItemService
                 let teamMembers = teamMembersEnumerable |> Seq.toList
                 
                 let teamQuery = QueryByTeamMember workItemClient startDate
-                let! workItemsArrays =
+                let! _ =
                     [ for i in 0 .. (teamMembers.Length - 1) ->
                         teamQuery teamMembers.[i] ]
                     |> Task.WhenAll
+                    
                 return workItems |> Seq.ofList
             }

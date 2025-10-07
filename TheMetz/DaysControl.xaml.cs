@@ -25,7 +25,19 @@ namespace TheMetz
         
         public int GetDaysSliderValue()
         {
-            return (int)Math.Round(DaysSliderControl.Value);
+            return (int)DaysSliderControl.Value;
+        }
+
+        private void DaysTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (DaysTextBox != null)
+            {
+                bool success = int.TryParse(DaysTextBox.Text, out int numericValue);
+                if (success)
+                {
+                    DaysSliderControl.Value = numericValue;
+                }
+            }
         }
     }
 }
