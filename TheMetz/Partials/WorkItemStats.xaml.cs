@@ -66,14 +66,22 @@ public partial class WorkItemStats : UserControl
 
         if (ViewModel.DeveloperWorkItemCounts.Count > 0)
         {
-            RenderChart();
-            WorkItemChartContainer.Visibility = Visibility.Visible;
+            WorkItemChart.Visibility = Visibility.Visible;
             WorkItemChartLabel.Visibility = Visibility.Visible;
+            RenderChart();
         }
         else
         {
-            WorkItemChartContainer.Visibility = Visibility.Collapsed;
+            WorkItemChart.Visibility = Visibility.Collapsed;
             WorkItemChartLabel.Visibility = Visibility.Collapsed;
+        }
+    }
+
+    private void WorkItemChart_SizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        if (ViewModel.DeveloperWorkItemCounts.Count > 0)
+        {
+            RenderChart();
         }
     }
 
@@ -92,11 +100,8 @@ public partial class WorkItemStats : UserControl
         double canvasWidth = WorkItemChart.ActualWidth;
         double canvasHeight = WorkItemChart.ActualHeight;
 
-        if (canvasWidth == 0 || canvasHeight == 0)
-        {
-            WorkItemChart.Loaded += (_, _) => RenderChart();
+        if (canvasWidth <= 0 || canvasHeight <= 0)
             return;
-        }
 
         double chartWidth = canvasWidth - leftMargin - rightMargin;
         double chartHeight = canvasHeight - topMargin - bottomMargin;
@@ -194,11 +199,25 @@ public partial class WorkItemStats : UserControl
             var nameLabel = new TextBlock
             {
                 Text = kvp.Key,
-                FontSize = 11,
-                RenderTransform = new RotateTransform(-45),
-                RenderTransformOrigin = new System.Windows.Point(0, 0)
+                FontSize = 11
             };
-            Canvas.SetLeft(nameLabel, leftMargin + spacing * index + spacing / 2);
+
+            // Measure the text to calculate positioning
+            nameLabel.Measure(new System.Windows.Size(double.PositiveInfinity, double.PositiveInfinity));
+            double textWidth = nameLabel.DesiredSize.Width;
+
+            // Calculate diagonal length needed to span bar width
+            // For 45 degree rotation: diagonal = barWidth / cos(45) = barWidth * sqrt(2)
+            double targetDiagonal = barWidth * Math.Sqrt(2);
+
+            // Scale font size to fit bar width
+            double scaleFactor = Math.Min(1.0, targetDiagonal / textWidth);
+            nameLabel.FontSize = 11 * scaleFactor;
+
+            var rotate = new RotateTransform(-45);
+            nameLabel.LayoutTransform = rotate;
+
+            Canvas.SetLeft(nameLabel, x);
             Canvas.SetTop(nameLabel, topMargin + chartHeight + 10);
             WorkItemChart.Children.Add(nameLabel);
 

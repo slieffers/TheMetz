@@ -23,10 +23,8 @@
   <component name="ChangeListManager">
     <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Models/WorkItemStatsViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Models/WorkItemStatsViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TheMetz/Partials/WorkItemStats.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Partials/WorkItemStats.xaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TheMetz/Partials/WorkItemStats.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Partials/WorkItemStats.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/TheMetz.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/TheMetz.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +59,8 @@
     <setting file="file://$PROJECT_DIR$/TheMetz/Models/PullRequestStatsViewModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz/Partials/CommentStats.xaml" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz/Partials/PullRequestStats.xaml" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz/Partials/WorkItemStats.xaml" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz/Partials/WorkItemStats.xaml.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -231,7 +231,7 @@
       <workItem from="1759840358860" duration="70000" />
       <workItem from="1759840445839" duration="74000" />
       <workItem from="1759840535288" duration="945000" />
-      <workItem from="1759842939981" duration="5803000" />
+      <workItem from="1759842939981" duration="6359000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial solution and application for TheMetz project&#10;&#10;Includes .gitignore, a WPF application using .NET 8.0, and ADO pull request data processing services. Also adds project configuration files for Visual Studio and JetBrains Rider IDEs.">
       <option name="closed" value="true" />
@@ -513,7 +513,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759847712490</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Add developer work item chart in `WorkItemStats.xaml`, extend `WorkItemStatsViewModel` with `DeveloperWorkItemCounts`, and implement dynamic chart rendering in `WorkItemStats.xaml.cs`.">
+      <option name="closed" value="true" />
+      <created>1759848817579</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1759848817579</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -523,7 +531,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Ensure distinct work item IDs in `WorkItemService` and batch fetch requests for improved performance." />
     <MESSAGE value="Introduce `PullRequestService` in F# and integrate with `IPrRepository` for pull request handling." />
     <MESSAGE value="Integrate new F# implementation for `PullRequestService` and `IPrRepository` with updated DI configuration." />
     <MESSAGE value="Update SQLite data source configuration and dataSources XML files." />
@@ -548,7 +555,8 @@
     <MESSAGE value="Migrate `WorkItemService` to F#, refactor `WorkItemRepository`, replace `WorkItemDomainModel` with `FSharp.Models.WorkItemInfo`, and update related usages." />
     <MESSAGE value="Refactor `PullRequestStatsViewModel` to use expression-bodied properties for `ObservableCollection` results, adjust UI margins, and add `TextChanged` event handling in `DaysControl`." />
     <MESSAGE value="Refactor `PullRequestStatsViewModel` for expression-bodied properties, increase `RichTextBox` widths in `PullRequestStats.xaml`, remove unused comments from `PullRequestService.fs`, and update `.idea` workspace settings." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor `PullRequestStatsViewModel` for expression-bodied properties, increase `RichTextBox` widths in `PullRequestStats.xaml`, remove unused comments from `PullRequestService.fs`, and update `.idea` workspace settings." />
+    <MESSAGE value="Add developer work item chart in `WorkItemStats.xaml`, extend `WorkItemStatsViewModel` with `DeveloperWorkItemCounts`, and implement dynamic chart rendering in `WorkItemStats.xaml.cs`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add developer work item chart in `WorkItemStats.xaml`, extend `WorkItemStatsViewModel` with `DeveloperWorkItemCounts`, and implement dynamic chart rendering in `WorkItemStats.xaml.cs`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
