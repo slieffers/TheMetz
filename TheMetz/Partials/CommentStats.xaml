@@ -7,7 +7,7 @@
              xmlns:theMetz="clr-namespace:TheMetz"
              xmlns:models="clr-namespace:TheMetz.Models"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="800" d:DesignWidth="1200">
     <Grid>
         <Label HorizontalAlignment="Left"
                Margin="33,5,0,0"
@@ -25,12 +25,13 @@
         <Button Name="FetchPrReviewData" Content="Fetch Data" HorizontalAlignment="Left"
                 Margin="289,32,0,0" VerticalAlignment="Top" Width="75" Click="FetchPrCommentButtonClicked" />
         <Label Margin="444,5,0,0">PRs with Comments for Selected Dev</Label>
-        <RichTextBox Name="PrReviewResults" Margin="444,32,0,0">
+        <RichTextBox Name="PrReviewResults" 
+                     Margin="444,36,40,350">
             <FlowDocument>
                 <Paragraph>
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <theMetz:DaysControl x:Name="CommentStatsDaysControl" Margin="282,69,0,0" />
+<theMetz:DaysControl x:Name="CommentStatsDaysControl" Margin="282,69,0,0" />
     </Grid>
 </UserControl>

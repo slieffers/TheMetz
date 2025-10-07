@@ -7,7 +7,7 @@
           <value>
             <AIAssistantStoredInstruction>
               <option name="actionId" value="AIAssistant.VCS.GenerateCommitMessage" />
-              <option name="content" value="Do not append statements to the end describing the overall effect, reason for, or result of the changes on the application" />
+              <option name="content" value="Do not append statements to the end describing the overall intention or reason for the changes in the application code such as &quot;this enhances readability of the code&quot; etc." />
             </AIAssistantStoredInstruction>
           </value>
         </entry>
@@ -22,17 +22,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz.FSharp/PullRequestCommentService.fs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz.FSharp/PullRequestCommentService.fs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz.FSharp/WorkItemService.fs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz.FSharp/WorkItemService.fs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/DaysControl.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/DaysControl.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/DaysControl.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/DaysControl.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/MainWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/MainWindow.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz.FSharp/PullRequestService.fs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz.FSharp/PullRequestService.fs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TheMetz/Models/PullRequestStatsViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Models/PullRequestStatsViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Partials/CommentStats.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Partials/CommentStats.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Partials/WorkItemStats.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Partials/WorkItemStats.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Partials/CommentStats.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Partials/CommentStats.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Partials/PullRequestStats.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Partials/PullRequestStats.xaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +38,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SIGN_OFF_COMMIT" value="true" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6647d2bd482b49658b7944ffe383331e3d820/6b/b05de96b/WorkItemTrackingHttpClientBase.cs" root0="FORCE_HIGHLIGHTING" />
@@ -54,6 +49,7 @@
     <setting file="file://$PROJECT_DIR$/TheMetz.FSharp.Models/Library.fs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.FSharp/PullRequestCommentService.fs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.FSharp/PullRequestService.fs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz.FSharp/PullRequestService.fs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.FSharp/TeamService.fs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.FSharp/WorkItemRepository.fs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.FSharp/WorkItemService.fs" root0="FORCE_HIGHLIGHTING" />
@@ -63,6 +59,8 @@
     <setting file="file://$PROJECT_DIR$/TheMetz.Interfaces/IWorkItemRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.Interfaces/IWorkItemService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz/Models/PullRequestStatsViewModel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz/Partials/CommentStats.xaml" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz/Partials/PullRequestStats.xaml" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -82,7 +80,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    ".NET Project.TheMetz.executor": "Run",
+    ".NET Project.TheMetz.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
@@ -92,7 +90,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "ml.llm.AIAssistantPromptsLibrary",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -233,7 +231,7 @@
       <workItem from="1759840358860" duration="70000" />
       <workItem from="1759840445839" duration="74000" />
       <workItem from="1759840535288" duration="945000" />
-      <workItem from="1759842939981" duration="3694000" />
+      <workItem from="1759842939981" duration="4744000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial solution and application for TheMetz project&#10;&#10;Includes .gitignore, a WPF application using .NET 8.0, and ADO pull request data processing services. Also adds project configuration files for Visual Studio and JetBrains Rider IDEs.">
       <option name="closed" value="true" />
@@ -499,7 +497,15 @@
       <option name="project" value="LOCAL" />
       <updated>1758654843749</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Refactor `PullRequestStatsViewModel` to use expression-bodied properties for `ObservableCollection` results, adjust UI margins, and add `TextChanged` event handling in `DaysControl`.">
+      <option name="closed" value="true" />
+      <created>1759846656349</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1759846656349</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -509,7 +515,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Remove unused `GetWorkItems` method and clean up `IWorkItemService` interface" />
     <MESSAGE value="Remove unused `GetWorkItems` method from `WorkItemService` and clean up imports." />
     <MESSAGE value="Ensure distinct work item IDs in `WorkItemService` and batch fetch requests for improved performance." />
     <MESSAGE value="Introduce `PullRequestService` in F# and integrate with `IPrRepository` for pull request handling." />
@@ -534,7 +539,8 @@
     <MESSAGE value="Refactor `PullRequestCommentService` to optimize comment tracking, integrate developer review calculations, and enhance async processing." />
     <MESSAGE value="Migrate `PullRequestCommentService` to F#, replace `ICommentService` with updated `IPullRequestCommentService`, and refactor related usages." />
     <MESSAGE value="Migrate `WorkItemService` to F#, refactor `WorkItemRepository`, replace `WorkItemDomainModel` with `FSharp.Models.WorkItemInfo`, and update related usages." />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrate `WorkItemService` to F#, refactor `WorkItemRepository`, replace `WorkItemDomainModel` with `FSharp.Models.WorkItemInfo`, and update related usages." />
+    <MESSAGE value="Refactor `PullRequestStatsViewModel` to use expression-bodied properties for `ObservableCollection` results, adjust UI margins, and add `TextChanged` event handling in `DaysControl`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor `PullRequestStatsViewModel` to use expression-bodied properties for `ObservableCollection` results, adjust UI margins, and add `TextChanged` event handling in `DaysControl`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

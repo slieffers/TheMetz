@@ -7,9 +7,9 @@ public class PullRequestStatsViewModel
 {
     public readonly IPullRequestStateChangeService PullRequestStateChangeService;
 
-    public ObservableCollection<string> PrOpenedResults => [];
-    public ObservableCollection<string> PrClosedResults => [];
-    public ObservableCollection<string> PrReviewedResults => [];
+    public ObservableCollection<string> PrOpenedResults { get; } = [];
+    public ObservableCollection<string> PrClosedResults { get; } = [];
+    public ObservableCollection<string> PrReviewedResults { get; } = [];
 
     public PullRequestStatsViewModel(IPullRequestStateChangeService pullRequestStateChangeService)
     {
