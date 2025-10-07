@@ -1,3 +1,6 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -32,9 +35,9 @@ public class BarChartRenderer : IChartRenderer
         int maxValue = data.Values.Max();
         if (maxValue == 0) maxValue = 1;
 
-        int developerCount = data.Count;
-        double barWidth = Math.Min(60, chartWidth / developerCount * 0.8);
-        double spacing = chartWidth / developerCount;
+        int dataCount = data.Count;
+        double barWidth = Math.Min(60, chartWidth / dataCount * 0.8);
+        double spacing = chartWidth / dataCount;
 
         // Draw Y-axis
         var yAxis = new Line

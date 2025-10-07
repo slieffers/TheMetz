@@ -22,7 +22,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/TheMetz.Interfaces/TheMetz.Interfaces.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz.Interfaces/TheMetz.Interfaces.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz.Interfaces/IChartRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz.Interfaces/IChartRenderer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Partials/WorkItemStats.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Partials/WorkItemStats.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Services/BarChartRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/BarChartRenderer.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
