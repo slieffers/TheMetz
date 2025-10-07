@@ -8,6 +8,7 @@ public class WorkItemStatsViewModel
     public readonly IWorkItemService WorkItemService;
 
     public ObservableCollection<string> WorkItemResults { get; } = new();
+    public Dictionary<string, int> DeveloperWorkItemCounts { get; } = new();
 
     public WorkItemStatsViewModel(IWorkItemService workItemService)
     {
@@ -17,6 +18,7 @@ public class WorkItemStatsViewModel
     public async Task LoadWorkItemData(int numberOfDaysToFetch)
     {
         WorkItemResults.Clear();
+        DeveloperWorkItemCounts.Clear();
 
         WorkItemResults.Add("Loading...");
 
@@ -28,6 +30,7 @@ public class WorkItemStatsViewModel
         foreach (FSharp.Models.WorkItemInfo workItem in workItems)
         {
             WorkItemResults.Add(workItem.DeveloperName);
+            DeveloperWorkItemCounts[workItem.DeveloperName] = workItem.WorkItems.Count();
         }
     }
 }

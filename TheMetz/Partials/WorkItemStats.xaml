@@ -25,13 +25,19 @@
         <Button Name="FetchWorkItemData" Content="Fetch Data" HorizontalAlignment="Left"
                 Margin="289,32,50,0" VerticalAlignment="Top" Width="75" Click="FetchWorkItemButtonClicked" />
         <Label Margin="444,5,0,0">Work Items for Selected Dev</Label>
-        <RichTextBox Name="WorkItemResults" 
-                     Margin="444,36,40,350">
+        <RichTextBox Name="WorkItemResults"
+                     VerticalAlignment="Top"
+                     Margin="444,36,40,0" Height="202">
             <FlowDocument>
                 <Paragraph>
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
         <theMetz:DaysControl x:Name="WorkItemStatsDaysControl" Margin="282,69,0,0" />
+
+        <Label Name="WorkItemChartLabel" HorizontalAlignment="Left" Margin="33,250,0,0" VerticalAlignment="Top" Visibility="Collapsed">Work Items by Developer</Label>
+        <Border Name="WorkItemChartContainer" Margin="33,280,40,40" BorderBrush="Gray" BorderThickness="1" Visibility="Collapsed">
+            <Canvas Name="WorkItemChart" Background="White" />
+        </Border>
     </Grid>
 </UserControl>
