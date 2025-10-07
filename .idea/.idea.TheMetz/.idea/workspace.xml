@@ -22,9 +22,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/TheMetz.Interfaces/IChartRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz.Interfaces/IChartRenderer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Partials/WorkItemStats.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Partials/WorkItemStats.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Services/BarChartRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/BarChartRenderer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheMetz/Models/IndividualStatsViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheMetz/Partials/IndividualStats.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheMetz/Partials/IndividualStats.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/MainWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/MainWindow.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/MainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/MainWindow.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Startup.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,8 +50,8 @@
     <setting file="file://$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources/25099ff7-2437-43cd-8ccf-6b840048af3a/storage_v2/_src_/schema/main.uQUzAA.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.FSharp.Models/Library.fs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.FSharp/PullRequestCommentService.fs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/TheMetz.FSharp/PullRequestService.fs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz.FSharp/PullRequestService.fs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/TheMetz.FSharp/PullRequestService.fs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.FSharp/TeamService.fs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.FSharp/WorkItemRepository.fs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.FSharp/WorkItemService.fs" root0="FORCE_HIGHLIGHTING" />
@@ -56,6 +60,7 @@
     <setting file="file://$PROJECT_DIR$/TheMetz.Interfaces/ITeamMemberService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.Interfaces/IWorkItemRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.Interfaces/IWorkItemService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz/MainWindow.xaml" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz/Models/PullRequestStatsViewModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz/Partials/CommentStats.xaml" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz/Partials/PullRequestStats.xaml" root0="SKIP_HIGHLIGHTING" />
@@ -80,30 +85,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Project.TheMetz.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;ml.llm.AIAssistantPromptsLibrary&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Project.TheMetz.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "ml.llm.AIAssistantPromptsLibrary",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlite&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
     ],
-    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect&quot;: [
-      &quot;SQLite&quot;
+    "com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect": [
+      "SQLite"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="TheMetz" type="DotNetProject" factoryName=".NET Project" activateToolWindowBeforeRun="false">
       <option name="EXE_PATH" value="$PROJECT_DIR$/TheMetz/bin/Debug/net8.0-windows/TheMetz.exe" />
@@ -523,7 +528,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759848817579</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Refactor `WorkItemStats.xaml.cs` to delegate chart rendering to `BarChartRenderer`, integrate `IChartRenderer` interface, and clean up redundant rendering logic.">
+      <option name="closed" value="true" />
+      <created>1759850997453</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1759850997453</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -533,7 +546,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Introduce `PullRequestService` in F# and integrate with `IPrRepository` for pull request handling." />
     <MESSAGE value="Integrate new F# implementation for `PullRequestService` and `IPrRepository` with updated DI configuration." />
     <MESSAGE value="Update SQLite data source configuration and dataSources XML files." />
     <MESSAGE value="Remove obsolete SQLite data source XML configuration." />
@@ -558,7 +570,8 @@
     <MESSAGE value="Refactor `PullRequestStatsViewModel` to use expression-bodied properties for `ObservableCollection` results, adjust UI margins, and add `TextChanged` event handling in `DaysControl`." />
     <MESSAGE value="Refactor `PullRequestStatsViewModel` for expression-bodied properties, increase `RichTextBox` widths in `PullRequestStats.xaml`, remove unused comments from `PullRequestService.fs`, and update `.idea` workspace settings." />
     <MESSAGE value="Add developer work item chart in `WorkItemStats.xaml`, extend `WorkItemStatsViewModel` with `DeveloperWorkItemCounts`, and implement dynamic chart rendering in `WorkItemStats.xaml.cs`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add developer work item chart in `WorkItemStats.xaml`, extend `WorkItemStatsViewModel` with `DeveloperWorkItemCounts`, and implement dynamic chart rendering in `WorkItemStats.xaml.cs`." />
+    <MESSAGE value="Refactor `WorkItemStats.xaml.cs` to delegate chart rendering to `BarChartRenderer`, integrate `IChartRenderer` interface, and clean up redundant rendering logic." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor `WorkItemStats.xaml.cs` to delegate chart rendering to `BarChartRenderer`, integrate `IChartRenderer` interface, and clean up redundant rendering logic." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

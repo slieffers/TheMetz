@@ -32,6 +32,11 @@
                     <partials:WorkItemStats x:Name="WorkItemStatsControl"/>
                 </Grid>
             </TabItem>
+            <TabItem Header="Individual Stats">
+                <Grid>
+                    <partials:IndividualStats x:Name="IndividualStatsControl"/>
+                </Grid>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>

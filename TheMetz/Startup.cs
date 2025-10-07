@@ -45,6 +45,7 @@ public static class Startup
         services.AddTransient<PullRequestStatsViewModel>();
         services.AddTransient<CommentStatsViewModel>();
         services.AddTransient<WorkItemStatsViewModel>();
+        services.AddTransient<IndividualStatsViewModel>();
 
         services.AddTransient<MainWindow>();
 

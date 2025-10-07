@@ -11,19 +11,18 @@ namespace TheMetz;
 public partial class MainWindow : Window
 {
     private readonly IPullRequestService _pullRequestService;
-    private readonly IWorkItemService _workItemService;
 
-    public MainWindow(IPullRequestService pullRequestService, IWorkItemService workItemService, PullRequestStatsViewModel pullRequestStatsViewModel, 
-        CommentStatsViewModel commentStatsViewModel, WorkItemStatsViewModel workItemStatsViewModel)
+    public MainWindow(IPullRequestService pullRequestService, PullRequestStatsViewModel pullRequestStatsViewModel, 
+        CommentStatsViewModel commentStatsViewModel, WorkItemStatsViewModel workItemStatsViewModel, IndividualStatsViewModel individualStatsViewModel)
     {
         InitializeComponent();
 
         _pullRequestService = pullRequestService;
-        _workItemService = workItemService;
 
         PullRequestStatsControl.DataContext = pullRequestStatsViewModel;
         CommentStatsControl.DataContext = commentStatsViewModel;
         WorkItemStatsControl.DataContext = workItemStatsViewModel;
+        IndividualStatsControl.DataContext = individualStatsViewModel;
 
         DataContext = this;
     }

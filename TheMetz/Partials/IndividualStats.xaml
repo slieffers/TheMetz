@@ -1,0 +1,125 @@
+﻿<UserControl x:Class="TheMetz.Partials.IndividualStats"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:theMetz="clr-namespace:TheMetz"
+             xmlns:models="clr-namespace:TheMetz.Models"
+             mc:Ignorable="d"
+             d:DesignHeight="800" d:DesignWidth="1200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Team Member Selection -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="33,10,0,10">
+            <Label VerticalAlignment="Center">Select Team Member:</Label>
+            <ComboBox Name="TeamMemberComboBox"
+                      Width="250"
+                      Height="22"
+                      Margin="10,0,0,0"
+                      ItemsSource="{Binding (models:IndividualStatsViewModel.TeamMembers)}"
+                      SelectionChanged="TeamMemberComboBox_SelectionChanged" />
+            <theMetz:DaysControl x:Name="IndividualStatsDaysControl" Margin="20,0,0,0" />
+            <Label Name="LoadingLabel"
+                   Content="Loading..."
+                   Margin="20,0,0,0"
+                   VerticalAlignment="Center"
+                   FontWeight="Bold"
+                   Visibility="Collapsed" />
+        </StackPanel>
+
+        <!-- PR Review Stats Section -->
+        <GroupBox Grid.Row="1" Header="PR Review Stats" Margin="20,5,20,5" Padding="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" HorizontalAlignment="Left" Margin="0,0,0,5">
+                    Reviews and Comments
+                </Label>
+                <TextBlock Grid.Row="1" Name="CommentStatsText"
+                           Margin="0,5,0,0"
+                           TextWrapping="Wrap"
+                           FontSize="14" />
+                <RichTextBox Grid.Row="1" Name="PrReviewDetails"
+                             Margin="0,30,0,0"
+                             Height="150"
+                             VerticalScrollBarVisibility="Auto">
+                    <FlowDocument>
+                        <Paragraph></Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+            </Grid>
+        </GroupBox>
+
+        <!-- Bottom Section with Work Items and PR Stats -->
+        <Grid Grid.Row="2" Margin="20,0,20,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Work Item Stats Section -->
+            <GroupBox Grid.Column="0" Header="Work Item Stats" Margin="0,0,10,0" Padding="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" HorizontalAlignment="Left">
+                        Work Items Activity
+                    </Label>
+                    <RichTextBox Grid.Row="1" Name="WorkItemDetails"
+                                 Margin="0,5,0,0"
+                                 VerticalScrollBarVisibility="Auto">
+                        <FlowDocument>
+                            <Paragraph></Paragraph>
+                        </FlowDocument>
+                    </RichTextBox>
+                </Grid>
+            </GroupBox>
+
+            <!-- Pull Request Stats Section -->
+            <GroupBox Grid.Column="1" Header="Pull Request Stats" Margin="10,0,0,0" Padding="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" HorizontalAlignment="Left">PRs Opened</Label>
+                    <TextBlock Grid.Row="0" Name="PrOpenedStatsText"
+                               Margin="0,25,0,5"
+                               FontSize="14" />
+
+                    <Label Grid.Row="1" HorizontalAlignment="Left" Margin="0,10,0,0">PRs Closed</Label>
+                    <TextBlock Grid.Row="1" Name="PrClosedStatsText"
+                               Margin="0,35,0,5"
+                               FontSize="14" />
+
+                    <Label Grid.Row="2" HorizontalAlignment="Left" Margin="0,10,0,0">PRs Reviewed</Label>
+                    <TextBlock Grid.Row="2" Name="PrReviewedStatsText"
+                               Margin="0,35,0,5"
+                               FontSize="14" />
+
+                    <RichTextBox Grid.Row="3" Name="PrDetails"
+                                 Margin="0,10,0,0"
+                                 VerticalScrollBarVisibility="Auto">
+                        <FlowDocument>
+                            <Paragraph></Paragraph>
+                        </FlowDocument>
+                    </RichTextBox>
+                </Grid>
+            </GroupBox>
+        </Grid>
+    </Grid>
+</UserControl>
