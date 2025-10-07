@@ -6,8 +6,8 @@
              xmlns:theMetz="clr-namespace:TheMetz"
              xmlns:models="clr-namespace:TheMetz.Models"
              mc:Ignorable="d"
-             d:DesignHeight="800" d:DesignWidth="1200">
-    <Grid>
+             d:DesignHeight="1360" d:DesignWidth="2040">
+    <Grid Margin="17">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -15,41 +15,52 @@
         </Grid.RowDefinitions>
 
         <!-- Team Member Selection -->
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="33,10,0,10">
-            <Label VerticalAlignment="Center">Select Team Member:</Label>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,17">
+            <Label VerticalAlignment="Center" FontSize="15">Select Team Member:</Label>
             <ComboBox Name="TeamMemberComboBox"
-                      Width="250"
-                      Height="22"
-                      Margin="10,0,0,0"
+                      Width="340"
+                      Height="31"
+                      Margin="17,0,0,0"
+                      FontSize="14"
                       ItemsSource="{Binding (models:IndividualStatsViewModel.TeamMembers)}"
                       SelectionChanged="TeamMemberComboBox_SelectionChanged" />
-            <theMetz:DaysControl x:Name="IndividualStatsDaysControl" Margin="20,0,0,0" />
+            <theMetz:DaysControl x:Name="IndividualStatsDaysControl" Margin="34,0,0,0" />
+            <Button Name="RefreshButton"
+                    Content="Refresh"
+                    Width="128"
+                    Height="31"
+                    FontSize="14"
+                    Margin="34,0,0,0"
+                    Visibility="Collapsed"
+                    Click="RefreshButton_Click" />
             <Label Name="LoadingLabel"
                    Content="Loading..."
-                   Margin="20,0,0,0"
+                   Margin="34,0,0,0"
                    VerticalAlignment="Center"
+                   FontSize="15"
                    FontWeight="Bold"
                    Visibility="Collapsed" />
         </StackPanel>
 
         <!-- PR Review Stats Section -->
-        <GroupBox Grid.Row="1" Header="PR Review Stats" Margin="20,5,20,5" Padding="10">
+        <GroupBox Grid.Row="1" Header="PR Review Stats" Margin="0,0,0,17" Padding="17" FontSize="15">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <Label Grid.Row="0" HorizontalAlignment="Left" Margin="0,0,0,5">
+                <Label Grid.Row="0" HorizontalAlignment="Left" Margin="0,0,0,8" FontSize="14">
                     Reviews and Comments
                 </Label>
                 <TextBlock Grid.Row="1" Name="CommentStatsText"
-                           Margin="0,5,0,0"
+                           Margin="0,8,0,0"
                            TextWrapping="Wrap"
                            FontSize="14" />
                 <RichTextBox Grid.Row="1" Name="PrReviewDetails"
-                             Margin="0,30,0,0"
-                             Height="150"
+                             Margin="0,43,0,0"
+                             Height="213"
+                             FontSize="12"
                              VerticalScrollBarVisibility="Auto">
                     <FlowDocument>
                         <Paragraph></Paragraph>
@@ -59,25 +70,26 @@
         </GroupBox>
 
         <!-- Bottom Section with Work Items and PR Stats -->
-        <Grid Grid.Row="2" Margin="20,0,20,20">
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <!-- Work Item Stats Section -->
-            <GroupBox Grid.Column="0" Header="Work Item Stats" Margin="0,0,10,0" Padding="10">
+            <GroupBox Grid.Column="0" Header="Work Item Stats" Margin="0,0,17,0" Padding="17" FontSize="15">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Row="0" HorizontalAlignment="Left">
+                    <Label Grid.Row="0" HorizontalAlignment="Left" FontSize="14">
                         Work Items Activity
                     </Label>
                     <RichTextBox Grid.Row="1" Name="WorkItemDetails"
-                                 Margin="0,5,0,0"
+                                 Margin="0,8,0,0"
+                                 FontSize="12"
                                  VerticalScrollBarVisibility="Auto">
                         <FlowDocument>
                             <Paragraph></Paragraph>
@@ -87,37 +99,52 @@
             </GroupBox>
 
             <!-- Pull Request Stats Section -->
-            <GroupBox Grid.Column="1" Header="Pull Request Stats" Margin="10,0,0,0" Padding="10">
+            <GroupBox Grid.Column="1" Header="Pull Request Stats" Padding="17" FontSize="15">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Row="0" HorizontalAlignment="Left">PRs Opened</Label>
-                    <TextBlock Grid.Row="0" Name="PrOpenedStatsText"
-                               Margin="0,25,0,5"
-                               FontSize="14" />
+                    <StackPanel Grid.Row="0">
+                        <Label HorizontalAlignment="Left" FontSize="14">PRs Opened</Label>
+                        <RichTextBox Name="PrOpenedDetails"
+                                     MinHeight="170"
+                                     Margin="0,8,0,0"
+                                     FontSize="12"
+                                     VerticalScrollBarVisibility="Auto">
+                            <FlowDocument>
+                                <Paragraph></Paragraph>
+                            </FlowDocument>
+                        </RichTextBox>
+                    </StackPanel>
 
-                    <Label Grid.Row="1" HorizontalAlignment="Left" Margin="0,10,0,0">PRs Closed</Label>
-                    <TextBlock Grid.Row="1" Name="PrClosedStatsText"
-                               Margin="0,35,0,5"
-                               FontSize="14" />
+                    <StackPanel Grid.Row="1" Margin="0,17,0,0">
+                        <Label HorizontalAlignment="Left" FontSize="14">PRs Closed</Label>
+                        <RichTextBox Name="PrClosedDetails"
+                                     MinHeight="170"
+                                     Margin="0,8,0,0"
+                                     FontSize="12"
+                                     VerticalScrollBarVisibility="Auto">
+                            <FlowDocument>
+                                <Paragraph></Paragraph>
+                            </FlowDocument>
+                        </RichTextBox>
+                    </StackPanel>
 
-                    <Label Grid.Row="2" HorizontalAlignment="Left" Margin="0,10,0,0">PRs Reviewed</Label>
-                    <TextBlock Grid.Row="2" Name="PrReviewedStatsText"
-                               Margin="0,35,0,5"
-                               FontSize="14" />
-
-                    <RichTextBox Grid.Row="3" Name="PrDetails"
-                                 Margin="0,10,0,0"
-                                 VerticalScrollBarVisibility="Auto">
-                        <FlowDocument>
-                            <Paragraph></Paragraph>
-                        </FlowDocument>
-                    </RichTextBox>
+                    <StackPanel Grid.Row="2" Margin="0,17,0,0">
+                        <Label HorizontalAlignment="Left" FontSize="14">PRs Reviewed</Label>
+                        <RichTextBox Name="PrReviewedDetails"
+                                     MinHeight="170"
+                                     Margin="0,8,0,0"
+                                     FontSize="12"
+                                     VerticalScrollBarVisibility="Auto">
+                            <FlowDocument>
+                                <Paragraph></Paragraph>
+                            </FlowDocument>
+                        </RichTextBox>
+                    </StackPanel>
                 </Grid>
             </GroupBox>
         </Grid>

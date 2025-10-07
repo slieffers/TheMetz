@@ -7,31 +7,54 @@
              xmlns:theMetz="clr-namespace:TheMetz"
              xmlns:models="clr-namespace:TheMetz.Models"
              mc:Ignorable="d"
-             d:DesignHeight="800" d:DesignWidth="1200">
-    <Grid>
-        <Label HorizontalAlignment="Left"
-               Margin="33,5,0,0"
+             d:DesignHeight="1360" d:DesignWidth="2040">
+    <Grid Margin="34">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0"
+               HorizontalAlignment="Left"
+               Margin="0,0,0,8"
+               FontSize="15"
+               FontWeight="Bold"
                VerticalAlignment="Top">
             PRs Reviewed
         </Label>
-        <ListBox Name="PrReviewResultsList"
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="0,0,0,17">
+            <Button Name="FetchPrReviewData" Content="Fetch Data"
+                    Width="128" Height="31" FontSize="14"
+                    Click="FetchPrCommentButtonClicked" />
+            <theMetz:DaysControl x:Name="CommentStatsDaysControl" Margin="17,0,0,0" />
+        </StackPanel>
+
+        <ListBox Grid.Row="2" Grid.Column="0"
+                 Name="PrReviewResultsList"
                  ItemsSource="{Binding (models:CommentStatsViewModel.PrReviewResults)}"
-                 HorizontalAlignment="Left"
-                 Margin="33,32,0,0"
-                 VerticalAlignment="Top"
-                 Width="229"
-                 Height="206"
+                 Width="340"
+                 Margin="0,0,34,0"
+                 FontSize="12"
                  SelectionChanged="PrCommentResultsList_SelectionChanged" />
-        <Button Name="FetchPrReviewData" Content="Fetch Data" HorizontalAlignment="Left"
-                Margin="289,32,0,0" VerticalAlignment="Top" Width="75" Click="FetchPrCommentButtonClicked" />
-        <Label Margin="444,5,0,0">PRs with Comments for Selected Dev</Label>
-        <RichTextBox Name="PrReviewResults" 
-                     Margin="444,36,40,350">
-            <FlowDocument>
-                <Paragraph>
-                </Paragraph>
-            </FlowDocument>
-        </RichTextBox>
-<theMetz:DaysControl x:Name="CommentStatsDaysControl" Margin="282,69,0,0" />
+
+        <GroupBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="3"
+                  Header="PRs with Comments for Selected Dev"
+                  Padding="17"
+                  FontSize="15">
+            <RichTextBox Name="PrReviewResults"
+                         FontSize="12"
+                         VerticalScrollBarVisibility="Auto">
+                <FlowDocument>
+                    <Paragraph>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+        </GroupBox>
     </Grid>
 </UserControl>

@@ -22,13 +22,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/TheMetz/Models/IndividualStatsViewModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TheMetz/Partials/IndividualStats.xaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TheMetz/Partials/IndividualStats.xaml.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TheMetz/MainWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/MainWindow.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/MainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/MainWindow.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Models/IndividualStatsViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Models/IndividualStatsViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Partials/CommentStats.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Partials/CommentStats.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Partials/IndividualStats.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Partials/IndividualStats.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Partials/IndividualStats.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Partials/IndividualStats.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Partials/PullRequestStats.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Partials/PullRequestStats.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Partials/WorkItemStats.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Partials/WorkItemStats.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Services/PullRequestStateChangeService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestStateChangeService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -536,7 +538,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759850997453</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Add `IndividualStats` feature with supporting view, view model, and UI integration in `MainWindow`.">
+      <option name="closed" value="true" />
+      <created>1759855990264</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1759855990264</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -546,7 +556,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Integrate new F# implementation for `PullRequestService` and `IPrRepository` with updated DI configuration." />
     <MESSAGE value="Update SQLite data source configuration and dataSources XML files." />
     <MESSAGE value="Remove obsolete SQLite data source XML configuration." />
     <MESSAGE value="Remove SQLite data source configuration file." />
@@ -571,7 +580,8 @@
     <MESSAGE value="Refactor `PullRequestStatsViewModel` for expression-bodied properties, increase `RichTextBox` widths in `PullRequestStats.xaml`, remove unused comments from `PullRequestService.fs`, and update `.idea` workspace settings." />
     <MESSAGE value="Add developer work item chart in `WorkItemStats.xaml`, extend `WorkItemStatsViewModel` with `DeveloperWorkItemCounts`, and implement dynamic chart rendering in `WorkItemStats.xaml.cs`." />
     <MESSAGE value="Refactor `WorkItemStats.xaml.cs` to delegate chart rendering to `BarChartRenderer`, integrate `IChartRenderer` interface, and clean up redundant rendering logic." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor `WorkItemStats.xaml.cs` to delegate chart rendering to `BarChartRenderer`, integrate `IChartRenderer` interface, and clean up redundant rendering logic." />
+    <MESSAGE value="Add `IndividualStats` feature with supporting view, view model, and UI integration in `MainWindow`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add `IndividualStats` feature with supporting view, view model, and UI integration in `MainWindow`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

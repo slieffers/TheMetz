@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TheMetz"
         xmlns:partials="clr-namespace:TheMetz.Partials"
         mc:Ignorable="d"
-        Title="The Metz" Height="800" Width="1200">
+        Title="The Metz" Height="1360" Width="2040">
     <Grid>
         <TabControl VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0" TabStripPlacement="Bottom">
             <TabItem Header="PR Reviews">

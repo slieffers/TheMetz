@@ -17,9 +17,9 @@ public class IndividualStatsViewModel
     private Dictionary<string, FSharp.Models.ReviewCounts> _commentData = new();
     private Dictionary<string, List<FSharp.Models.Link>> _commentLinks = new();
     private Dictionary<string, List<WorkItem>> _workItemData = new();
-    private Dictionary<string, int> _prOpenedData = new();
-    private Dictionary<string, int> _prClosedData = new();
-    private Dictionary<string, int> _prReviewedData = new();
+    private Dictionary<string, List<(string Title, string Url)>> _prOpenedLinks = new();
+    private Dictionary<string, List<(string Title, string Url)>> _prClosedLinks = new();
+    private Dictionary<string, List<(string Title, string Url)>> _prReviewedLinks = new();
 
     public IndividualStatsViewModel(
         IPullRequestCommentService pullRequestCommentService,
@@ -77,38 +77,38 @@ public class IndividualStatsViewModel
             _workItemData.Remove(memberName);
         }
 
-        // Load PR Stats for member
-        var opened = await PullRequestStateChangeService.ShowOpenedPrCounts(numberOfDaysToFetch);
-        var openedDict = opened.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-        if (openedDict.TryGetValue(memberName, out var openedCount))
+        // Load PR link details for member
+        await PullRequestStateChangeService.ShowOpenedPrCounts(numberOfDaysToFetch);
+        var openedLinks = PullRequestStateChangeService.GetDeveloperOpenedPrLinks(memberName);
+        if (openedLinks.Any())
         {
-            _prOpenedData[memberName] = openedCount;
+            _prOpenedLinks[memberName] = openedLinks;
         }
         else
         {
-            _prOpenedData.Remove(memberName);
+            _prOpenedLinks.Remove(memberName);
         }
 
-        var closed = await PullRequestStateChangeService.ShowClosedPrCounts(numberOfDaysToFetch);
-        var closedDict = closed.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-        if (closedDict.TryGetValue(memberName, out var closedCount))
+        await PullRequestStateChangeService.ShowClosedPrCounts(numberOfDaysToFetch);
+        var closedLinks = PullRequestStateChangeService.GetDeveloperClosedPrLinks(memberName);
+        if (closedLinks.Any())
         {
-            _prClosedData[memberName] = closedCount;
+            _prClosedLinks[memberName] = closedLinks;
         }
         else
         {
-            _prClosedData.Remove(memberName);
+            _prClosedLinks.Remove(memberName);
         }
 
-        var reviewed = await PullRequestStateChangeService.ShowReviewedPrCounts(numberOfDaysToFetch);
-        var reviewedDict = reviewed.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-        if (reviewedDict.TryGetValue(memberName, out var reviewedCount))
+        await PullRequestStateChangeService.ShowReviewedPrCounts(numberOfDaysToFetch);
+        var reviewedLinks = PullRequestStateChangeService.GetDeveloperReviewedPrLinks(memberName);
+        if (reviewedLinks.Any())
         {
-            _prReviewedData[memberName] = reviewedCount;
+            _prReviewedLinks[memberName] = reviewedLinks;
         }
         else
         {
-            _prReviewedData.Remove(memberName);
+            _prReviewedLinks.Remove(memberName);
         }
     }
 
@@ -127,18 +127,18 @@ public class IndividualStatsViewModel
         return _workItemData.TryGetValue(memberName, out var items) ? items : new List<WorkItem>();
     }
 
-    public int GetPrOpenedCount(string memberName)
+    public List<(string Title, string Url)> GetPrOpenedLinks(string memberName)
     {
-        return _prOpenedData.TryGetValue(memberName, out var count) ? count : 0;
+        return _prOpenedLinks.TryGetValue(memberName, out var links) ? links : new List<(string Title, string Url)>();
     }
 
-    public int GetPrClosedCount(string memberName)
+    public List<(string Title, string Url)> GetPrClosedLinks(string memberName)
     {
-        return _prClosedData.TryGetValue(memberName, out var count) ? count : 0;
+        return _prClosedLinks.TryGetValue(memberName, out var links) ? links : new List<(string Title, string Url)>();
     }
 
-    public int GetPrReviewedCount(string memberName)
+    public List<(string Title, string Url)> GetPrReviewedLinks(string memberName)
     {
-        return _prReviewedData.TryGetValue(memberName, out var count) ? count : 0;
+        return _prReviewedLinks.TryGetValue(memberName, out var links) ? links : new List<(string Title, string Url)>();
     }
 }

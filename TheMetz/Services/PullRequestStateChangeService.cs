@@ -138,17 +138,20 @@ namespace TheMetz.Services
         
         public List<(string Title, string Url)> GetDeveloperOpenedPrLinks(string developerName)
         {
-            return _developerOpenedPrLinks[developerName].ToList();
+            bool containsRows = _developerOpenedPrLinks.ContainsKey(developerName);
+            return containsRows ? _developerOpenedPrLinks[developerName].ToList() : [];
         }
         
         public List<(string Title, string Url)> GetDeveloperClosedPrLinks(string developerName)
         {
-            return _developerClosedPrLinks[developerName].ToList();
+            bool containsRows = _developerClosedPrLinks.ContainsKey(developerName);
+            return containsRows ? _developerClosedPrLinks[developerName].ToList() : [];
         }
 
         public List<(string Title, string Url)> GetDeveloperReviewedPrLinks(string developerName)
         {
-            return _developerReviewedPrLinks[developerName].ToList();
+            bool containsRows = _developerReviewedPrLinks.ContainsKey(developerName);
+            return containsRows ? _developerReviewedPrLinks[developerName].ToList() : [];
         }
 
         private static string GetFormattedPrUrl(GitPullRequest pr)

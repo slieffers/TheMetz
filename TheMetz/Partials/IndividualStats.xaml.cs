@@ -10,11 +10,28 @@ namespace TheMetz.Partials;
 public partial class IndividualStats : UserControl
 {
     private IndividualStatsViewModel ViewModel => (IndividualStatsViewModel)DataContext;
+    private int _lastFetchedDaysValue;
 
     public IndividualStats()
     {
         InitializeComponent();
         Loaded += async (_, _) => await LoadTeamMembers();
+        IndividualStatsDaysControl.DaysSliderControl.ValueChanged += DaysSlider_ValueChanged;
+    }
+
+    private void DaysSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+    {
+        // Show refresh button if days value has changed and a team member is selected
+        if (TeamMemberComboBox.SelectedItem != null &&
+            TeamMemberComboBox.SelectedItem.ToString() != "Loading..." &&
+            (int)e.NewValue != _lastFetchedDaysValue)
+        {
+            RefreshButton.Visibility = Visibility.Visible;
+        }
+        else
+        {
+            RefreshButton.Visibility = Visibility.Collapsed;
+        }
     }
 
     private async Task LoadTeamMembers()
@@ -36,9 +53,9 @@ public partial class IndividualStats : UserControl
         CommentStatsText.Text = "";
         PrReviewDetails.Document.Blocks.Clear();
         WorkItemDetails.Document.Blocks.Clear();
-        PrOpenedStatsText.Text = "";
-        PrClosedStatsText.Text = "";
-        PrReviewedStatsText.Text = "";
+        PrOpenedDetails.Document.Blocks.Clear();
+        PrClosedDetails.Document.Blocks.Clear();
+        PrReviewedDetails.Document.Blocks.Clear();
     }
 
     private async void TeamMemberComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -60,14 +77,23 @@ public partial class IndividualStats : UserControl
         try
         {
             // Fetch data for selected member
-            await ViewModel.LoadMemberData(selectedMember, IndividualStatsDaysControl.GetDaysSliderValue());
+            int daysValue = IndividualStatsDaysControl.GetDaysSliderValue();
+            await ViewModel.LoadMemberData(selectedMember, daysValue);
+            _lastFetchedDaysValue = daysValue;
+            RefreshButton.Visibility = Visibility.Collapsed;
+
+            // Update all UI sections
+            UpdateAllUIFields(selectedMember);
         }
         finally
         {
             LoadingLabel.Visibility = Visibility.Collapsed;
             TeamMemberComboBox.IsEnabled = true;
         }
+    }
 
+    private void UpdateAllUIFields(string selectedMember)
+    {
         // Update Comment Stats
         var commentStats = ViewModel.GetCommentStats(selectedMember);
         if (commentStats != null)
@@ -119,7 +145,7 @@ public partial class IndividualStats : UserControl
             foreach (var workItem in workItems)
             {
                 var paragraph = new Paragraph();
-                var hyperlink = new Hyperlink(new Run($"#{workItem.Id} - {"TODO: ADD TITLE"}"))
+                var hyperlink = new Hyperlink(new Run($"#{workItem.Id} - {(string)workItem.Fields["System.Title"]}"))
                 {
                     NavigateUri = new Uri(workItem.Url),
                     Cursor = Cursors.Hand
@@ -143,14 +169,136 @@ public partial class IndividualStats : UserControl
             WorkItemDetails.Document.Blocks.Add(new Paragraph(new Run("No work items")));
         }
 
-        // Update PR Stats
-        var prOpenedCount = ViewModel.GetPrOpenedCount(selectedMember);
-        PrOpenedStatsText.Text = prOpenedCount > 0 ? $"{prOpenedCount} PRs" : "No PRs opened";
+        // Update PR Opened Stats
+        var prOpenedLinks = ViewModel.GetPrOpenedLinks(selectedMember);
+        PrOpenedDetails.Document.Blocks.Clear();
+        if (prOpenedLinks.Any())
+        {
+            foreach (var linkInfo in prOpenedLinks)
+            {
+                var paragraph = new Paragraph();
+                var hyperlink = new Hyperlink(new Run(linkInfo.Title))
+                {
+                    NavigateUri = new Uri(linkInfo.Url),
+                    Cursor = Cursors.Hand
+                };
 
-        var prClosedCount = ViewModel.GetPrClosedCount(selectedMember);
-        PrClosedStatsText.Text = prClosedCount > 0 ? $"{prClosedCount} PRs" : "No PRs closed";
+                hyperlink.PreviewMouseLeftButtonDown += (_, _) =>
+                {
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = linkInfo.Url,
+                        UseShellExecute = true
+                    });
+                };
 
-        var prReviewedCount = ViewModel.GetPrReviewedCount(selectedMember);
-        PrReviewedStatsText.Text = prReviewedCount > 0 ? $"{prReviewedCount} PRs" : "No PRs reviewed";
+                paragraph.Inlines.Add(hyperlink);
+                PrOpenedDetails.Document.Blocks.Add(paragraph);
+            }
+        }
+        else
+        {
+            PrOpenedDetails.Document.Blocks.Add(new Paragraph(new Run("No PRs opened")));
+        }
+
+        // Update PR Closed Stats
+        var prClosedLinks = ViewModel.GetPrClosedLinks(selectedMember);
+        PrClosedDetails.Document.Blocks.Clear();
+        if (prClosedLinks.Any())
+        {
+            foreach (var linkInfo in prClosedLinks)
+            {
+                var paragraph = new Paragraph();
+                var hyperlink = new Hyperlink(new Run(linkInfo.Title))
+                {
+                    NavigateUri = new Uri(linkInfo.Url),
+                    Cursor = Cursors.Hand
+                };
+
+                hyperlink.PreviewMouseLeftButtonDown += (_, _) =>
+                {
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = linkInfo.Url,
+                        UseShellExecute = true
+                    });
+                };
+
+                paragraph.Inlines.Add(hyperlink);
+                PrClosedDetails.Document.Blocks.Add(paragraph);
+            }
+        }
+        else
+        {
+            PrClosedDetails.Document.Blocks.Add(new Paragraph(new Run("No PRs closed")));
+        }
+
+        // Update PR Reviewed Stats
+        var prReviewedLinks = ViewModel.GetPrReviewedLinks(selectedMember);
+        PrReviewedDetails.Document.Blocks.Clear();
+        if (prReviewedLinks.Any())
+        {
+            foreach (var linkInfo in prReviewedLinks)
+            {
+                var paragraph = new Paragraph();
+                var hyperlink = new Hyperlink(new Run(linkInfo.Title))
+                {
+                    NavigateUri = new Uri(linkInfo.Url),
+                    Cursor = Cursors.Hand
+                };
+
+                hyperlink.PreviewMouseLeftButtonDown += (_, _) =>
+                {
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = linkInfo.Url,
+                        UseShellExecute = true
+                    });
+                };
+
+                paragraph.Inlines.Add(hyperlink);
+                PrReviewedDetails.Document.Blocks.Add(paragraph);
+            }
+        }
+        else
+        {
+            PrReviewedDetails.Document.Blocks.Add(new Paragraph(new Run("No PRs reviewed")));
+        }
+    }
+
+    private async void RefreshButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (TeamMemberComboBox.SelectedItem == null || TeamMemberComboBox.SelectedItem.ToString() == "Loading...")
+        {
+            return;
+        }
+
+        string selectedMember = TeamMemberComboBox.SelectedItem.ToString()!;
+
+        // Show loading indicator
+        RefreshButton.IsEnabled = false;
+        TeamMemberComboBox.IsEnabled = false;
+        LoadingLabel.Visibility = Visibility.Visible;
+
+        try
+        {
+            // Clear all fields
+            ClearAllFields();
+
+            // Fetch data with updated days value
+            int daysValue = IndividualStatsDaysControl.GetDaysSliderValue();
+            await ViewModel.LoadMemberData(selectedMember, daysValue);
+            _lastFetchedDaysValue = daysValue;
+            RefreshButton.Visibility = Visibility.Collapsed;
+
+            // Update all UI sections (reuse existing logic)
+            UpdateAllUIFields(selectedMember);
+        }
+        finally
+        {
+            LoadingLabel.Visibility = Visibility.Collapsed;
+            RefreshButton.IsEnabled = true;
+            TeamMemberComboBox.IsEnabled = true;
+        }
     }
 }

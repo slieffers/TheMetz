@@ -6,87 +6,162 @@
              xmlns:theMetz="clr-namespace:TheMetz"
              xmlns:models="clr-namespace:TheMetz.Models"
              mc:Ignorable="d"
-             d:DesignHeight="800" d:DesignWidth="1200">
-    <Grid>
+             d:DesignHeight="1360" d:DesignWidth="2040">
+    <Grid Margin="34">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" HorizontalAlignment="Left"
-               Margin="33,5,0,0"
-               VerticalAlignment="Top">
-            PRs Opened
-        </Label>
-        <ListBox Grid.Row="0" Name="PrOpenedResultsList"
-                 ItemsSource="{Binding (models:PullRequestStatsViewModel.PrOpenedResults)}"
-                 HorizontalAlignment="Left"
-                 Margin="33,32,0,0"
-                 VerticalAlignment="Top"
-                 Width="229"
-                 Height="206"
-                 SelectionChanged="PrOpenedResultsList_SelectionChanged" />
-        <Button Grid.Row="0" Name="FetchPrOpenedData" Content="Fetch Data" HorizontalAlignment="Left"
-                Margin="289,32,10,0" VerticalAlignment="Top" Width="75" Click="FetchOpenedPrsButtonClicked" />
-        <Label Grid.Row="0" Margin="444,5,0,0">PRs Opened for Selected Dev</Label>
-        <RichTextBox Grid.Row="0" Name="PrOpenedResults" Margin="444,32,0,0" Height="206" Width="700"
-                     VerticalAlignment="Top" HorizontalAlignment="Left">
-            <FlowDocument>
-                <Paragraph>
-                </Paragraph>
-            </FlowDocument>
-        </RichTextBox>
-        <theMetz:DaysControl x:Name="PrsOpenedDaysControl" Grid.Row="0" Margin="282,69,0,0" />
+        <!-- PRs Opened Section -->
+        <Grid Grid.Row="0" Margin="0,0,0,17">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <Label Grid.Row="1" HorizontalAlignment="Left"
-               Margin="33,5,0,0"
-               VerticalAlignment="Top">
-            PRs Closed
-        </Label>
-        <ListBox Grid.Row="1" Name="PrClosedResultsList"
-                 ItemsSource="{Binding (models:PullRequestStatsViewModel.PrClosedResults)}"
-                 HorizontalAlignment="Left"
-                 Margin="33,32,0,0"
-                 VerticalAlignment="Top"
-                 Width="229"
-                 Height="206"
-                 SelectionChanged="PrClosedResultsList_SelectionChanged" />
-        <Button Grid.Row="1" Name="FetchPrClosedData" Content="Fetch Data" HorizontalAlignment="Left"
-                Margin="289,32,10,0" VerticalAlignment="Top" Width="75" Click="FetchClosedPrsButtonClicked" />
-        <Label Grid.Row="1" Margin="444,5,0,0">PRs Closed for Selected Dev</Label>
-        <RichTextBox Grid.Row="1" Name="PrClosedResults" Margin="444,32,0,0" Height="206" Width="700"
-                     VerticalAlignment="Top" HorizontalAlignment="Left">
-            <FlowDocument>
-                <Paragraph>
-                </Paragraph>
-            </FlowDocument>
-        </RichTextBox>
-        <theMetz:DaysControl x:Name="PrsClosedDaysControl" Grid.Row="1" Margin="282,69,0,0" />
+            <Label Grid.Row="0" Grid.Column="0"
+                   HorizontalAlignment="Left"
+                   Margin="0,0,0,8"
+                   FontSize="15"
+                   FontWeight="Bold">
+                PRs Opened
+            </Label>
 
-        <Label Grid.Row="2" HorizontalAlignment="Left"
-               Margin="33,5,0,0"
-               VerticalAlignment="Top">
-            PRs Reviewed
-        </Label>
-        <ListBox Grid.Row="2" Name="PrReviewedResultsList"
-                 ItemsSource="{Binding (models:PullRequestStatsViewModel.PrReviewedResults)}"
-                 HorizontalAlignment="Left"
-                 Margin="33,32,0,0"
-                 VerticalAlignment="Top"
-                 Width="229"
-                 Height="206"
-                 SelectionChanged="PrReviewedResultsList_SelectionChanged" />
-        <Button Grid.Row="2" Name="FetchPrReviewedData" Content="Fetch Data" HorizontalAlignment="Left"
-                Margin="289,32,10,0" VerticalAlignment="Top" Width="75" Click="FetchReviewedPrsButtonClicked" />
-        <Label Grid.Row="2" Margin="444,5,0,0">PRs Reviewed for Selected Dev</Label>
-        <RichTextBox Grid.Row="2" Name="PrReviewedResults" Margin="444,32,0,0" Height="206" Width="700"
-                     VerticalAlignment="Top" HorizontalAlignment="Left">
-            <FlowDocument>
-                <Paragraph>
-                </Paragraph>
-            </FlowDocument>
-        </RichTextBox>
-        <theMetz:DaysControl x:Name="PrsReviewedDaysControl" Grid.Row="2" Margin="282,69,0,0" />
+            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="0,0,0,17">
+                <Button Name="FetchPrOpenedData" Content="Fetch Data"
+                        Width="128" Height="31" FontSize="14"
+                        Click="FetchOpenedPrsButtonClicked" />
+                <theMetz:DaysControl x:Name="PrsOpenedDaysControl" Margin="17,0,0,0" />
+            </StackPanel>
+
+            <ListBox Grid.Row="2" Grid.Column="0"
+                     Name="PrOpenedResultsList"
+                     ItemsSource="{Binding (models:PullRequestStatsViewModel.PrOpenedResults)}"
+                     Width="340"
+                     Margin="0,0,34,0"
+                     FontSize="12"
+                     SelectionChanged="PrOpenedResultsList_SelectionChanged" />
+
+            <GroupBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="3"
+                      Header="PRs Opened for Selected Dev"
+                      Padding="17"
+                      FontSize="15">
+                <RichTextBox Name="PrOpenedResults"
+                             FontSize="12"
+                             VerticalScrollBarVisibility="Auto">
+                    <FlowDocument>
+                        <Paragraph>
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+            </GroupBox>
+        </Grid>
+
+        <!-- PRs Closed Section -->
+        <Grid Grid.Row="1" Margin="0,0,0,17">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0"
+                   HorizontalAlignment="Left"
+                   Margin="0,0,0,8"
+                   FontSize="15"
+                   FontWeight="Bold">
+                PRs Closed
+            </Label>
+
+            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="0,0,0,17">
+                <Button Name="FetchPrClosedData" Content="Fetch Data"
+                        Width="128" Height="31" FontSize="14"
+                        Click="FetchClosedPrsButtonClicked" />
+                <theMetz:DaysControl x:Name="PrsClosedDaysControl" Margin="17,0,0,0" />
+            </StackPanel>
+
+            <ListBox Grid.Row="2" Grid.Column="0"
+                     Name="PrClosedResultsList"
+                     ItemsSource="{Binding (models:PullRequestStatsViewModel.PrClosedResults)}"
+                     Width="340"
+                     Margin="0,0,34,0"
+                     FontSize="12"
+                     SelectionChanged="PrClosedResultsList_SelectionChanged" />
+
+            <GroupBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="3"
+                      Header="PRs Closed for Selected Dev"
+                      Padding="17"
+                      FontSize="15">
+                <RichTextBox Name="PrClosedResults"
+                             FontSize="12"
+                             VerticalScrollBarVisibility="Auto">
+                    <FlowDocument>
+                        <Paragraph>
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+            </GroupBox>
+        </Grid>
+
+        <!-- PRs Reviewed Section -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0"
+                   HorizontalAlignment="Left"
+                   Margin="0,0,0,8"
+                   FontSize="15"
+                   FontWeight="Bold">
+                PRs Reviewed
+            </Label>
+
+            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="0,0,0,17">
+                <Button Name="FetchPrReviewedData" Content="Fetch Data"
+                        Width="128" Height="31" FontSize="14"
+                        Click="FetchReviewedPrsButtonClicked" />
+                <theMetz:DaysControl x:Name="PrsReviewedDaysControl" Margin="17,0,0,0" />
+            </StackPanel>
+
+            <ListBox Grid.Row="2" Grid.Column="0"
+                     Name="PrReviewedResultsList"
+                     ItemsSource="{Binding (models:PullRequestStatsViewModel.PrReviewedResults)}"
+                     Width="340"
+                     Margin="0,0,34,0"
+                     FontSize="12"
+                     SelectionChanged="PrReviewedResultsList_SelectionChanged" />
+
+            <GroupBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="3"
+                      Header="PRs Reviewed for Selected Dev"
+                      Padding="17"
+                      FontSize="15">
+                <RichTextBox Name="PrReviewedResults"
+                             FontSize="12"
+                             VerticalScrollBarVisibility="Auto">
+                    <FlowDocument>
+                        <Paragraph>
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+            </GroupBox>
+        </Grid>
     </Grid>
 </UserControl>
