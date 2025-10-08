@@ -12,6 +12,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <!-- Team Member Selection -->
@@ -148,5 +149,13 @@
                 </Grid>
             </GroupBox>
         </Grid>
+
+        <!-- Chart Section -->
+        <GroupBox Grid.Row="3" Header="Activity Summary" Margin="0,17,0,0" Padding="17" FontSize="15">
+            <Canvas Name="StatsChart"
+                    Height="350"
+                    Background="White"
+                    SizeChanged="StatsChart_SizeChanged" />
+        </GroupBox>
     </Grid>
 </UserControl>

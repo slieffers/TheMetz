@@ -3,7 +3,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+using TheMetz.Interfaces;
 using TheMetz.Models;
+using TheMetz.Services;
 
 namespace TheMetz.Partials;
 
@@ -11,10 +13,12 @@ public partial class IndividualStats : UserControl
 {
     private IndividualStatsViewModel ViewModel => (IndividualStatsViewModel)DataContext;
     private int _lastFetchedDaysValue;
+    private readonly IChartRenderer _chartRenderer;
 
     public IndividualStats()
     {
         InitializeComponent();
+        _chartRenderer = new IndividualStatsChartRenderer();
         Loaded += async (_, _) => await LoadTeamMembers();
         IndividualStatsDaysControl.DaysSliderControl.ValueChanged += DaysSlider_ValueChanged;
     }
@@ -56,6 +60,7 @@ public partial class IndividualStats : UserControl
         PrOpenedDetails.Document.Blocks.Clear();
         PrClosedDetails.Document.Blocks.Clear();
         PrReviewedDetails.Document.Blocks.Clear();
+        StatsChart.Children.Clear();
     }
 
     private async void TeamMemberComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -263,6 +268,54 @@ public partial class IndividualStats : UserControl
         else
         {
             PrReviewedDetails.Document.Blocks.Add(new Paragraph(new Run("No PRs reviewed")));
+        }
+
+        // Render chart with all stats
+        RenderChart(selectedMember);
+    }
+
+    private void RenderChart(string selectedMember)
+    {
+        var chartData = new Dictionary<string, int>();
+
+        // Add work items count
+        var workItems = ViewModel.GetWorkItems(selectedMember);
+        chartData["Work Items"] = workItems.Count;
+
+        // Add PR stats
+        var prOpened = ViewModel.GetPrOpenedLinks(selectedMember);
+        chartData["PRs Opened"] = prOpened.Count;
+
+        var prClosed = ViewModel.GetPrClosedLinks(selectedMember);
+        chartData["PRs Closed"] = prClosed.Count;
+
+        var prReviewed = ViewModel.GetPrReviewedLinks(selectedMember);
+        chartData["PRs Reviewed"] = prReviewed.Count;
+
+        // Add review stats
+        var commentStats = ViewModel.GetCommentStats(selectedMember);
+        if (commentStats != null)
+        {
+            chartData["Total Reviews"] = commentStats.TotalReviews;
+            chartData["Reviews w/ Comments"] = commentStats.ReviewsWithComments;
+        }
+        else
+        {
+            chartData["Total Reviews"] = 0;
+            chartData["Reviews w/ Comments"] = 0;
+        }
+
+        _chartRenderer.RenderChart(StatsChart, chartData);
+    }
+
+    private void StatsChart_SizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        if (TeamMemberComboBox.SelectedItem != null &&
+            TeamMemberComboBox.SelectedItem.ToString() != "Loading..." &&
+            StatsChart.ActualWidth > 0 && StatsChart.ActualHeight > 0)
+        {
+            string selectedMember = TeamMemberComboBox.SelectedItem.ToString()!;
+            RenderChart(selectedMember);
         }
     }
 

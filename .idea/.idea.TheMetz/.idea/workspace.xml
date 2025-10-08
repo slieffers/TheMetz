@@ -21,16 +21,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="">
+    <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="Update `.idea/workspace.xml` to clean up tracked changes, add highlighting settings for `IndividualStats.xaml.cs`, and increment `localTasksCounter`.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/MainWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/MainWindow.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Models/IndividualStatsViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Models/IndividualStatsViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Partials/CommentStats.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Partials/CommentStats.xaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TheMetz/Partials/IndividualStats.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Partials/IndividualStats.xaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TheMetz/Partials/IndividualStats.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Partials/IndividualStats.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Partials/PullRequestStats.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Partials/PullRequestStats.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Partials/WorkItemStats.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Partials/WorkItemStats.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Services/PullRequestStateChangeService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestStateChangeService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +46,6 @@
     <setting file="file://$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources/25099ff7-2437-43cd-8ccf-6b840048af3a/storage_v2/_src_/schema/main.uQUzAA.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.FSharp.Models/Library.fs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.FSharp/PullRequestCommentService.fs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz.FSharp/PullRequestService.fs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.FSharp/PullRequestService.fs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.FSharp/TeamService.fs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.FSharp/WorkItemRepository.fs" root0="FORCE_HIGHLIGHTING" />
@@ -62,14 +55,8 @@
     <setting file="file://$PROJECT_DIR$/TheMetz.Interfaces/ITeamMemberService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.Interfaces/IWorkItemRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.Interfaces/IWorkItemService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz/MainWindow.xaml" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/TheMetz/MainWindow.xaml.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz/Models/PullRequestStatsViewModel.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz/Partials/CommentStats.xaml" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz/Partials/PullRequestStats.xaml" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz/Partials/WorkItemStats.xaml" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz/Partials/WorkItemStats.xaml.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz/Partials/WorkItemStats.xaml.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz/Startup.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -87,30 +74,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Project.TheMetz.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "ml.llm.AIAssistantPromptsLibrary",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Project.TheMetz.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;ml.llm.AIAssistantPromptsLibrary&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlite"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
     ],
-    "com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect": [
-      "SQLite"
+    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect&quot;: [
+      &quot;SQLite&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="TheMetz" type="DotNetProject" factoryName=".NET Project" activateToolWindowBeforeRun="false">
       <option name="EXE_PATH" value="$PROJECT_DIR$/TheMetz/bin/Debug/net8.0-windows/TheMetz.exe" />
@@ -241,6 +228,7 @@
       <workItem from="1759840445839" duration="74000" />
       <workItem from="1759840535288" duration="945000" />
       <workItem from="1759842939981" duration="6359000" />
+      <workItem from="1759940120353" duration="371000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial solution and application for TheMetz project&#10;&#10;Includes .gitignore, a WPF application using .NET 8.0, and ADO pull request data processing services. Also adds project configuration files for Visual Studio and JetBrains Rider IDEs.">
       <option name="closed" value="true" />
@@ -546,7 +534,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759855990264</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Redesign `MainWindow`, `PullRequestStats`, `WorkItemStats`, and `IndividualStats` UIs for improved layout and readability; update dictionary structures in view models, and enhance PR and work item data handling logic.">
+      <option name="closed" value="true" />
+      <created>1759858198640</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1759858198640</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -556,7 +552,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Update SQLite data source configuration and dataSources XML files." />
     <MESSAGE value="Remove obsolete SQLite data source XML configuration." />
     <MESSAGE value="Remove SQLite data source configuration file." />
     <MESSAGE value="Refine work item query to include recently closed items; remove unused `TestWorkItems` button from UI." />
@@ -581,7 +576,8 @@
     <MESSAGE value="Add developer work item chart in `WorkItemStats.xaml`, extend `WorkItemStatsViewModel` with `DeveloperWorkItemCounts`, and implement dynamic chart rendering in `WorkItemStats.xaml.cs`." />
     <MESSAGE value="Refactor `WorkItemStats.xaml.cs` to delegate chart rendering to `BarChartRenderer`, integrate `IChartRenderer` interface, and clean up redundant rendering logic." />
     <MESSAGE value="Add `IndividualStats` feature with supporting view, view model, and UI integration in `MainWindow`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add `IndividualStats` feature with supporting view, view model, and UI integration in `MainWindow`." />
+    <MESSAGE value="Redesign `MainWindow`, `PullRequestStats`, `WorkItemStats`, and `IndividualStats` UIs for improved layout and readability; update dictionary structures in view models, and enhance PR and work item data handling logic." />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
