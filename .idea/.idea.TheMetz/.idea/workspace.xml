@@ -21,10 +21,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="Update `.idea/workspace.xml` to clean up tracked changes, add highlighting settings for `IndividualStats.xaml.cs`, and increment `localTasksCounter`.">
+    <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TheMetz/Partials/IndividualStats.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Partials/IndividualStats.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Partials/IndividualStats.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Partials/IndividualStats.xaml.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +56,7 @@
     <setting file="file://$PROJECT_DIR$/TheMetz.Interfaces/IWorkItemService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz/MainWindow.xaml.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz/Models/PullRequestStatsViewModel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/slieffers/source/repos/TheMetz/TheMetz/Partials/IndividualStats.xaml" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -228,7 +228,7 @@
       <workItem from="1759840445839" duration="74000" />
       <workItem from="1759840535288" duration="945000" />
       <workItem from="1759842939981" duration="6359000" />
-      <workItem from="1759940120353" duration="371000" />
+      <workItem from="1759940120353" duration="1046000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial solution and application for TheMetz project&#10;&#10;Includes .gitignore, a WPF application using .NET 8.0, and ADO pull request data processing services. Also adds project configuration files for Visual Studio and JetBrains Rider IDEs.">
       <option name="closed" value="true" />
@@ -542,7 +542,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759858198640</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Add `IndividualStatsChartRenderer` for bar chart rendering in `IndividualStats.xaml`, integrate `IChartRenderer`, and update UI to include dynamic activity summary chart.">
+      <option name="closed" value="true" />
+      <created>1759940633455</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1759940633455</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -552,8 +560,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Remove obsolete SQLite data source XML configuration." />
-    <MESSAGE value="Remove SQLite data source configuration file." />
     <MESSAGE value="Refine work item query to include recently closed items; remove unused `TestWorkItems` button from UI." />
     <MESSAGE value="Filter work items by state and remove obsolete test button in MainWindow." />
     <MESSAGE value="Refine `WorkItemService` query to include 'Done' state filter and update UI by removing unused test button." />
@@ -577,7 +583,9 @@
     <MESSAGE value="Refactor `WorkItemStats.xaml.cs` to delegate chart rendering to `BarChartRenderer`, integrate `IChartRenderer` interface, and clean up redundant rendering logic." />
     <MESSAGE value="Add `IndividualStats` feature with supporting view, view model, and UI integration in `MainWindow`." />
     <MESSAGE value="Redesign `MainWindow`, `PullRequestStats`, `WorkItemStats`, and `IndividualStats` UIs for improved layout and readability; update dictionary structures in view models, and enhance PR and work item data handling logic." />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="Update `.idea/workspace.xml` to clean up tracked changes, add highlighting settings for `IndividualStats.xaml.cs`, and increment `localTasksCounter`." />
+    <MESSAGE value="Add `IndividualStatsChartRenderer` for bar chart rendering in `IndividualStats.xaml`, integrate `IChartRenderer`, and update UI to include dynamic activity summary chart." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add `IndividualStatsChartRenderer` for bar chart rendering in `IndividualStats.xaml`, integrate `IChartRenderer`, and update UI to include dynamic activity summary chart." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
