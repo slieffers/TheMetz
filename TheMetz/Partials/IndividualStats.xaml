@@ -216,7 +216,7 @@
                         </Grid.RowDefinitions>
 
                         <Border Grid.Row="0"
-                                Background="#F3F9FF"
+                                Background="#F0EBFF"
                                 CornerRadius="8"
                                 Padding="16"
                                 Margin="0,0,0,16">
@@ -255,9 +255,15 @@
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
 
-                        <TextBlock Grid.Row="0"
-                                   Text="✓ Work Item Stats"
-                                   Style="{StaticResource SectionHeaderStyle}"/>
+                        <Border Grid.Row="0"
+                                Background="#E8F2FA"
+                                CornerRadius="8"
+                                Padding="16"
+                                Margin="0,0,0,12">
+                            <TextBlock Text="✓ Work Item Stats"
+                                       Style="{StaticResource SectionHeaderStyle}"
+                                       Margin="0"/>
+                        </Border>
 
                         <RichTextBox Grid.Row="1"
                                      Name="WorkItemDetails"
@@ -287,14 +293,14 @@
 
                         <!-- PRs Opened -->
                         <Border Grid.Row="1"
-                                Background="#F0FFF4"
+                                Background="#E8F7EE"
                                 CornerRadius="8"
                                 Padding="16"
                                 Margin="0,0,0,16">
                             <StackPanel>
                                 <TextBlock Text="PRs Opened"
                                            Style="{StaticResource SubsectionHeaderStyle}"
-                                           Foreground="#16A34A"/>
+                                           Foreground="#3CB371"/>
                                 <RichTextBox Name="PrOpenedDetails"
                                              Style="{StaticResource ModernRichTextBoxStyle}"
                                              Background="White">
@@ -307,14 +313,14 @@
 
                         <!-- PRs Closed -->
                         <Border Grid.Row="2"
-                                Background="#FFF0F5"
+                                Background="#FFF3E6"
                                 CornerRadius="8"
                                 Padding="16"
                                 Margin="0,0,0,16">
                             <StackPanel>
                                 <TextBlock Text="PRs Closed"
                                            Style="{StaticResource SubsectionHeaderStyle}"
-                                           Foreground="#DC2626"/>
+                                           Foreground="#FF8C00"/>
                                 <RichTextBox Name="PrClosedDetails"
                                              Style="{StaticResource ModernRichTextBoxStyle}"
                                              Background="White">
@@ -327,13 +333,13 @@
 
                         <!-- PRs Reviewed -->
                         <Border Grid.Row="3"
-                                Background="#FEF3F2"
+                                Background="#FCEAED"
                                 CornerRadius="8"
                                 Padding="16">
                             <StackPanel>
                                 <TextBlock Text="PRs Reviewed"
                                            Style="{StaticResource SubsectionHeaderStyle}"
-                                           Foreground="#EA580C"/>
+                                           Foreground="#DC143C"/>
                                 <RichTextBox Name="PrReviewedDetails"
                                              Style="{StaticResource ModernRichTextBoxStyle}"
                                              Background="White">
