@@ -15,8 +15,8 @@ type PullRequestCommentService
     (connection: VssConnection, pullRequestService: IPullRequestService, teamService: ITeamMemberService) =
     let developerCommentLinks = ConcurrentDictionary<string, Link list>()
 
-    let GetFormattedPrUrl (pr: GitPullRequest) =
-        $"https://tfs.clarkinc.biz/DefaultCollection/{pr.Repository.ProjectReference.Name}/_git/{pr.Repository.Name}/pullrequest/{pr.PullRequestId}"
+    let GetFormattedPrUrl (pr: GitPullRequest) = 
+        $"{connection.Uri.AbsoluteUri}/{pr.Repository.ProjectReference.Name}/_git/{pr.Repository.Name}/pullrequest/{pr.PullRequestId}"
 
     let CalculateDeveloperTotalReviews (filteredPullRequests: GitPullRequest seq) (teamMembers: string seq) =
         teamMembers

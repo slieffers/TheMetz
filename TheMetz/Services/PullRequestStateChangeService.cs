@@ -154,10 +154,10 @@ namespace TheMetz.Services
             return containsRows ? _developerReviewedPrLinks[developerName].ToList() : [];
         }
 
-        private static string GetFormattedPrUrl(GitPullRequest pr)
+        private string GetFormattedPrUrl(GitPullRequest pr)
         {
             return
-                $"https://tfs.clarkinc.biz/DefaultCollection/{pr.Repository.ProjectReference.Name}/_git/{pr.Repository.Name}/pullrequest/{pr.PullRequestId}";
+                $"{_connection.Uri.AbsoluteUri}/{pr.Repository.ProjectReference.Name}/_git/{pr.Repository.Name}/pullrequest/{pr.PullRequestId}";
         }
     }
 }
