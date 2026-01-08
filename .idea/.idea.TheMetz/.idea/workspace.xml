@@ -21,15 +21,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources/25099ff7-2437-43cd-8ccf-6b840048af3a.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz.FSharp/PullRequestCommentService.fs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz.FSharp/PullRequestCommentService.fs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Services/PullRequestStateChangeService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestStateChangeService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/appsettings.json" afterDir="false" />
-    </list>
+    <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -265,7 +257,7 @@
       <workItem from="1761225791828" duration="861000" />
       <workItem from="1761227286350" duration="173000" />
       <workItem from="1761228314796" duration="788000" />
-      <workItem from="1767881183732" duration="1538000" />
+      <workItem from="1767881183732" duration="1839000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial solution and application for TheMetz project&#10;&#10;Includes .gitignore, a WPF application using .NET 8.0, and ADO pull request data processing services. Also adds project configuration files for Visual Studio and JetBrains Rider IDEs.">
       <option name="closed" value="true" />
@@ -603,7 +595,23 @@
       <option name="project" value="LOCAL" />
       <updated>1759941780786</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Update PR URL generation to use dynamic `connection.Uri`, and replace outdated `OrganizationUrl` endpoints in configuration files.">
+      <option name="closed" value="true" />
+      <created>1767886392363</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1767886392363</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Remove `.idea/.idea.TheMetz` SQLite data source configuration file.">
+      <option name="closed" value="true" />
+      <created>1767886408352</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1767886408352</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -613,11 +621,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refine `WorkItemService` query to include 'Done' state filter and update UI by removing unused test button." />
-    <MESSAGE value="Update `.gitignore` to exclude `.db` files." />
-    <MESSAGE value="Update `.gitignore` to exclude `idea/*` directory." />
-    <MESSAGE value="Update `.gitignore` to standardize `.idea/*` exclusion pattern." />
-    <MESSAGE value="Remove `AzureDevOpsPullRequestFetcher` and redundant comments in F# `PullRequestService`." />
     <MESSAGE value="Update project configuration to refine `.NET Project` settings and adjust tasks tracking setup." />
     <MESSAGE value="Remove SQLite data source configuration file from `.idea` directory." />
     <MESSAGE value="Update SQLite data source configuration with new `created-in` version." />
@@ -638,7 +641,12 @@
     <MESSAGE value="Add `IndividualStatsChartRenderer` for bar chart rendering in `IndividualStats.xaml`, integrate `IChartRenderer`, and update UI to include dynamic activity summary chart." />
     <MESSAGE value="Redesign `IndividualStats.xaml` with modern UI styles, responsive layout adjustments, and enhanced components; update `.idea/workspace.xml` to modify tracked changes, add highlighting settings, and increment `localTasksCounter`." />
     <MESSAGE value="Update `.idea/workspace.xml` to adjust tracked changes, modify highlighting settings, and increment `localTasksCounter`; refine `IndividualStats.xaml` with updated colors, modernized styles, and responsive layout enhancements." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update `.idea/workspace.xml` to adjust tracked changes, modify highlighting settings, and increment `localTasksCounter`; refine `IndividualStats.xaml` with updated colors, modernized styles, and responsive layout enhancements." />
+    <MESSAGE value="Remove `.idea/.idea.TheMetz/.idea/dataSources/25099ff7-2437-43cd-8ccf-6b840048af3a.xml` file." />
+    <MESSAGE value="Remove unused IntelliJ `.idea` data source configuration file related to `TheMetz.db`." />
+    <MESSAGE value="Remove `.idea/dataSources/25099ff7-2437-43cd-8ccf-6b840048af3a.xml` from version control." />
+    <MESSAGE value="Update PR URL generation to use dynamic `connection.Uri`, and replace outdated `OrganizationUrl` endpoints in configuration files." />
+    <MESSAGE value="Remove `.idea/.idea.TheMetz` SQLite data source configuration file." />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove `.idea/.idea.TheMetz` SQLite data source configuration file." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
