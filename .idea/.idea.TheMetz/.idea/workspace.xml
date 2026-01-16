@@ -21,7 +21,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="" />
+    <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources/25099ff7-2437-43cd-8ccf-6b840048af3a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources/25099ff7-2437-43cd-8ccf-6b840048af3a.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz.FSharp/PullRequestCommentService.fs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz.FSharp/PullRequestCommentService.fs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Services/PullRequestStateChangeService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestStateChangeService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheMetz/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/appsettings.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,10 +45,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
     <option name="SIGN_OFF_COMMIT" value="true" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0f37230596274b9397e717e6388c01cf737b0/42/91b676de/VssHttpMessageHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/31be9507ad1f472f8bc6f092089a028d1a61b8/90/fed8f176/VssHttpClientBase.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/338efc8c78ffd1de56cecc4647ebd34d18f958c8a0963d89a12b9ea90a4ae/ExceptionWrapper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/fce18a219343c4e84a72ea7c2e664b9be45fbfac1655d259db9b8b1fa68c6ed/Application.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources/25099ff7-2437-43cd-8ccf-6b840048af3a/storage_v2/_src_/schema/main.uQUzAA.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.FSharp.Models/Library.fs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.FSharp/PullRequestCommentService.fs" root0="FORCE_HIGHLIGHTING" />
@@ -54,6 +67,7 @@
     <setting file="file://$PROJECT_DIR$/TheMetz.Interfaces/IWorkItemService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz/MainWindow.xaml.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz/Models/PullRequestStatsViewModel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/TheMetz/obj/Debug/net9.0-windows/Partials/CommentStats.g.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -91,7 +105,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "ml.llm.AIAssistantPromptsLibrary",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
   },
@@ -105,8 +119,8 @@
   }
 }]]></component>
   <component name="RecapSpentCounter">
-    <option name="endsOfQuotaMs" value="1768395617237" />
-    <option name="spentUsd" value="0.00415375" />
+    <option name="endsOfQuotaMs" value="1770152400000" />
+    <option name="spentUsd" value="0.00746375" />
   </component>
   <component name="RecapUselessUpdatesCounter">
     <option name="suspendCountdown" value="9" />
@@ -239,25 +253,8 @@
       <workItem from="1759840445839" duration="74000" />
       <workItem from="1759840535288" duration="945000" />
       <workItem from="1759842939981" duration="6359000" />
-      <workItem from="1759940120353" duration="1663000" />
-      <workItem from="1760542621804" duration="1591000" />
-      <workItem from="1760972412375" duration="6117000" />
-      <workItem from="1760981210012" duration="87000" />
-      <workItem from="1760981313710" duration="120000" />
-      <workItem from="1760981462902" duration="295000" />
-      <workItem from="1761046052398" duration="1141000" />
-      <workItem from="1761051022870" duration="105000" />
-      <workItem from="1761051417475" duration="154000" />
-      <workItem from="1761055039113" duration="165000" />
-      <workItem from="1761058718507" duration="40000" />
-      <workItem from="1761058772718" duration="54000" />
-      <workItem from="1761065419228" duration="1282000" />
-      <workItem from="1761225460374" duration="56000" />
-      <workItem from="1761225627432" duration="147000" />
-      <workItem from="1761225791828" duration="861000" />
-      <workItem from="1761227286350" duration="173000" />
-      <workItem from="1761228314796" duration="788000" />
-      <workItem from="1767881183732" duration="1839000" />
+      <workItem from="1759940120353" duration="1516000" />
+      <workItem from="1768586552658" duration="845000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial solution and application for TheMetz project&#10;&#10;Includes .gitignore, a WPF application using .NET 8.0, and ADO pull request data processing services. Also adds project configuration files for Visual Studio and JetBrains Rider IDEs.">
       <option name="closed" value="true" />
@@ -587,31 +584,7 @@
       <option name="project" value="LOCAL" />
       <updated>1759941472267</updated>
     </task>
-    <task id="LOCAL-00042" summary="Update `.idea/workspace.xml` to adjust tracked changes, modify highlighting settings, and increment `localTasksCounter`; refine `IndividualStats.xaml` with updated colors, modernized styles, and responsive layout enhancements.">
-      <option name="closed" value="true" />
-      <created>1759941780786</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1759941780786</updated>
-    </task>
-    <task id="LOCAL-00043" summary="Update PR URL generation to use dynamic `connection.Uri`, and replace outdated `OrganizationUrl` endpoints in configuration files.">
-      <option name="closed" value="true" />
-      <created>1767886392363</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1767886392363</updated>
-    </task>
-    <task id="LOCAL-00044" summary="Remove `.idea/.idea.TheMetz` SQLite data source configuration file.">
-      <option name="closed" value="true" />
-      <created>1767886408352</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1767886408352</updated>
-    </task>
-    <option name="localTasksCounter" value="45" />
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -619,8 +592,25 @@
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Filter work items by state and remove obsolete test button in MainWindow." />
+    <MESSAGE value="Refine `WorkItemService` query to include 'Done' state filter and update UI by removing unused test button." />
+    <MESSAGE value="Update `.gitignore` to exclude `.db` files." />
+    <MESSAGE value="Update `.gitignore` to exclude `idea/*` directory." />
+    <MESSAGE value="Update `.gitignore` to standardize `.idea/*` exclusion pattern." />
+    <MESSAGE value="Remove `AzureDevOpsPullRequestFetcher` and redundant comments in F# `PullRequestService`." />
     <MESSAGE value="Update project configuration to refine `.NET Project` settings and adjust tasks tracking setup." />
     <MESSAGE value="Remove SQLite data source configuration file from `.idea` directory." />
     <MESSAGE value="Update SQLite data source configuration with new `created-in` version." />
@@ -640,13 +630,7 @@
     <MESSAGE value="Update `.idea/workspace.xml` to clean up tracked changes, add highlighting settings for `IndividualStats.xaml.cs`, and increment `localTasksCounter`." />
     <MESSAGE value="Add `IndividualStatsChartRenderer` for bar chart rendering in `IndividualStats.xaml`, integrate `IChartRenderer`, and update UI to include dynamic activity summary chart." />
     <MESSAGE value="Redesign `IndividualStats.xaml` with modern UI styles, responsive layout adjustments, and enhanced components; update `.idea/workspace.xml` to modify tracked changes, add highlighting settings, and increment `localTasksCounter`." />
-    <MESSAGE value="Update `.idea/workspace.xml` to adjust tracked changes, modify highlighting settings, and increment `localTasksCounter`; refine `IndividualStats.xaml` with updated colors, modernized styles, and responsive layout enhancements." />
-    <MESSAGE value="Remove `.idea/.idea.TheMetz/.idea/dataSources/25099ff7-2437-43cd-8ccf-6b840048af3a.xml` file." />
-    <MESSAGE value="Remove unused IntelliJ `.idea` data source configuration file related to `TheMetz.db`." />
-    <MESSAGE value="Remove `.idea/dataSources/25099ff7-2437-43cd-8ccf-6b840048af3a.xml` from version control." />
-    <MESSAGE value="Update PR URL generation to use dynamic `connection.Uri`, and replace outdated `OrganizationUrl` endpoints in configuration files." />
-    <MESSAGE value="Remove `.idea/.idea.TheMetz` SQLite data source configuration file." />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove `.idea/.idea.TheMetz` SQLite data source configuration file." />
+    <option name="LAST_COMMIT_MESSAGE" value="Redesign `IndividualStats.xaml` with modern UI styles, responsive layout adjustments, and enhanced components; update `.idea/workspace.xml` to modify tracked changes, add highlighting settings, and increment `localTasksCounter`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

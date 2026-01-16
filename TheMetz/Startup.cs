@@ -27,7 +27,7 @@ public static class Startup
         var appSettings = configurationRoot.Get<AppSettings>()!;
         services.AddSingleton(appSettings);
 
-        var adoConnection = new VssConnection(new Uri(appSettings.OrganizationUrl), new VssBasicCredential(string.Empty, appSettings.PersonalAccessToken));
+        var adoConnection = new VssConnection(new Uri(appSettings.OrganizationUrl), new VssBasicCredential(string.Empty, "PUT YOUR TOKEN HERE"));
         services.AddSingleton(adoConnection);
         //services.AddSingleton<IPullRequestCommentService, PullRequestCommentService>();
         services.AddSingleton<IPullRequestCommentService, FSharp.PullRequestCommentService>();
