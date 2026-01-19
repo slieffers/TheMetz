@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+using Microsoft.VisualStudio.Services.WebApi;
 using TheMetz.Interfaces;
 using TheMetz.Models;
 using TheMetz.Services;
@@ -152,7 +153,7 @@ public partial class IndividualStats : UserControl
                 var paragraph = new Paragraph();
                 var hyperlink = new Hyperlink(new Run($"#{workItem.Id} - {(string)workItem.Fields["System.Title"]}"))
                 {
-                    NavigateUri = new Uri(workItem.Url),
+                    NavigateUri = new Uri(((ReferenceLink)workItem.Links.Links["html"]).Href),
                     Cursor = Cursors.Hand
                 };
 
@@ -160,7 +161,7 @@ public partial class IndividualStats : UserControl
                 {
                     Process.Start(new ProcessStartInfo
                     {
-                        FileName = workItem.Url,
+                        FileName = ((ReferenceLink)workItem.Links.Links["html"]).Href,
                         UseShellExecute = true
                     });
                 };

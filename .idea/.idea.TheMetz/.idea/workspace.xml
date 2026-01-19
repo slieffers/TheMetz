@@ -22,14 +22,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88875f52-c126-4dbe-93a4-50cc501ad078" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources/25099ff7-2437-43cd-8ccf-6b840048af3a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources/25099ff7-2437-43cd-8ccf-6b840048af3a.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz.FSharp/PullRequestCommentService.fs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz.FSharp/PullRequestCommentService.fs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Services/PullRequestStateChangeService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Services/PullRequestStateChangeService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/Startup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheMetz/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/TheMetz/appsettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,18 +33,20 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="10" />
+    <option name="cachedIndexableFilesCount" value="9" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
     <option name="SIGN_OFF_COMMIT" value="true" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0f37230596274b9397e717e6388c01cf737b0/42/91b676de/VssHttpMessageHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/31be9507ad1f472f8bc6f092089a028d1a61b8/90/fed8f176/VssHttpClientBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/338efc8c78ffd1de56cecc4647ebd34d18f958c8a0963d89a12b9ea90a4ae/ExceptionWrapper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3c92637ae2e83da0a63791071c41eae291d594156062866d8621b7ed7245c/CastHelpers.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/fce18a219343c4e84a72ea7c2e664b9be45fbfac1655d259db9b8b1fa68c6ed/Application.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/.idea/.idea.TheMetz/.idea/dataSources/25099ff7-2437-43cd-8ccf-6b840048af3a/storage_v2/_src_/schema/main.uQUzAA.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TheMetz.FSharp.Models/Library.fs" root0="FORCE_HIGHLIGHTING" />
@@ -120,10 +115,10 @@
 }]]></component>
   <component name="RecapSpentCounter">
     <option name="endsOfQuotaMs" value="1770152400000" />
-    <option name="spentUsd" value="0.00746375" />
+    <option name="spentUsd" value="0.08175554" />
   </component>
   <component name="RecapUselessUpdatesCounter">
-    <option name="suspendCountdown" value="9" />
+    <option name="suspendCountdown" value="1" />
   </component>
   <component name="RunManager">
     <configuration name="TheMetz" type="DotNetProject" factoryName=".NET Project" activateToolWindowBeforeRun="false">
@@ -254,7 +249,8 @@
       <workItem from="1759840535288" duration="945000" />
       <workItem from="1759842939981" duration="6359000" />
       <workItem from="1759940120353" duration="1516000" />
-      <workItem from="1768586552658" duration="845000" />
+      <workItem from="1768586552658" duration="1016000" />
+      <workItem from="1768831947207" duration="7778000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial solution and application for TheMetz project&#10;&#10;Includes .gitignore, a WPF application using .NET 8.0, and ADO pull request data processing services. Also adds project configuration files for Visual Studio and JetBrains Rider IDEs.">
       <option name="closed" value="true" />
@@ -584,7 +580,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759941472267</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Update `OrganizationUrl` and remove `PersonalAccessToken` from `appsettings.json` and `AppSettings.cs`; refactor PR URL generation in `PullRequestCommentService.fs` and `PullRequestStateChangeService.cs` to use `connection.Uri.AbsoluteUri`.">
+      <option name="closed" value="true" />
+      <created>1768587494169</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1768587494169</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -605,7 +609,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Filter work items by state and remove obsolete test button in MainWindow." />
     <MESSAGE value="Refine `WorkItemService` query to include 'Done' state filter and update UI by removing unused test button." />
     <MESSAGE value="Update `.gitignore` to exclude `.db` files." />
     <MESSAGE value="Update `.gitignore` to exclude `idea/*` directory." />
@@ -630,7 +633,8 @@
     <MESSAGE value="Update `.idea/workspace.xml` to clean up tracked changes, add highlighting settings for `IndividualStats.xaml.cs`, and increment `localTasksCounter`." />
     <MESSAGE value="Add `IndividualStatsChartRenderer` for bar chart rendering in `IndividualStats.xaml`, integrate `IChartRenderer`, and update UI to include dynamic activity summary chart." />
     <MESSAGE value="Redesign `IndividualStats.xaml` with modern UI styles, responsive layout adjustments, and enhanced components; update `.idea/workspace.xml` to modify tracked changes, add highlighting settings, and increment `localTasksCounter`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Redesign `IndividualStats.xaml` with modern UI styles, responsive layout adjustments, and enhanced components; update `.idea/workspace.xml` to modify tracked changes, add highlighting settings, and increment `localTasksCounter`." />
+    <MESSAGE value="Update `OrganizationUrl` and remove `PersonalAccessToken` from `appsettings.json` and `AppSettings.cs`; refactor PR URL generation in `PullRequestCommentService.fs` and `PullRequestStateChangeService.cs` to use `connection.Uri.AbsoluteUri`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update `OrganizationUrl` and remove `PersonalAccessToken` from `appsettings.json` and `AppSettings.cs`; refactor PR URL generation in `PullRequestCommentService.fs` and `PullRequestStateChangeService.cs` to use `connection.Uri.AbsoluteUri`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
